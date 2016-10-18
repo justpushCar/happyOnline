@@ -1,0 +1,89 @@
+<include file='public/header' />
+<div class="x-admin_add" style="height:100%;min-height: 663px;">
+	<div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">聊天室管理</strong> / <small>添加聊天室</small></div>
+    </div>
+    <form class="am-form" method="post" action="{:U('Channel/addChannel')}" enctype="multipart/form-data">
+	<div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+	  <span class="am-input-group-label">聊天室标题</span>
+	  <input name="title" type="text" value="" class="am-form-field" placeholder="请输入要聊天室标题">
+
+	</div>
+	<div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+	  <span class="am-input-group-label">&nbsp;&nbsp;服务地址&nbsp;</span>
+	  <input name="url" type="text" value="" class="am-form-field" placeholder="请输入要聊天室服务地址">
+
+	</div>
+	<div style="margin-left:5%;width:5%;margin-top:20px;float:left" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">开放聊天室</span>
+    </div>
+    <div style="float:left;margin-top:20px;">
+        <select style="height:38px;font-size:16px;padding-right:20px;padding-top:5px;border:1px solid #3BB4F2" name="state">
+            <option value="0"  selected>关闭</option>
+            <option value="1" >开放</option>
+        </select>
+    </div><div style="clear:both"></div>
+	<div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+	  <span class="am-input-group-label">聊天室图片</span>
+	  <input name="image" type="file">
+
+	</div>
+	<div style="margin-left:5%;width:5%;margin-top:20px;float:left" class="am-input-group am-input-group-secondary">
+  		<span class="am-input-group-label">选择管理员</span>
+	</div>
+	<div style="float:left;margin-top:20px;">
+	<select style="height:38px;font-size:16px;padding-right:20px;padding-top:5px;border:1px solid #3BB4F2" name="user_id">
+    		<option value="0">新建管理员</option>
+	  		<volist name="list" id="v">
+	  		<option value="{$v.user_id}" <eq name="v.user_id" value="$info['user_id']">selected = "selected"</eq>>{$v.nick_name}/{$v.phone}/{$v.email}</option>
+			</volist>
+	  	</select>
+	</div><div style="clear:both"></div>
+	<div id="addAdmin">
+	<div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+	  <span class="am-input-group-label">管理员昵称</span>
+	  <input name="nick_name" type="text" value="" class="am-form-field" placeholder="请输入管理员昵称">
+
+	</div>
+	<div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+	  <span class="am-input-group-label">管理员手机</span>
+	  <input name="phone" type="text" value="" class="am-form-field" placeholder="请输入管理员手机">
+
+	</div>
+	<div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+	  <span class="am-input-group-label">管理员邮箱</span>
+	  <input name="email" type="text" value="" class="am-form-field" placeholder="请输入管理员邮箱">
+	</div>
+    <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+  		<span class="am-input-group-label">管理员密码</span>
+	  	<input name="password" type="password" value=""  class="am-form-field" placeholder="请输入管理员密码">
+	</div>
+	<div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+  		<span class="am-input-group-label">&nbsp;&nbsp;重复密码&nbsp;</span>
+	  	<input name="repwd" type="password" class="am-form-field" placeholder="请输入管理员密码">
+	</div>
+	</div>
+	<div style="clear:both;margin-left:5%;margin-top:40px">
+		<button type="submit" class="am-btn am-btn-success">　提交　</button>
+	</div>
+	</form>
+</div>
+<script>
+	$("select[name=state]").change(function(){
+			var url = $("input[name=url]").val();
+			if($(this).val()==1){
+				if(url==''){
+					alert('聊天室服务地址未填写，不能开放！');
+					$(this).val(0);
+				}
+			}
+	})
+	$("select[name=user_id]").change(function(){
+		if($(this).val()==0){
+			$("#addAdmin").show();
+		}else{
+			$("#addAdmin").hide();
+		}
+	})
+</script>
+<include file='public/footer' />

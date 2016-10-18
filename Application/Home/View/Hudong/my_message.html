@@ -1,0 +1,77 @@
+<include file='public/header' />
+<style>
+    .slideTxtBox .hd ul li{color: black;}
+    ._img_{width: 140px;height: 140px;}
+</style>
+<!-- ft_info_box -->
+<div class="content">
+    <!--左边-->
+    <include file='public/spaceleft' />
+   <!--右边-->
+    <div class="contentright">
+
+        <div class="slideTxtBox">
+            <div class="hd">
+                <ul>
+                    <li>我的说说</li>
+                    <li>正在审核中</li>
+                </ul>
+            </div>
+            <div class="bd">
+            	<ul style="">
+            		<div class="box_center" style="">
+                        <volist name="message_list1" id="v">
+            			<div class="x-my_dynamic">
+            				<div class="x-my_dynamic_top" style="margin-bottom:0px;">
+            					<p>{$v.content}</p>
+                                <volist name="v['imgs']" id="v1">
+            					<img class="_img_"  src="__PUBLIC__{$v1['img']}">
+                                </volist>
+                                <div style="clear: both;"></div>
+            					<h3 style="">消耗网站币：{$v.love_money}&nbsp;&nbsp;&nbsp;<span>发布时间：{$v.pub_time|date="Y-m-d",###}</span></h3>
+
+            				</div>
+            				<div class="x-my_dynamic_bottom" style="margin-bottom:0px;">
+            					<div><h2 style="word-break: break-all; word-wrap:break-word;">评论 ( {$v.comment_num} )</h2></div>
+                                <volist name="v['comment']" id="v2">
+            					<div class="x-my_dynamic_comment">
+                                    <img src="__PUBLIC__/{$v2['user_info']['head_img']}">
+                                    <p style="word-break: break-all; word-wrap:break-word;"><span style="color: #000000">{$v2['user_info']['nick_name']}&nbsp;&nbsp;&nbsp;&nbsp;</span>{$v2.p_content}&nbsp;&nbsp;&nbsp;&nbsp;评论时间：{$v2.p_time|date="Y-m-d",###}</p>
+                                </div>
+                                </volist>
+            				</div>
+            			</div>
+                        </volist>
+            			<div class="x-visitor_fotter">
+            				 {$page}
+            			</div>
+            		</div>
+            	</ul>
+            	<ul>
+            		<div class="box_center">
+            			<!--<p style="width:98%;text-align:left;line-height:30px;padding-left:2%"><span style="color:red">*</span>这里是神马？</p>-->
+            			<volist name="message_list2" id="v">
+                        <div class="x-my_dynamic_examine">
+            				<p style="word-break: break-all; word-wrap:break-word;">{$v.content}</p>
+                                <volist name="v[imgs]" id="v1">
+            					<img style="width: 100px;height: 100px;" src="__PUBLIC__{$v1['img']}">
+                                </volist>
+                            <div style="clear: both;"></div>
+            					<h3>消耗网站币：{$v.love_money}</h3>
+            			</div>
+                        </volist>
+            		</div>
+            	</ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<include file='public/foot' />
+<script src="__PUBLIC__/assets/js/plupload.js"></script>
+<script>
+    //移除
+    $(".am-pagination-prev,.am-pagination-next,.prev,.next").click(function(){
+        unbind();
+    })
+</script>

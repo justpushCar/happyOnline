@@ -1,0 +1,214 @@
+<include file='public/header' />
+<style>
+	.x-index_search{
+	width:100%;height:500px;padding-left:22%;overflow:visible;
+	}
+.pagelist{ text-align:center; background:none;float:right;margin-right:5%}
+.pagelist a{ margin:0 2px; border:#6185a2 solid 1px; display:inline-block; padding:2px 6px 1px; line-height:14px; background:#fff; color:black;}
+.pagelist span{ margin:0 2px; border:#6185a2 solid 1px; display:inline-block; padding:2px 6px 1px; line-height:14px; color:#6185a2; color:black; background:#6185a2;}
+</style>
+<div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> / <small>后台会员管理</small></div>
+    </div>
+
+    <div class="x-add_admin">
+    <a href="{:U('Index/addAdmin')}" style="float:left;margin-right:5%" class=" am-btn am-btn-primary"><i class="am-icon-plus"></i>添加管理员</a>
+	    <form name="search" method="post" action="{:U('Index/adminList')}">
+	    <div style="float:left;width:400px;" class="am-input-group">
+	      <input style="width: 300px;" type="text" value="{$search_info.username}" name="search_name" class="am-form-field" placeholder="请输入要搜索的用户名" >
+	      <span class="am-input-group-btn">
+	        <button style="" class="am-btn am-btn-default" type="submit">搜索</button>
+	      </span>
+	    </div>
+	    </form>
+	    <div style="clear:both">
+	    </div>
+    </div>
+    <table style="width:100%;margin-left:5%;margin-top:20px" class="am-table am-table-bordered am-table-radius am-table-striped">
+    	<thead>
+	    	<tr>
+	    		
+		    	<td>用户名</td>
+		    	<td>用户权限</td>
+		    	<td>最后登录时间</td>
+		    	<td>添加时间</td>
+		    	<td>操作</td>
+	    	</tr>
+    	</thead>
+    	<tbody>
+            <volist name="adminList" id="v">
+                <tr>
+                    <td>{$v.username}</td>
+                    <td><eq name="v.rank" value="1">超级管理员</eq><eq name="v.rank" value="2">普通管理员</eq></td>
+                    <td><if condition="$v.logintime gt 0">{$v.logintime|date='Y-m-d',###}</if></td>
+                    <td>{$v.addtime|date='Y-m-d',###}</td>
+                    <td><a class="am-btn am-btn-default am-btn-xs" href="{:U('Index/addAdmin',array('id'=>$v['id']))}"><i class="am-icon-wrench"></i> 编辑 </a>
+                        <a class="am-btn am-btn-default am-btn-xs quanxing" data-id={$v.id} data_name="{$v.username}" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 1000, height: 600}"><i class="am-icon-wrench"></i>编辑权限 </a>
+                        <a href="{:U('Index/delAdminUser',array('id'=>$v['id']))}" class="am-btn am-btn-default am-btn-xs x-delete"><i class="am-icon-trash"></i> 删除 </a></td>
+                </tr>
+            </volist>
+    	</tbody>
+    	
+	</table>
+	<div class="pagelist">{$page}</div>
+<include file='public/footer' />
+
+<!--//弹出框-->
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">设置权限
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <form class="am-form am-form-horizontal">
+                <div class="am-form-group">
+                    <label for="doc-ipt-3" class="am-u-sm-1 am-form-label">角色名称</label>
+                    <div class="am-u-sm-11">
+                        <input id="username1" style="width: 300px;margin-top: 20px;" value="" type="email" id="doc-ipt-3" placeholder="">
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label  class="am-u-sm-1 am-form-label">权限分配</label>
+                    <div class="am-u-sm-11">
+                        <table style="width:100%;" class="am-table am-table-bordered am-table-radius am-table-striped">
+                            <thead>
+                            <tr>
+                                <td>会员管理</td>
+                                <td>审核管理</td>
+                                <td>聊天室管理</td>
+                                <td>帮助管理</td>
+                                <td>广告管理</td>
+                                <td>优秀会员推荐</td>
+                                <td>系统设置</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td>
+                                    <div class="checkbox">
+                                        <label><input name="qx[]" type="checkbox" value="userList"> 查看会员</label>
+                                        <br/>
+                                        <label><input name="qx[]" type="checkbox" value="chongzhi"> 查看充值记录</label>
+                                        <br/>
+                                        <label><input name="qx[]" type="checkbox" value="xiaofei"> 查看消费记录</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="checkbox">
+                                        <label><input name="qx[]" type="checkbox" value="shenhe_images"> 审核相册</label>
+                                        <br/>
+                                        <label><input name="qx[]" type="checkbox" value="message"> 审核说说</label>
+                                        <br/>
+                                        <label><input name="qx[]" type="checkbox" value="love">审核成功故事</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="checkbox">
+                                        <label><input name="qx[]" type="checkbox" value="addChannel"> 添加聊天室</label>
+                                        <br/>
+                                        <label><input name="qx[]" type="checkbox" value="index_channel"> 聊天室列表</label>
+                                        <br/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="checkbox">
+                                        <label><input name="qx[]" type="checkbox" value="addHelp"> 添加帮助</label>
+                                        <br/>
+                                      <!--  <label><input name="qx[]" type="checkbox" value="addHelp"> 关于我们</label>
+                                        <br/>
+                                        <label><input name="qx[]" type="checkbox" value="addHelp"> 注意事项</label>
+                                        <br/>
+                                        <label><input name="qx[]" type="checkbox" value="addHelp"> 注册协议</label>-->
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="checkbox">
+                                        <label><input name="qx[]" type="checkbox" value="addGuanggao"> 添加广告</label>
+                                        <br/>
+                                       <!-- <label><input name="qx[]" type="checkbox" value="message"> 关于我们</label>
+                                        <br/>
+                                        <label><input name="qx[]" type="checkbox" value="message"> 注意事项</label>
+                                        <br/>
+                                        <label><input name="qx[]" type="checkbox" value="message"> 注册协议</label>-->
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="checkbox">
+                                        <label><input name="qx[]" type="checkbox" value="index_user_add"> 添加优秀会员</label>
+                                        <br/>
+                                        <label><input name="qx[]" type="checkbox" value="index_user"> 查看优秀会员</label>
+                                        <br/>
+                                        <label><input name="qx[]" type="checkbox" value="yulantu"> 预览图</label>
+                                        <br/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="checkbox">
+                                        <label><input name="qx[]" type="checkbox" value="base_index"> 基本设置</label>
+                                        <label><input name="qx[]" type="checkbox" value="set_pay"> 支付设置</label>
+                                        <br/>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+               <div class=" am-u-sm-11 am-u-sm-offset-1"  style="margin-top: 50px;">
+                   <button type="submit" class="am-btn am-btn-success sbt">　提交　</button>
+               </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        var qxid=''
+        $('.quanxing').click(function(){
+            qxid= $(this).attr('data-id');
+            var qx_name= $(this).attr('data_name');
+            $('#username1').val(qx_name);
+            $.get("{:U('Index/qx_query')}?qxid="+qxid,function(data){
+                $('input[type="checkbox"]').each(function(k ,v){
+                     var qx=$(this).val();
+                   if($.inArray(qx,data)>=0){
+                       $(this).prop('checked',true);
+                   }else{
+                       $(this).removeAttr('checked');
+                   }
+                })
+            })
+        })
+
+        $('.sbt').click(function(){
+           var qx= $('.am-form').serialize();
+            $.get("{:U('Index/qx_ajax')}?qxid="+qxid,qx,function(data){
+                layer.alert(data,function(){
+                    history.go(0);
+                });
+
+            })
+            return false;
+        })
+
+    })
+
+
+	$(".x-delete").click(function(){
+		var statu = confirm("是否要删除这个管理员");
+	    if(!statu){
+	        return false;
+	    }
+	})
+	$("#x-all_delete").click(function(){
+		var statu = confirm("是否要删除这些管理员");
+	    if(!statu){
+	        return false;
+	    }
+	})
+   
+</script>

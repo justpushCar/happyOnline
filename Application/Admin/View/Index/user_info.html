@@ -1,0 +1,141 @@
+<include file='public/header' />
+<div class="x-admin_add">
+	<div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> / <small>编辑会员信息</small></div>
+    </div>
+    <form class="am-form" method="post" action="{:U('Index/user_info')}">
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">昵称　</span>
+            <input name="nick_name" type="text" value="{$user_info.nick_name}" class="am-form-field" placeholder="">
+        </div>
+        <if condition="$user_info['phone']">
+            <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+                <span class="am-input-group-label">手机号　</span>
+                <input name="phone" type="text" value="{$user_info.phone}" class="am-form-field" placeholder="">
+            </div>
+        <else/>
+            <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+                <span class="am-input-group-label">邮箱　</span>
+                <input name="email" type="text" value="{$user_info.email}" class="am-form-field" placeholder="">
+            </div>
+        </if>
+
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">用户等级　</span>
+            <select name="vip" id="sels"  data-am-selected>
+                <option value="">选择会员类型</option>
+                <option value="1" <if condition="$user_info['vip'] eq 1">selected </if> >普通会员</option>
+                <option value="2" <if condition="$user_info['vip'] eq 2">selected </if> >vip会员</option>
+            </select>
+        </div>
+
+            <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary time_text">
+                <span class="am-input-group-label">开始时间　</span>
+                <input class="vip_start" style="width: 200px;" value="{$user_info['vip_start']|date='Y-m-d H:i:s',###}"  type="text" name="vip_start"  onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss', skin:'whyGreen',minDate: '2012-01-01', maxDate: '2020-12-20' })"/>至
+            </div>
+            <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary time_text">
+                <span class="am-input-group-label">到期时间　</span>
+                <input class="vip_end" style="width: 200px;" value="{$user_info['vip_end']|date='Y-m-d H:i:s',###}" type="text" name="vip_end"  onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss',  skin:'whyGreen',minDate: '2012-01-01', maxDate: '2020-12-20' })"/>
+            </div>
+
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">网站币　</span>
+            <input name="money" type="text" value="{$user_info.money}" class="am-form-field" placeholder="">
+        </div>
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">性别　</span>
+            <select name="sex"  data-am-selected>
+                <option value="1" <if condition="$user_info['sex'] eq 1">selected </if> >男</option>
+                <option value="2" <if condition="$user_info['sex'] eq 2">selected </if> >女</option>
+            </select>
+        </div>
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+          <span class="am-input-group-label">实名认证　</span>
+          <input name="is_renzheng" type="text" value="<if condition="$user_info['is_renzheng'] eq 1">已认证<else/>未认证</if>" class="am-form-field" placeholder="">
+        </div>
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">星座　</span>
+            <input name="constellation" type="text" value="{$user_info.constellation}" class="am-form-field" placeholder="">
+        </div>
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">年龄　</span>
+            <input name="age" type="text" value="{$user_info.age}" class="am-form-field" placeholder="">
+        </div>
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">学历　</span>
+            <input name="education" type="text" value="{$user_info.education}" class="am-form-field" placeholder="">
+        </div>
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">微信　</span>
+            <input name="wixin" type="text" value="{$user_info.wixin}" class="am-form-field" placeholder="">
+        </div>
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">婚姻状况　</span>
+            <select name="marriage"   data-am-selected>
+                <option value="">选择会员类型</option>
+                <option value="未婚" <if condition="$user_info['marriage'] eq 未婚">selected </if> >未婚</option>
+                <option value="已婚" <if condition="$user_info['marriage'] eq 已婚">selected </if> >已婚</option>
+                <option value="离异" <if condition="$user_info['marriage'] eq 离异">selected </if> >离异</option>
+            </select>
+        </div>
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">职业　</span>
+            <input name="job" type="text" value="{$user_info.job}" class="am-form-field" placeholder="">
+        </div>
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">月收入　</span>
+            <input name="mon_money" type="text" value="{$user_info.mon_money}" class="am-form-field" placeholder="">
+        </div>
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">省　</span>
+            <input name="province" type="text" value="{$user_info.province}" class="am-form-field" placeholder="">
+        </div>
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">市　</span>
+            <input name="city" type="text" value="{$user_info.city}" class="am-form-field" placeholder="">
+        </div>
+        </div>
+
+		<div  style="clear:both;margin-left:5%;margin-top:250px">
+            <input type="hidden" name="id" value="{$user_info.user_id}">
+			<button class="is_lt" type="submit" class="am-btn am-btn-success">　提交　</button>
+		</div>
+		</form>
+</div>
+<script src="__PUBLIC__/assets/js/My97DatePicker/WdatePicker.js"></script>
+<include file='public/footer' />
+<script>
+    function hide_div(){
+        var vip_div='{$user_info['vip']}';
+        if(vip_div == 1){
+            $('.time_text').hide();
+        }
+    }
+    hide_div();
+
+    $('.is_lt').bind('click',function(){
+        var vip_start=$(this).parent().prev().find('.vip_start').val();
+        var vip_end=$(this).parent().prev().find('.vip_end').val();
+        var time1 = Date.parse(new Date(vip_start))/1000;
+        var time2 = Date.parse(new Date(vip_end))/1000;
+        if(time1 > time2){
+            layer.alert('开始时间不能大于到期时间');
+            return false
+        }
+    })
+
+
+    $("select[name=vip]").change(function(){
+        var chcek_vip_val=$(this).val();
+//        var chcek_vip_val1=$('.time_text:eq(0)').find('input').val();
+//        var chcek_vip_val2=$('.time_text:eq(1)').find('input').val();
+        if(chcek_vip_val == 2){
+            $('.time_text').show();
+//            $('input[name=vip_start]').val(chcek_vip_val1);
+//            $('input[name=vip_end]').val(chcek_vip_val2);
+        }else{
+            $('.time_text').find('input').val('');
+            $('.time_text').hide();
+        }
+    })
+</script>

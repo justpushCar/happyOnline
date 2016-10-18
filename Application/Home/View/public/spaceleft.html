@@ -1,0 +1,85 @@
+<div class="contenteleft">
+    <div class="left1">
+        <img src= "<?php echo isset($useAll['head_img']) ? '__PUBLIC__'.$useAll['head_img'] : '__PUBLIC__/assets/images/nohead.jpg '?>" >
+        <div class="left1_title nkn">{$useAll['nick_name']}</div>
+        <?php if($useAll['vip']==2) :?>
+        <div class="left1_text">会员等级：vip会员</div>
+        <?php else :?>
+        <div class="left1_text">会员等级：普通会员</div>
+        <?php endif ?>
+        <div class="_img somediv60">
+            <ul>
+                <li> <img title="手机认证" src="__PUBLIC__/assets/images/_phone.png"></li>
+                <?php if($xiao_img['is_edit']=='y'):?>
+                <li>  <img title="填写资料" src="__PUBLIC__/assets/images/_det.png"></li>
+                <?php else :?>
+                <li>  <img title="填写资料" src="__PUBLIC__/assets/images/det.png"></li>
+                <?php endif ?>
+
+                <?php if($xiao_img['vip']=='y'):?>
+                <li>  <img title="vip会员" src="__PUBLIC__/assets/images/_vip.png"></li>
+                <?php else :?>
+                <li>  <img title="vip会员" src="__PUBLIC__/assets/images/vip.png"></li>
+                <?php endif ?>
+
+                <?php if($xiao_img['head_img']=='y'):?>
+                <li>  <img title="上传头像" src="__PUBLIC__/assets/images/_ishead.png"></li>
+                <?php else :?>
+                <li>  <img title="上传头像" src="__PUBLIC__/assets/images/ishead.png"></li>
+                <?php endif ?>
+
+                <?php if($xiao_img['is_renzheng']=='y'):?>
+                <li>  <img title="实名认证" src="__PUBLIC__/assets/images/_renzheng.png"></li>
+                <?php else :?>
+                <li> <img title="实名认证" src="__PUBLIC__/assets/images/renzheng.png"></li>
+                <?php endif ?>
+
+
+            </ul>
+        </div>
+        <hr>
+        <div>
+            <ul>
+                <li>
+                    <span>{$letter_num}</span>
+                    <span class="_title">未读信息</span>
+                </li>
+                <li>
+                    <span class="jibi_m">{$user_info['money']}</span>
+                    <span class="_title">我的金币</span>
+                </li>
+            </ul>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <div class="left2">
+        <ul>
+            <li class="title">我的资料</li>
+            <div style="clear: both"></div>
+            <li><a href="{:U('Index/spacemess')}">修改资料</a></li>
+            <li><a href="{:U('Index/spacemess',array('info'=>3))}">我的相册</a></li>
+        </ul>
+
+    </div>
+    <div class="left3">
+        <ul>
+            <li class="title">我的服务</li>
+            <div style="clear: both"></div>
+            <li><a href="{:U('Money/recharge')}">会员充值</a></li>
+            <li><a href="{:U('Money/recharge',array('num'=>88))}">金币充值</a></li>
+        </ul>
+
+    </div>
+    <div class="left4">
+        <ul>
+            <li class="title">我的幸福在线</li>
+            <div style="clear: both"></div>
+            <li><a href="{:U('Letter/my_letter')}">我的信件</a></li>
+            <li><a href="{:U('Index/myGift')}">我的礼物</a></li>
+            <li><a href="{:U('MyFollow/my_follow',array('num'=>88))}">我的关注</a></li>
+            <li><a href="{:U('MyFollow/my_follow')}">我的访客</a></li>
+            <li><a href="{:U('Hudong/my_message')}">我的说说</a></li>
+        </ul>
+
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<include file='public/header' />
+<div class="x-admin_add">
+	<div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">广告</strong> / <small><if condition="$guanggao_row">编辑<else/>添加</if>广告</small></div>
+    </div>
+    <div class="am-cf am-padding">
+        <span style="font-size: 8px;">首页轮播图图片上传大小：<span style="color:red;">980×460px</span></span>
+        <span style="font-size: 8px;">成功故事图片上传大小：<span style="color:red;">980×460px </span></span>
+        <span style="font-size: 8px;">幸福在线图片上传大小：<span style="color:red;">1000×1000px</span></span>
+        <span style="font-size: 8px;">我的空间图片上传大小：<span style="color:red;">1000×200px</span></span>
+        <span style="font-size: 8px;">图片编辑功能：<span style="color:red;">点击图片可以删除图片</span></span>
+    </div>
+    <form class="am-form" method="post" action="{:U('Guanggao/index')}" enctype="multipart/form-data">
+	<div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+	  <span class="am-input-group-label">广告名称　</span>
+	  <input name="title" type="text" value="{$guanggao_row.title}" class="am-form-field" placeholder="请输入要添加的广告标题">
+	</div>
+    <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+        <span class="am-input-group-label">跳转地址　</span>
+        <input name="url" type="text" value="{$guanggao_row.url}" class="am-form-field" placeholder="请输入要添加的跳转地址">
+    </div>
+
+    <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+        <span class="am-input-group-label">广告图片　</span>
+        <if condition="!$guanggao_row">
+            <input type="file" name="guanggao[]"/>
+            <input type="file" name="guanggao[]"/>
+            <input type="file" name="guanggao[]"/>
+            <input type="file" name="guanggao[]"/>
+        <else/>
+            <input type="file" name="guanggao[]"/>
+            <input type="file" name="guanggao[]"/>
+            <volist name="img" id="v">
+                    <img class="img_id" data_id="{$v.id}" style="height: 200px;width:210px;" src="__PUBLIC__{$v.img}"/>
+            </volist>
+        </if>
+    </div>
+        <div style="margin-left:5%;width:5%;margin-top:20px;float:left" class="am-input-group am-input-group-secondary">
+        <input type="hidden" name="id" value="{$guanggao_row.id}">
+        <button type="submit" class="am-btn am-btn-success">　提交　</button>
+    </div>
+    </form>
+
+
+</div>
+<include file='public/footer' />
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+<script>
+    window.onload = function(){
+        window.UEDITOR_HOME_URL = "__PUBLIC__/ueditor/";
+        UE.getEditor('guanggaoEditor', {
+            theme:"default", //皮肤
+            lang:"zh-cn", //语言
+            initialFrameWidth:900,
+            initialFrameHeight:300,
+            allHtmlEnabled:false,
+        })
+    }
+    $("#shanchu").click(function(){
+        if(confirm('确认要删除吗？')){
+            var id="{$guanggao_row.id}";
+            $.post("{:U('Guanggao/index')}",{id:id},function(res){
+                if(res.status == 'y'){
+                    alert(res.info);
+                    history.go(0);
+                }else{
+                    alert(res.info);
+                    return false;
+                }
+            })
+        }
+    })
+    //删除图片
+    $(".img_id").click(function(){
+        if(confirm('确认要删除吗')){
+            var img_id=$(this).attr('data_id');
+            $.post("{:U('Guanggao/del_img')}",{img_id:img_id},function(res){
+                if(res.status == 'y'){
+                    alert(res.info);
+                    history.go(0);
+                }else{
+                    alert(res.info);
+                    return false;
+                }
+            })
+        }
+    })
+</script>

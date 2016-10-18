@@ -1,0 +1,232 @@
+<include file='public/header' />
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.css">
+<!-- ft_info_box -->
+<style>
+.x-visitor_fotter{clear: both;}
+</style>
+<div class="content search">
+    <div class="slideTxtBox" style="background: white;">
+        <div class="hd" style="background: #d6405d;height: 40px;">
+            <ul style="margin-top: 10px;margin-left: 10px">
+                <li style="border-left: 0px;">条件搜索</li>
+                <li>精确搜索</li>
+            </ul>
+        </div>
+        <div class="bd">
+            <ul>
+                <div class="yy_search yy_search_newlayout" style="background: white;">
+                <form action="{:U('Index/search')}" method="get">
+                    <div class="search_sub adress" style="border: none;">
+                        <label>我想找</label>
+                    <select name="sex" id="sel_sex">
+                        <option value="2" <if condition="$user_row['sex'] eq 1">selected</if>>女朋友</option>
+                        <option value="1" <if condition="$user_row['sex'] eq 2">selected</if>>男朋友</option>
+                    </select>
+                        <label>年龄</label><select name="age" id="sel_age_min">
+                        <option value="0" >不限</option>
+                        <option value="18,20"  <if condition="$user_row['age'] egt 18 && $user_row['age'] elt 20">selected</if>>18~20</option>
+                        <option value="21,25" <if condition="$user_row['age'] egt 21 && $user_row['age'] elt 25">selected</if>>21~25</option>
+                        <option value="26,30" <if condition="$user_row['age'] egt 26 && $user_row['age'] elt 30">selected</if>>26~30</option>
+                        <option value="31,35" <if condition="$user_row['age'] egt 31 && $user_row['age'] elt 35">selected</if>>31~35</option>
+                    </select><label>地区</label>
+                        <select id="Province" name="Province">
+                    </select><label></label>
+                        <select id="City" name="City">
+                    </select>
+                        <?php if($vip=='vip'):?>
+						<input type="submit" value="搜索" style="width:10%;border:none;float:left;margin-left:20px;margin-top:2px;color:white;background-color:#F76984;border-radius:5px;height:25px">
+                        <input name="search_id" value="8" type="hidden"/>
+                        <?php else :?>
+                        <input class="novip" type="submit" value="搜索" style="width:10%;border:none;float:left;margin-left:20px;margin-top:2px;color:white;background-color:#F76984;border-radius:5px;height:25px">
+                        <?php endif ?>
+                    </div>
+                    </form>
+                    <style>
+                        .box_center .x-visitor_detail p{height: 25px;margin-top: 10px;text-align: left;}
+                        .box_center .x-visitor_detail .tl{height: 25px;margin-top: 10px;text-align: left;color: black;font-weight: bold;}
+
+                        .box_center .x-visitor_detail a{margin-top: 30px;width: 100px;}
+                    </style>
+                    <div class="box_center">
+                        <div class="x-visitor details">
+                            <if condition="!empty($user)">
+
+                            <volist name="user" id="v">
+                                <div style="width: 315px;height: 200px;float: left;">
+                                    <div class="x-visitor_detail">
+                                        <img src="{$v.head_img}" style="margin-bottom:5px;width: 130px;height: 160px;">
+                                    </div>
+                                    <div class="x-visitor_detail">
+                                        <p class="tl">{$v.nick_name}</p>
+                                        <p><span><?php echo $v['age']? ($v['age']."岁"):"";?></span>&nbsp;&nbsp;&nbsp;<span><?php $v['height']? $v['height']."cm":"";?></span>&nbsp;&nbsp;&nbsp;<span><?php echo $v['weigth']?$v['weigth']."kg":"";?></span></p>
+                                        <p>{$v.dubai|_substr=###,"20"}</p>
+                                        <a href="{:U('Detail/detail',array('id'=>$v['user_id']))}"> <i style="color: white" class="icon-heart"></i> 查看详情</a>
+                                    </div>
+                                </div>
+                            </volist>
+                                <else/>
+                                <div class="x-visitor_detail">
+                                   <span>亲，没有搜索到信息！</span>
+                                </div>
+                            </if>
+                        </div>
+                    </div>
+                    <div class="x-visitor_fotter" style="margin-bottom:0px;" >
+                        {$page}
+                    </div>
+            </ul>
+            <ul>
+                <div class="yy_search yy_search_newlayout" style="background: white;">
+                    <div class="search_sub adress" style="border: none;width: 690px;">
+                        <label>会员账号：</label><input id="phone"  value=""  style="float: left;" type="text">
+                        <label style="margin: 0 65px 0 95px;">或</label>
+                        <label>昵称：</label><input id="nickname" name="nickname" value=""  style="float: left;" type="text">
+                    </select>
+                        <?php if($vip=='vip'):?>
+                        <a href="javascript:" title="搜索" id="exact" class="search_btn" style="background:#f76984;border-radius: 4px;border: none;margin: 0;">搜索</a>
+                       <?php else :?>
+                        <a class="novip" href="javascript:" title="搜索"  class="search_btn" style="background:#f76984;border-radius: 4px;border: none;margin: 0;">搜索</a>
+                        <?php endif ?>
+                    </div>
+                    <div class="box_center">
+                        <div class="x-visitor" id="exact_box">
+                            <div class="box_center">
+                                <div class="x-visitor details">
+                                    <if condition="!empty($user)">
+
+                                        <volist name="user" id="v">
+                                            <div style="width: 315px;height: 200px;float: left;">
+                                                <div class="x-visitor_detail">
+                                                    <img src="{$v.head_img}" style="margin-bottom:5px;width: 130px;height: 160px;">
+                                                </div>
+                                                <div class="x-visitor_detail">
+                                                    <p class="tl">{$v.nick_name}</p>
+                                                    <p><span><?php echo $v['age']? ($v['age']."岁"):"";?></span>&nbsp;&nbsp;&nbsp;<span><?php $v['height']? $v['height']."cm":"";?></span>&nbsp;&nbsp;&nbsp;<span><?php echo $v['weigth']?$v['weigth']."kg":"";?></span></p>
+                                                    <p>{$v.dubai|_substr=###,"20"}</p>
+                                                    <a href="{:U('Detail/detail',array('id'=>$v['user_id']))}"> <i style="color: white" class="icon-heart"></i> 查看详情</a>
+                                                </div>
+                                            </div>
+                                        </volist>
+                                        <else/>
+                                        <div class="x-visitor_detail">
+                                            <span>亲，没有搜索到信息！</span>
+                                        </div>
+                                    </if>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+            </ul>
+        </div>
+
+    </div>
+</div>
+<style>
+    .buttom_mode{color: black; width: 300px;height: 250px;background: #fff;position: fixed;right: 2px;bottom: 2px;border-radius: 5px;overflow:hidden;z-index: 2000}
+    .head_mode{width: 100%;height: 30px;background: #c9a6ff;text-align: center;color:white;line-height: 30px;font-weight: bold;font-size: 1.2rem;}
+    .buttom_mode  .cont{width:86%;margin:7% auto;}
+    .buttom_mode  .cont div{border-radius: 5px;overflow: hidden;}
+    .buttom_mode  .cont .right{margin-left: 10px;}
+    .buttom_mode  .close{z-index: 2001;position: absolute;right: 2px;top: -6px;cursor: pointer;}
+    .buttom_mode .look{height: 25px;text-align: center;width: 120px;margin:20px 90px; border-radius: 5px;background-color: #f76984;line-height: 25px;color: white;font-weight: bold;cursor: pointer; }
+    .buttom_mode.right div{margin-bottom: 15px;}
+    .buttom_mode .look a{color: white}
+</style>
+<!--//右下角弹出-->
+<if condition="$suiji_user">
+    <div class="buttom_mode">
+        <div class="head_mode" style="position: relative">
+            消息提醒
+            <div class="close" ><i style="color: black; line-height: 30px;" class="fa fa-times"></i></div>
+        </div>
+        <div class="cont">
+            <div style="width: 100px;height:100px;background: #c14359;float: left"><img src="__PUBLIC__{$suiji_user.head_img}" width="100%"height="100%"></div>
+            <div class="right" style="width: 145px;height: 100px; background: #fff;float: left">
+                <div style="color: black;">{$suiji_user.nick_name}</div>
+                <div style="color: black;">{$suiji_user.age}岁</div>
+                <div style="color: black;color: #EC8484;margin-top:10px;">你收到一封信件.</div>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="look">
+            <a href="{:U('Letter/letterDetail',array('send_id'=>$suiji_user['send_id']))}">快去看信</a>
+        </div>
+    </div>
+</if>
+<script>
+    $('.close').click(function(){
+        $('.buttom_mode').fadeOut('slow');
+    })
+
+</script>
+
+<include file='public/foot' />
+<include file='public/details' />
+<script type="text/javascript" src="__PUBLIC__/assets/js/PCASClass.js"></script>
+        <script>
+            $(document).ready(function(){
+            	new PCAS("Province","City")
+            })
+            $('.next').click(function(){
+				unbind();
+            })
+            $('.prev').click(function(){
+				unbind();
+            })
+        </script>
+        <script type="text/javascript">
+        	$("#exact").click(function(){
+        		var phone = document.getElementById("phone").value;
+        		var nickname = document.getElementById("nickname").value;
+                if(phone == '' && nickname == ''){
+                    layer.alert('搜索内容不能为空');
+                    return false;
+                }
+        		$.ajax({
+        			type:"post",
+        			url:"{:U('Index/exactSearch')}",
+        			data:{"phone":phone,"nickname":nickname},
+        			success:function(msg){
+        				if(msg){
+        					for(var i = 0; i < msg.length; i++){
+        						/*$("#exact_box").html("<div class='x-visitor_detail'><img src='" + msg[i].head_img + "' width='100%' " +
+                                         "height='180px' style='margin-bottom:5px'><a href='"+msg[i].userid+"'>查看详情</a></div>")*/
+                                if(msg[i].age){
+                                    msg[i].age=msg[i].age+'岁'
+                                }else{
+                                    msg[i].age='';
+                                }
+                                if(msg[i].weigth){
+                                    msg[i].weigth=msg[i].weigth+'kg'
+                                }else{
+                                    msg[i].weigth='';
+                                }
+                                if(msg[i].height){
+                                    msg[i].height=msg[i].height+'cm'
+                                }else{
+                                    msg[i].height='';
+                                }
+                                if(msg[i].dubai){
+                                    msg[i].dubai=msg[i].dubai
+                                }else{
+                                    msg[i].dubai='';
+                                }
+                                $("#exact_box").html("<div style='width: 315px;height: 200px;float: left;'><div class='x-visitor_detail'><img src='" +msg[i].head_img+ "' style='margin-bottom:5px;width: 130px;height: 160px;'></div> <div class='x-visitor_detail'><p class='tl'>"+msg[i]['nick_name']+"</p><p><span>"+msg[i].age+ "</span>&nbsp;&nbsp;&nbsp;<span>"+msg[i].height+"</span>&nbsp;&nbsp;&nbsp;<span>"+msg[i].weigth+ "</span></p><p>"+msg[i].dubai+"</p>" +
+                                        "<a href='"+msg[i].userid+"'><i style='color: white' class='icon-heart'></i>查看详情</a></div></div>")
+        					}
+        				}else{
+                            layer.alert("什么也没有找到");$("#exact_box").html('');
+                        }
+        			}
+        		})
+        	})
+            $('.novip').click(function(){
+                layer.alert('您还不是vip会员请充值',function(){
+                    window.location.href="{:U('Money/recharge')}"
+                })
+                return false;
+            })
+        </script>

@@ -1,0 +1,194 @@
+<include file='public/header' />
+<div class="reg_main">
+    <div class="reg_main_l">
+        <div style="width: 361px;height:550px;margin-top: -50px;"><img style="width: 100%;height: 100%" src="__PUBLIC__{$re_img['img']}"></div>
+        <!--<h2>已经是会员？立即登录</h2>-->
+        <!--<a style="border-radius: 5px;" href="{:U('Index/login')}">登录</a>-->
+    </div>
+    <form id="html5Form" action="{:U('Index/registerJson')}" method="post">
+    <div class="reg_main_r">
+        <h2>注 册 新 会 员</h2>
+        <table>
+            <tr>
+                <td class="form_reg_l">会员账号：</td><td><input placeholder="手机号码或邮箱" class="reg_input areg_input" type="text" name="phone" /></td>
+                <td class="send"><div class="_send">获取验证码</div></td>
+            </tr>
+            <tr class="sjyz">
+                <td class="form_reg_l">验证码：</td>
+                <td ><input placeholder="请输入手机或邮箱验证码" class="reg_input" type="text" name="cod" /></td>
+                <td style="width: 36%;">
+                    <span style="color:red">*</span></td>
+            </tr>
+            <tr>
+                <td class="form_reg_l">设置密码：</td>
+                <td ><input placeholder="请输入6-16位的数字和字符" class="reg_input" type="password" name="passwd" /></td>
+                <td style="width: 36%;">
+                    <span style="color:red">*</span></td>
+            </tr>
+            <tr>
+                <td class="form_reg_l">确认密码：</td><td><input placeholder="请再输入一次" class="reg_input" type="password" name="repasswd" /></td>
+                <td style="width: 36%;">
+                    <span style="color:red">*</span></td>
+            </tr>
+            <tr>
+                <td class="form_reg_l">性别：</td><td>
+                <input style="display:none;" type="radio" name="sex" value="2" checked />
+                <input style="display:none;" type="radio" name="sex" value="1" />
+                <a class="nan" id="nan">我是男生</a><a class="sex_class nv" id="nv">我是女生</a></td>
+                <td style="width: 36%;">
+                <span style="color:red">*</span> 注册后不可更改</td>
+            </tr>
+            <tr>
+                <td class="form_reg_l">生日：</td>
+                <td>
+                <input id="d411" class="Wdate" type="text" name="birthday"  onfocus="WdatePicker({skin:'whyGreen',minDate: '1970-09-10', maxDate: '2012-12-20' })"/>
+                </td>
+                <td style="width: 36%;">
+                    <span style="color:red">*</span></td>
+            </tr>
+            <tr>
+                <td class="form_reg_l">推荐码：</td><td ><input placeholder="可以不填" class="reg_input" type="text" name="tuijian" /></td>
+            </tr>
+            <tr>
+                <td class="form_reg_l">验证码：</td><td ><input placeholder="" class="reg_input" type="text" name="verification" /></td>
+                <td style="width: 36%;">
+                    <span style="color:red">*</span></td>
+            </tr>
+            <tr>
+                <td class="form_reg_1"></td><td colspan="2"><img class="form_reg_img" src="{:U('Index/registerImg')}"   width="118px" height="40px"><p class="verification">看不清楚？<a class="reg_tk">换一张</a></p></td>
+            </tr>
+            <tr>
+                <td class="form_reg_l"></td><td colspan="2">
+                <p class="clause">
+                <input type="checkbox" name="chk" checked="ture" />我已阅读并同意<a href="{:U('index/help',array('id'=>2))}" class="reg_tk">幸福在线服务条款</a></p>
+            </td>
+            </tr>
+            <tr  class="notice" style="display: none" >
+                <td class="form_reg_l"></td><td colspan="2"><p  class="noticey" style="color: red;">dddddddd</p></td>
+            </tr>
+            <tr>
+                <td class="form_reg_l"></td><td colspan="2"><button style="border-radius: 5px;" type="submit" class="register sb_mit">注册</button></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>
+<div class="clear"></div>
+<include file='public/foot' />
+<script src="__PUBLIC__/assets/js/My97DatePicker/WdatePicker.js"></script>
+<style>
+    body{background: #fff}
+    .layui-layer-btn{text-align: center;margin: auto;}
+    .layui-layer-btn .layui-layer-btn1{background:#f76984;color: white; border-color: red;}
+</style>
+<script>
+
+
+//        var n='', y='', r='';
+//        for(var i=1970;i<=2013;i++){
+//            n +="<option  value='"+i+"'>"+i+"年</option>";
+//        }
+//        for(var i=1;i<=12;i++){
+//            y +="<option  value='"+i+"'>"+i+"月</option>";
+//        }
+//        for(var i=1;i<=31;i++){
+//            r +="<option name='day' value='"+i+"'>"+i+"日</option>";
+//        }
+//            $('.birthday1').append(n);
+//            $('.birthday2').append(y);
+//            $('.birthday3').append(r);
+
+        $("#nv").click(function(){
+            $("#nv").addClass("sex_class");
+            $("#nan").removeClass("sex_class");
+            $("[name='sex']").eq(0).attr('checked',true)
+            $("[name='sex']").eq(0).siblings().attr('checked',false)
+        })
+        $("#nan").click(function(){
+            $("#nan").addClass("sex_class");
+            $("#nv").removeClass("sex_class");
+            $("[name='sex']").eq(1).attr('checked',true)
+            $("[name='sex']").eq(1).siblings().attr('checked',false)
+        })
+        $('.form_reg_img,.verification').click(function(){
+             var rand=Math.random();
+           // alert(rand);
+            $(".form_reg_img").attr('src',"{:U('Index/registerImg')}?a="+rand
+             )
+        })
+var tag=true;
+$(".areg_input").bind('input propertychan',function(){
+    var _ph=$(this).val()
+    var re= /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+    if(re.test(_ph)){
+        $('._send').html("获取邮箱验证码");
+    }else{
+        $('._send').html("获取验证码");
+    }
+})
+$('.send').click(function(){
+            if(tag==true){
+                var i=60
+                var _ph= $('input[name="phone"]').val();
+                var re= /^(1[0-9]{10})|(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+                if(!re.test(_ph)){
+                    layer.alert('请输入正确的手机号码或邮箱');
+                    return false;
+                } else{
+                    tag=false;
+                    $.post("{:U('Index/send')}",{"phone":_ph},function(data){
+                        if(data=='手机号码已存在'||data=="邮箱已注册"){
+                            tag=true;
+                            layer.alert(data);
+                        }else{
+                            var lin=  setInterval(function(){
+                                i--;
+                                if(i==0){
+                                    $('._send').css('background','#d6405d').html('获取验证码')
+                                    tag=true;
+                                    clearInterval(lin);
+                                }else{
+                                    $('._send').css('background','#ccc').html(i)
+                                }
+
+                            },1000)
+                        }
+                    });
+                }
+            }
+
+    return false;
+    }
+)
+        $('.sb_mit').click(function(){
+            var chk =$('input[name="chk"]').prop('checked');
+           if(chk==false){
+               $('.notice').fadeIn();
+               $('.noticey').fadeIn().html('你还未同意幸福在线服务条款');
+               setTimeout(function(){
+                   $('.notice').fadeOut();
+               },1800)
+               return false;
+           }
+           var values=$('#html5Form').serialize();
+            $.get($('#html5Form').attr('action'),values,function(data){
+                        if(data[0]=="success"){
+                            layer.alert('恭喜注册成功',   function(){
+                                window.location.href="{:U('Index/register2')}"
+                            })
+                        }
+                        else{
+                            $('.notice').fadeIn();
+                            $('.noticey').fadeIn().html(data);
+                            setTimeout(function(){
+                                $('.notice').fadeOut();
+                            },1800)
+                        }
+                    }
+            )
+            return false;
+        })
+
+
+
+</script>

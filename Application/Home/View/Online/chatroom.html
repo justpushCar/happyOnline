@@ -1,0 +1,135 @@
+<include file='public/header' />
+<style>
+    *{margin: 0;padding: 0;border-radius: 0px;}
+    .conter{width: 100%}
+    .conter img{width: 100%;}
+    .take1{text-align: center}
+    .title{ background-color:red; opacity:0.5;filter:alpha(opacity=50); font-weight: bold;color:#FFF;padding: 10px 30px;cursor:pointer;font-size: 32px;}
+    .take1 img{cursor:pointer;}
+    .take1 b{color:#FFF;font-weight:bold;font-size: 20px;}
+    .take1 a{color:#FFF;font-weight:bold;font-size: 20px;}
+    .take2 b,.take2 span{color:#FFF;font-weight:bold;font-size: 16px;}
+    a{text-decoration:none}
+</style>
+    <div class="conter" style="position: relative;">
+            <img src="__PUBLIC__{$xingfu_images.img}">
+        <empty name="Think.session.useId">
+            <div class="take1" style="position:absolute;z-index: 100;top: 48%;">
+                 <img  src="__PUBLIC__/assets/images/logo_t.png" onclick="turnPage()"> 
+               
+               <br><br>
+               <b>尊敬的游客，您还没有登录</b><br><br>
+               <a href="{:U('/Home/Index/login')}">我要登录</a>
+            </div>
+
+        <else/>
+            <eq name="level" value="1">
+                <div class="take1" style="position:absolute;z-index: 100;top: 48%;">
+                     <img  src="__PUBLIC__/assets/images/logo_t.png" onclick="turnPage()">
+                   <br><br>
+                   <b>尊敬的{$Think.session.name},您还不是VIP会员！</b><br><br>
+                   <a href="{:U('/Home/Money/recharge')}">成为VIP</a>
+                </div>
+            <else/>
+                <div class="take1" style="position:absolute;z-index: 100;top: 48%;">
+                      <img  src="__PUBLIC__/assets/images/logo_t.png" onclick="turnPage()">
+                   <br><br>
+                   <img  src="__PUBLIC__/assets/images/time.png" style="width:90%"><br><br>
+                </div>
+                <div class="take2" style="position:absolute;z-index: 100;top: 70%;font-size: larger;color: white;">
+                    <div><br>
+                        <b>距离8:30点&nbsp;倒计时:<span>--</span>小时<span>--</span>分钟<span>--</span>秒</b>
+                    </div>
+                </div>
+            </eq>
+        </empty>
+    </div>
+
+</body>
+<script src="__PUBLIC__/assets/js/jquery.min.js"></script>
+<script>
+    var startTime = parseInt('{$startTime}');
+    var endTime = parseInt('{$endTime}');
+
+    $(function(){
+        $(window).on('load',function(){
+            var H=$(window).height();
+            var W=$(window).width();
+            $('.conter >img').css('height',H);
+            var img2=$('.conter img').eq(1)
+            var img_w=img2.width();
+            var  w_left=(W-img_w)/2;
+            $('.take1,.take2').css('left','39%');
+        })
+        //dotime三个参数  a，b时间区间     回调函数为在时间段内处理函数
+        $.dotime(startTime ,endTime,function(){
+           // layer.alert('正在直播中');
+           $(".take2").hide();
+           $(".title").attr('href',"{:U('Home/Online/channel')}");
+        });
+
+    })
+
+//时间开始
+$.dotime = function(a,b,c){
+    //var d = new Date();
+    var now_hour=parseInt('{:time()}');
+        if( (now_hour>=a)&&(now_hour<b)){
+            //表示在时间段的处理函数
+            c();
+        }else{
+            setInterval(function(){
+                var d = new Date();
+                var now_hour=d.getTime()/1000;
+                if((now_hour>=a)&&(now_hour<b)){
+                    //表示在时间段的处理函数
+                    c();
+                }else{
+                    cha(a);
+                }
+            },1000)
+        }
+}
+// function cha(a){
+//         var d = new Date();
+//         var now_hour=d.getHours();
+//         var  now_min=d.getMinutes()
+//         var now_s=d.getSeconds()
+//         //相差的时间
+//         var cha_hour=((a-now_hour)-1);
+//         var cha_min =((60-now_min)-1)
+//         var cha_s =(60-now_s);
+//         $(".take2 span").eq(0).html(cha_hour);
+//         $(".take2 span").eq(1).html(cha_min);
+//         $(".take2 span").eq(2).html(cha_s);
+// }
+
+function cha(a){
+    var d = new Date();
+    var now_hour=d.getTime()/1000;
+    var intDiff = parseInt(a)-parseInt(now_hour);
+    window.setInterval(function(){
+    var day=0,
+        hour=0,
+        minute=0,
+        second=0;//时间默认值        
+    if(intDiff > 0){
+        day = Math.floor(intDiff / (60 * 60 * 24));
+        hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+        minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+        second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+    }
+    if (minute <= 9) minute = '0' + minute;
+    if (second <= 9) second = '0' + second;
+    $(".take2 span").eq(0).html(hour);
+    $(".take2 span").eq(1).html(minute);
+    $(".take2 span").eq(2).html(second);
+    intDiff--;
+    }, 1000);
+} 
+
+function turnPage(){
+    window.location.href="{:U('Home/Online/channel')}"                 
+}
+</script>
+</html>

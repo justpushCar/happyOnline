@@ -1,0 +1,177 @@
+<include file='public/header' />
+<div class="content">
+    <!--左边-->
+    <include file='public/spaceleft' />
+    <!--右边-->
+            <div class="contentright recharge">
+
+                <div class="slideTxtBox" style="background: white;">
+                    <div class="hd" style="background: #d6405d;height: 40px;">
+                        <ul style="margin-top: 10px;margin-left: 10px">
+                            <li style="width:25%">会员充值</li>
+                            <li style="width:25%;">金币充值</li>
+                            <li style="width:25%;">我的推荐码</li>
+                        </ul>
+                    </div>
+
+                    <div class="bd">
+                        <ul>
+                        <div>
+                            我的会员时间：<span style="color: red">2016：2：11</span>到<span style="color: red">2016：2：21</span>
+                        </div>
+                        <div class="title">
+                            充值会员
+                        </div>
+                        <div style="clear: both"></div>
+                        <div class="_img" ><img src="__PUBLIC__/assets/images/hy1.png"></div>
+                        <div class="_img" ><img src="__PUBLIC__/assets/images/hy2.png"></div>
+                        <div class="_img" ><img src="__PUBLIC__/assets/images/hy3.png"></div>
+
+                        <div style="clear: both;" class="title">
+                            选择支付方式
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                           <div style="clear: both;"></div>
+                        <div class="zhifu">
+                            <div><img  src="__PUBLIC__/assets/images/zhifubao.png"></div>
+                            <div><img src="__PUBLIC__/assets/images/wxchzh.png"></div>
+                            <div><img src="__PUBLIC__/assets/images/wychzh.png"></div>
+                        </div>
+                            <div style="clear: both">
+                                更多支付方式，敬请期待...
+                            </div>
+                        <div>
+                            <input type="submit" value="确认支付">
+                        </div>
+                         <div class="title">
+                              会员特权
+                         </div>
+                            <div style="clear: both"></div>
+                          <div class="table_t">
+                              <table>
+                                  <tr>
+                                      <th>特权名称</th>
+                                      <th>包月</th>
+                                  </tr>
+                                  <tr>
+                                      <td>免费打招呼</td>
+                                      <td><img src="__PUBLIC__/assets/images/g.png"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>登录送金币</td>
+                                      <td><img src="__PUBLIC__/assets/images/g.png"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>免费留言</td>
+                                      <td><img src="__PUBLIC__/assets/images/g.png"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>免费搜索</td>
+                                      <td><img src="__PUBLIC__/assets/images/g.png"></td>
+                                  </tr>
+                                    <tr>
+                                      <td>互动畅聊</td>
+                                      <td><img src="__PUBLIC__/assets/images/g.png"></td>
+                                  </tr>
+                                    <tr>
+                                      <td>幸福在线</td>
+                                      <td><img src="__PUBLIC__/assets/images/g.png"></td>
+                                  </tr>
+
+                              </table>
+                          </div>
+                    </ul>
+                        <ul>
+                            <div>
+                                我的金币数量：<span style="color: red">50</span>
+                            </div>
+                            <div class="title">
+                                充值金币
+                            </div>
+                            <div style="clear: both"></div>
+
+                            <div style="clear: both"></div>
+                            <div class="_img" ><img src="__PUBLIC__/assets/images/chzh1.png"></div>
+                            <div class="_img" ><img src="__PUBLIC__/assets/images/chzh2.png"></div>
+                            <div class="_img" ><img src="__PUBLIC__/assets/images/chzh3.png"></div>
+
+                            <div class="title">
+                                选择支付方式
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="chzi">
+                                <div><img src="__PUBLIC__/assets/images/zhifubao.png"></div>
+                                <div><img src="__PUBLIC__/assets/images/wxchzh.png"></div>
+                                <div><img src="__PUBLIC__/assets/images/wychzh.png"></div>
+                            </div>
+                            <div style="clear: both"></div>
+                            <div style="clear: both">
+                                更多支付方式，敬请期待
+                            </div>
+                            <div>
+                                <input type="submit" value="确认支付">
+                            </div>
+                        </ul>
+
+                        <ul>
+                            <div class="title">
+                                推荐说明
+                            </div>
+                            <div style="clear: both;"></div>
+                            <div>
+                                用户有推荐码，成功推荐N人N人充值成为会员<br/>
+                                奖励100*N金币，成功推荐达到三人且三人充值成功为会员一年会员。两项优惠同时享受。
+                            </div>
+                            <div style="clear: both"></div>
+                            <div class="title">
+                               我的推荐码
+                            </div>
+                            <div style="clear: both;"></div>
+                            <div class="_input">
+                                <input type="text" value="78212123">
+                                <button>复制推荐码</button>
+                            </div>
+
+
+                            <div>
+                                <a href="{:U('Index/recommend')}" ><button>查看我的推荐</button></a>
+                            </div>
+                        </ul>
+                    </div>
+                 </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <include file='public/foot' />
+<script>
+
+        $('.zhifu div').click(function(){
+            $(this).css("border","solid 1px #cc2526");
+            $(this).siblings().css('border','none')
+        })
+
+       $("._img").click(function(){
+           $(this).addClass("gary50");
+           $(this).siblings().removeClass("gary50")
+           })
+
+
+
+
+
+</script>

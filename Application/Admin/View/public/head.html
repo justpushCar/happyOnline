@@ -1,0 +1,167 @@
+<meta charset="UTF-8" />
+		<!-- Start: Header -->
+		<div class="navbar" role="navigation">
+			<div class="container-fluid container-nav">
+				<!-- Navbar Action -->
+
+				<!-- Navbar Left -->
+				<div class="navbar-left">
+					<!-- Search Form -->
+
+				</div>
+				<div class="navbar-right">
+
+					<!-- End Notifications -->
+					<!-- Userbox -->
+					<div class="userbox">
+						<a href="{:U('User/logout')}" class="dropdown-toggle" >
+							<div class="profile-info">
+								<span class="name">退出</span>
+
+							</div>
+							<i class="fa custom-caret"></i>
+						</a>
+
+					</div>
+					<!-- End Userbox -->
+				</div>
+			</div>
+		</div>
+		<!-- End: Header -->
+
+		<!-- Start: Content -->
+		<div class="container-fluid content">
+			<div class="row">
+
+				<!-- Sidebar -->
+				<div class="sidebar">
+					<div class="sidebar-collapse">
+						<!-- Sidebar Header Logo-->
+
+						<!-- Sidebar Menu-->
+						<div class="sidebar-menu">
+							<nav id="menu" class="nav-main" role="navigation">
+								<ul class="nav nav-sidebar">
+									<div class="panel-body text-center">
+
+										<div class="bk-padding-top-10">
+											 {$Think.session.username}
+										</div>
+									</div>
+									<div class="divider2"></div>
+									{$Think.session.category}
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-copy" aria-hidden="true"></i><span>修改个人信息</span>
+										</a>
+										<ul class="nav nav-children">
+											<li><a href="{:U('User/index')}">修改个人信息</a></li>
+										</ul>
+									</li>
+									<if condition='$Think.session.category neq 4'>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-copy" aria-hidden="true"></i><span>议案管理</span>
+										</a>
+										<ul class="nav nav-children">
+
+
+											<li><a href="{:U('Motion/add')}">
+													<i class="fa fa-medkit" aria-hidden="true"></i><span>提交议案</span>
+												</a>
+											</li>
+
+
+											<li><a href="{:U('Motion/index')}">
+													<i class="fa fa-medkit" aria-hidden="true"></i><span>议案列表</span>
+												</a>
+											</li>
+										</ul>
+									</li>
+									</if>
+									<if condition='$Think.session.category eq 1'>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-copy" aria-hidden="true"></i><span>议案分类</span>
+										</a>
+										<ul class="nav nav-children">
+											<li><a href="{:U('Motion/motionCategory')}">
+													<i class="fa fa-medkit" aria-hidden="true"></i><span>添加分类</span>
+												</a>
+											</li>
+											<li><a href="{:U('Motion/categorylist')}">
+													<i class="fa fa-medkit" aria-hidden="true"></i><span>分类列表</span>
+												</a>
+											</li>
+										</ul>
+									</li>
+
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-copy" aria-hidden="true"></i><span>用户管理</span>
+										</a>
+										<ul class="nav nav-children">
+											<li><a href="{:U('User/add')}">
+													<i class="fa fa-medkit" aria-hidden="true"></i><span>添加用户</span>
+												</a>
+											</li>
+											<li><a href="{:U('User/addP')}">
+													<i class="fa fa-medkit" aria-hidden="true"></i><span>批量添加用户</span>
+												</a>
+											</li>
+											<li><a href="{:U('User/userlist')}">
+													<i class="fa fa-medkit" aria-hidden="true"></i><span>用户列表</span>
+												</a>
+											</li>
+
+										</ul>
+									</li>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-copy" aria-hidden="true"></i><span>单位管理</span>
+										</a>
+										<ul class="nav nav-children">
+											<li><a href="{:U('User/addcompany')}">
+													<i class="fa fa-medkit" aria-hidden="true"></i><span>添加单位</span>
+												</a>
+											</li>
+											<li><a href="{:U('User/company')}">
+													<i class="fa fa-medkit" aria-hidden="true"></i><span>单位列表</span>
+												</a>
+											</li>
+										</ul>
+									</li>
+									</if>
+									<if condition='$Think.session.category eq 4'>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-copy" aria-hidden="true"></i><span>信息管理</span>
+										</a>
+										<ul class="nav nav-children">
+											<li><a href="{:U('Information/add')}">
+													<i class="fa fa-medkit" aria-hidden="true"></i><span>上传信息</span>
+												</a>
+											</li>
+											<li><a href="{:U('Information/index')}">
+													<i class="fa fa-medkit" aria-hidden="true"></i><span>信息列表</span>
+												</a>
+											</li>
+										</ul>
+									</li>
+									</if>
+
+								</ul>
+							</nav>
+						</div>
+						<!-- End Sidebar Menu-->
+					</div>
+					<!-- Sidebar Footer-->
+					<div class="sidebar-footer">
+						<ul class="sidebar-terms">
+
+						</ul>
+
+					</div>
+					<!-- End Sidebar Footer-->
+				</div>
+				<!-- End Sidebar -->

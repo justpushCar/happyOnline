@@ -1,0 +1,12 @@
+<script src="__ROOT__/Public/assets/layer/layer.js"></script>
+<script>
+layer.confirm('尊敬的VIP会员：{$Think.session.name}，幸福在线聊天室即将开放，您是否提前进入！(放弃将失去视频位置)', {
+  btn: ['进入','放弃'], //按钮
+  closeBtn: 0
+}, function(){
+  window.location.href="{:U('Home/Online/inRoom',array('channelID'=>$channelID))}";
+}, function(){
+	var id={$channelID};
+  	$.post("{:U('Home/Online/giveUp')}",{'channelID':id});
+});
+</script>

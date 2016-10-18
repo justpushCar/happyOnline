@@ -1,0 +1,66 @@
+ <!-- content end -->
+
+</div>
+
+<a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
+  <span class="am-icon-btn am-icon-th-list"></span>
+</a>
+
+<footer>
+  <hr>
+  <p class="am-padding-left"></p>
+</footer>
+<?php $aaa=CONTROLLER_NAME;?>
+<!--[if lt IE 9]>
+<script src="__PUBLIC__/admin/js/jquery11.min.js"></script>
+<script src="__PUBLIC__/admin/js/modernizr.js"></script>
+<script src="__PUBLIC__/admin/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="__PUBLIC__/admin/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="__PUBLIC__/admin/js/amazeui.min.js"></script>
+<script src="__PUBLIC__/admin/js/app.js"></script>
+ <script src="__PUBLIC__/assets/layer/layer.js"></script>
+</body>
+ <script>
+
+   function zhankai_nav(){
+       var _nav='{$aaa}';
+       if(_nav == 'Shenhe'){
+           $('#aa-nav').collapse({
+               toggle: true
+           })
+       }else if(_nav == 'Index'){
+           $('#user-nav').collapse({
+               toggle: true
+           })
+       }else if(_nav == 'Help'){
+           $('#company-nav').collapse({
+               toggle: true
+           })
+       }else if(_nav == 'Guanggao'){
+           $('#role-nav').collapse({
+               toggle: true
+           })
+       }else if(_nav == 'IndexUser') {
+           $('#tuijian-nav').collapse({
+               toggle: true
+           })
+       }else if(_nav == 'Channel'){
+           $('#channel-nav').collapse({
+               toggle: true
+           })
+       }else if(_nav == 'Baseset'){
+           $('#baseset-nav').collapse({
+               toggle: true
+           })
+       }
+   }
+   zhankai_nav();
+
+
+
+ </script>
+</html>

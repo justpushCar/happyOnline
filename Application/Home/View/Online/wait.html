@@ -1,0 +1,93 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+    <title>幸福在线</title>
+	<link  href="__PUBLIC__/assets/css/newadd.css" rel="stylesheet" type="text/css">
+<style>
+*{padding:0px;margin:0px}
+</style>
+</head>
+<body>
+	<div class="x-whit">
+		<img src="__PUBLIC__/assets/images/x_load_bg.jpg" width="100%" height="80%">
+		<div class="x-whit_box">
+			
+		</div>
+		<div class="x-whit_box_main" id="wait" <notempty name="position">style="display:none"</notempty> >
+				<h2>当前排名第<span id="num">{$num}</span>位...</h2>
+				<p>(及时更新)</p>
+				<a onclick="window.location.reload()">继 续</a><a href="{:U('Home/Online/outTeam',array('channelID'=>I('channelID')))}">放 弃</a>
+		</div>
+		<div class="x-whit_box_main" id="confirm" <empty name="position">style="display:none"</empty> >
+				<h2>当前房间有空位，<br>需要支付20网站币？</h2>
+				<p>还剩<span id="second">30</span>秒钟确认时间</p>
+				<a id="submit">确 认</a><a href="{:U('Home/Online/outTeam',array('channelID'=>I('channelID')))}">放 弃</a>
+		</div>
+	</div>
+	<form id="setPosition" action="{:U('Home/Online/setPosition')}" method="post">
+		<input type="hidden" name="channelID" value="{:I('channelID')}">
+		<input type="hidden" name="pos" value="{$position}">
+	</form>
+</body>
+<script src="__PUBLIC__/assets/js/jquery.min.js"></script>
+<script>
+//window.onbeforeunload = clearCache;
+var channel = "{:I('channelID')}";
+function clearCache(){
+	$.post("{:U('Home/Online/outTeam')}",{channelID:channel});
+}
+
+<empty name="position">
+var t = setInterval(function(){
+	$.post("{:U('Home/Online/getRank')}",{channelID:channel},function(data){
+		if(data.st == -1){
+			alert('亲，聊天室已到休息时间，即将关闭!');
+			window.location.href="{:U('Home/Online/chatroom')}"; return;
+		}
+
+		var result = data.result;
+		if(result.pos!=''){
+			$("#wait").hide().next('div').show();
+			$("input[name=pos]").val(result.pos);
+			clearInterval(t);
+			var m = setInterval(function(){
+				var i = parseInt($("#second").html());
+				if(i==1){
+					clearInterval(m); 
+					window.location.href="{:U('Home/Online/channel',array('uid'=>session('useId')))}";
+				}else{
+					$("#second").html(i-1);
+				}
+			},1000)
+
+			//保持在线状态
+			var n = setInterval(function(){
+				$.post("{:U('Home/Online/getRank')}",{channelID:channel});
+			},2000)
+		}else{
+			if(result.num > 0){
+				$("#num").html(result.num);	
+			}
+		}
+	})
+},'2000');
+
+<else/>
+var m = setInterval(function(){
+		var i = parseInt($("#second").html());
+		if(i==1){
+			clearInterval(m); 
+			window.location.href="{:U('Home/Online/channel',array('udi'=>session('useId')))}";
+		}else{
+			$("#second").html(i-1);
+		}
+	},1000)
+</empty>
+
+$("#submit").click(function(){
+	$("#setPosition").submit();
+})
+
+</script>
+</html>

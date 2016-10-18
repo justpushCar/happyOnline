@@ -1,0 +1,35 @@
+<include file='public/header' />
+<div class="content story2">
+<div>
+    <div class="left70" style="min-height: 392px;">
+        <h1>{$love_find.title}</h1>
+         <span>{$love_find['pub_time']|date="Y-m-d H:i:s",###}</span>
+        <div style="margin-top: 20px;overflow: hidden;">
+            <p style="width: 85%;margin: auto;text-indent: 2em;color: #323232">
+                {$love_find.content}
+            </p>
+            <?php foreach($images as $v) :?>
+            <div style="margin-left: 30px;margin-top:30px;">
+                <img style="padding-left: 6px;width: 200px;height: 200px;float: left" src="__PUBLIC__{$v.img}">
+            </div>
+            <?php endforeach ?>
+        </div>
+
+    </div>
+    <div class="right30" style="min-height: 392px;">
+        <div class="_img data-size" data-size="100"><img src="__PUBLIC__{$love_find.head_img}"></div>
+        <div class="text1" style="color: #D6405D">{$love_find.nick_name}</div>
+        <!--<div class="text2">年龄:<span>{$love_user.age}</span></div>-->
+        <!--<div class="text3">地区:<span>{$love_user.province}{$love_user.city}</span></div>-->
+        <div class="text4" style="font-size: 15px;">生命中每天都在经历感动,<br/>把那个瞬间记录下来,<br/>作为幸福的备份<br/>让更多人见证和祝福你们吧!</div>
+        <div class="subt"><input type="submit" value="上传我的成功故事"></div>
+    </div>
+</div>
+
+    </div>
+    <include file='public/foot' />
+<script>
+    $('.subt').click(function(){
+        window.location="{:U('Baodian/lovestory3')}"
+    })
+</script>

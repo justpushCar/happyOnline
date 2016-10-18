@@ -1,0 +1,125 @@
+<include file='public/header' />
+<style>
+    .slideTxtBox .hd ul li{color: black;}
+</style>
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.css">
+<!-- ft_info_box -->
+<div class="content">
+    <!--左边-->
+    <include file='public/spaceleft' />
+    <!--右边-->
+    <div class="contentright">
+        <div class="data-size guanzhu" data-size="20" ><img src="__PUBLIC__{$space.img}"></div>
+        <div class="slideTxtBox">
+            <div class="hd">
+                <ul>
+                    <li>谁看过我</li>
+                    <li>我看过谁</li>
+                    <a href="{:U('MyFollow/my_follow')}" ><div style="position: absolute; right:0px;">更多>></div></a>
+                </ul>
+            </div>
+            <div class="bd vist" style="max-height: 240px;top:-25px;">
+                <ul>
+                    <div class="box_center">
+                        <div class="x-visitor details">
+                            <volist name="visit_my" id="v">
+                                <div class="x-visitor_detail">
+                                    <img src="__PUBLIC__{$v.head_img}" width="100%">
+                                    <a style="background: #fff;color: #595959;font-weight: bold;">{$v['nick_name']} &nbsp; &nbsp;{$v['age']}岁</a>
+                                    <a style="margin-top:2px;" href="{:U('Detail/detail',array('id'=>$v['user_id']))}"><i style="color: white" class="icon-heart"></i> 查看详情</a>
+                                </div>
+                            </volist>
+                        </div>
+                    </div>
+                </ul>
+                <!--第2页-->
+                <ul>
+                    <div class="box_center">
+                        <div class="x-visitor details">
+                            <volist name="my_visit" id="v">
+                                <div class="x-visitor_detail">
+                                    <img src="__PUBLIC__{$v.head_img}" width="100%">
+                                    <a style="background: #fff;color: #595959;font-weight: bold;">{$v['nick_name']} &nbsp; &nbsp;{$v['age']}岁</a>
+                                    <a style="margin-top:2px;" href="{:U('Detail/detail',array('id'=>$v['user_id']))}"> <i style="color: white" class="icon-heart"></i> 查看详情</a>
+                                </div>
+                            </volist>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+<div style="clear: both;"></div>
+        <div class="tongcheng">
+            <H1>同城推荐</H1>
+           <hr>
+            <div class="box_center">
+                <div class="x-visitor details">
+                    <volist name="list" id="v">
+                        <div class="x-visitor_detail">
+                            <img src="__PUBLIC__{$v.head_img}" width="100%">
+                            <a style="background: #fff;color: #595959;font-weight: bold;">{$v['nick_name']} &nbsp; &nbsp;{$v['age']}岁</a>
+                            <a style="margin-top:2px;" href="{:U('Detail/detail',array('id'=>$v['user_id']))}"> <i style="color: white" class="icon-heart"></i> 查看详情</a>
+                        </div>
+                    </volist>
+                </div>
+                <div style="clear: both;"></div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--//消息提示框-->
+<style>
+    .buttom_mode{color: black; width: 300px;height: 250px;background: #fff;position: fixed;right: 2px;bottom: 2px;border-radius: 5px;overflow:hidden;z-index: 2000}
+    .head_mode{width: 100%;height: 30px;background: #c9a6ff;text-align: center;color:white;line-height: 30px;font-weight: bold;font-size: 1.2rem;}
+    .buttom_mode  .cont{width:86%;margin:7% auto;}
+    .buttom_mode  .cont div{border-radius: 5px;overflow: hidden;}
+    .buttom_mode  .cont .right{margin-left: 10px;}
+    .buttom_mode  .close{z-index: 2001;position: absolute;right: 2px;top: -6px;cursor: pointer;}
+    .buttom_mode .look{height: 25px;text-align: center;width: 120px;margin:20px 90px; border-radius: 5px;background-color: #f76984;line-height: 25px;color: white;font-weight: bold;cursor: pointer; }
+    .buttom_mode.right div{margin-bottom: 15px;}
+    .buttom_mode .look a{color: white}
+</style>
+
+<include file='public/foot' />
+<script src="__PUBLIC__/assets/js/plupload.js"></script>
+<if condition="$suiji_user">
+    <div class="buttom_mode">
+        <div class="head_mode" style="position: relative">
+            消息提醒
+            <div class="close" ><i style="color: black; line-height: 30px;" class="fa fa-times"></i></div>
+        </div>
+        <div class="cont">
+            <div style="width: 100px;height:100px;background: #c14359;float: left"><img src="__PUBLIC__{$suiji_user.head_img}" width="100%"height="100%"></div>
+            <div class="right" style="width: 145px;height: 100px; background: #fff;float: left">
+                <div style="color: black;">{$suiji_user.nick_name}</div>
+                <div style="color: black;">{$suiji_user.age}岁</div>
+                <div style="color: black;color: #EC8484;margin-top:10px;">你收到一封信件.</div>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="look">
+            <a href="{:U('Letter/letterDetail',array('send_id'=>$suiji_user['send_id']))}">快去看信</a>
+        </div>
+    </div>
+</if>
+<script>
+    $('.close').click(function(){
+        $('.buttom_mode').fadeOut('slow');
+    })
+
+</script>
+<script>
+    var tag="{$is_inc}";
+    if(tag =="y"){
+        layer.alert('恭喜获得1金币')
+     var a =parseInt($('.jibi_m').html());
+        setTimeout(function(){
+            $('.jibi_m').html(a+1);
+        },3000)
+
+    }
+</script>
+

@@ -1,0 +1,56 @@
+<include file='public/header' />
+    <div class="content help">
+    <div class="_top" style="margin-top: 20px;">
+        <img src="__PUBLIC__/assets/images/help.png" style="margin-bottom: 10px;"><span style="color: #d90715;margin-bottom: 10px;">帮助中心</span>
+         <div class=""></div>
+        <hr>
+        <div class="clear"></div>
+        <div style="margin-top: 20px;">
+            <div class="left30">
+                <?php foreach($help as $k=>$v) :?>
+                <li style="cursor: pointer;">&nbsp;> &nbsp;&nbsp;&nbsp;&nbsp;{$v['title']}</li>
+                <?php endforeach  ?>
+            </div>
+            <div class="right70"></div>
+        </div>
+    </div>
+    </div>
+<div class="clear"></div>
+<include file='public/foot' />
+<style></style>
+<script>
+    var a=[];
+    <?php foreach( $help as $k=>$v) :?>
+        a[{$k}]='{$v['content']}'
+    <?php endforeach ?>
+    $('.left30 li').click(function(){
+        $(this).css({
+                   'border-right':'none',
+                  'background':'#fff'
+                  /* 'color':'red'*/
+                }).siblings().css({
+            'border-right':'none',
+            'background':'#ccc',
+            'color':'#000'
+        })
+        var index=$(this).index()
+        $('.right70').html(a[index]);
+    })
+    var n="{$_GET['id']}"
+    if(n!=""){
+        $('.left30 li').eq(n).css({
+            'border-right':'none',
+            'background':'#fff'
+           /* 'color':'red'*/
+        })
+        $('.right70').html(a[n]);
+    }else{
+        $('.left30 li').eq(0).css({
+            'border-right':'none',
+            'background':'#fff'
+           /* 'color':'red'*/
+        })
+        $('.right70').html(a[0]);
+    }
+
+</script>

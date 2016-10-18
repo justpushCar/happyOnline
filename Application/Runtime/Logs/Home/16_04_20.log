@@ -1,0 +1,247 @@
+[ 2016-04-20T12:41:48+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000977s ]
+NOTIC: [8] Undefined index: useId E:\work_code\mycode\Application\Home\Controller\PublicController.class.php 第 48 行.
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `user` ORDER BY login_time desc LIMIT 9   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `guanggao` [ RunTime:0.0293s ]
+SQL: SELECT * FROM `guanggao` left join img on guanggao.id=img.guanggao_id  WHERE `title` = '首页轮播图'  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `youxiu_img` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `youxiu_img` ORDER BY position  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: letter_num E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 38 行.
+NOTIC: [8] Use of undefined constant chatroom - assumed 'chatroom' E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 98 行.
+NOTIC: [8] Use of undefined constant space - assumed 'space' E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 102 行.
+NOTIC: [8] Use of undefined constant interaction1 - assumed 'interaction1' E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 107 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 111 行.
+NOTIC: [8] Use of undefined constant everyday - assumed 'everyday' E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 116 行.
+NOTIC: [8] Use of undefined constant lovestory - assumed 'lovestory' E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 120 行.
+NOTIC: [8] Use of undefined constant recharge - assumed 'recharge' E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 124 行.
+NOTIC: [8] Undefined variable: user_info E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 131 行.
+NOTIC: [8] Undefined index: useId E:\work_code\mycode\Application\Home\Controller\PublicController.class.php 第 48 行.
+SQL: SHOW COLUMNS FROM `channel` [ RunTime:0.0039s ]
+SQL: SELECT `id` FROM `channel`  [ RunTime:0.0000s ]
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [8] Undefined offset: 5 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 203 行.
+NOTIC: [8] Undefined offset: 5 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 203 行.
+NOTIC: [8] Undefined offset: 6 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 206 行.
+NOTIC: [8] Undefined offset: 7 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 207 行.
+NOTIC: [8] Undefined offset: 8 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 210 行.
+NOTIC: [8] Undefined offset: 8 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 210 行.
+NOTIC: [8] Undefined offset: 9 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 211 行.
+NOTIC: [8] Undefined offset: 9 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 211 行.
+NOTIC: [8] Undefined offset: 10 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 222 行.
+NOTIC: [8] Undefined offset: 10 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 222 行.
+NOTIC: [8] Undefined offset: 11 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 223 行.
+NOTIC: [8] Undefined offset: 11 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 223 行.
+NOTIC: [8] Undefined offset: 12 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 226 行.
+NOTIC: [8] Undefined offset: 12 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 226 行.
+NOTIC: [8] Undefined offset: 13 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 227 行.
+NOTIC: [8] Undefined offset: 13 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 227 行.
+NOTIC: [8] Undefined offset: 14 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 230 行.
+NOTIC: [8] Undefined offset: 14 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 230 行.
+NOTIC: [8] Undefined offset: 15 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 232 行.
+NOTIC: [8] Undefined offset: 15 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 232 行.
+NOTIC: [8] Undefined offset: 16 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 233 行.
+NOTIC: [8] Undefined offset: 16 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 233 行.
+NOTIC: [8] Undefined offset: 17 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 236 行.
+NOTIC: [8] Undefined offset: 17 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 236 行.
+NOTIC: [8] Undefined offset: 18 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 237 行.
+NOTIC: [8] Undefined offset: 18 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 237 行.
+NOTIC: [8] Undefined offset: 19 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 239 行.
+NOTIC: [8] Undefined offset: 19 E:\work_code\mycode\Application\Runtime\Cache\Home\2a94b8bda04ff446dcedd42276fc99ee.php 第 239 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.041992s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041992s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000977s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000976s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000976s ]
+
+[ 2016-04-20T12:41:54+08:00 ] 127.0.0.1 /index.php/Home/Online/chatroom.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000977s ]
+NOTIC: [8] Undefined index: useId E:\work_code\mycode\Application\Home\Controller\PublicController.class.php 第 48 行.
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0049s ]
+SQL: SELECT `vip` FROM `user` WHERE ( user_id='' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `channel_queue` [ RunTime:0.0039s ]
+SQL: DELETE FROM `channel_queue` WHERE `online_time` < 1461127308 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `guanggao` [ RunTime:0.0039s ]
+SQL: SELECT * FROM `guanggao` left join img on guanggao.id=img.guanggao_id  WHERE `title` = '幸福在线' LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: letter_num E:\work_code\mycode\Application\Runtime\Cache\Home\21810ed7896caa466b976e5872f03615.php 第 38 行.
+NOTIC: [8] Use of undefined constant chatroom - assumed 'chatroom' E:\work_code\mycode\Application\Runtime\Cache\Home\21810ed7896caa466b976e5872f03615.php 第 98 行.
+NOTIC: [8] Use of undefined constant space - assumed 'space' E:\work_code\mycode\Application\Runtime\Cache\Home\21810ed7896caa466b976e5872f03615.php 第 102 行.
+NOTIC: [8] Use of undefined constant interaction1 - assumed 'interaction1' E:\work_code\mycode\Application\Runtime\Cache\Home\21810ed7896caa466b976e5872f03615.php 第 107 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' E:\work_code\mycode\Application\Runtime\Cache\Home\21810ed7896caa466b976e5872f03615.php 第 111 行.
+NOTIC: [8] Use of undefined constant everyday - assumed 'everyday' E:\work_code\mycode\Application\Runtime\Cache\Home\21810ed7896caa466b976e5872f03615.php 第 116 行.
+NOTIC: [8] Use of undefined constant lovestory - assumed 'lovestory' E:\work_code\mycode\Application\Runtime\Cache\Home\21810ed7896caa466b976e5872f03615.php 第 120 行.
+NOTIC: [8] Use of undefined constant recharge - assumed 'recharge' E:\work_code\mycode\Application\Runtime\Cache\Home\21810ed7896caa466b976e5872f03615.php 第 124 行.
+NOTIC: [8] Undefined variable: user_info E:\work_code\mycode\Application\Runtime\Cache\Home\21810ed7896caa466b976e5872f03615.php 第 131 行.
+NOTIC: [8] Undefined index: useId E:\work_code\mycode\Application\Home\Controller\PublicController.class.php 第 48 行.
+SQL: SHOW COLUMNS FROM `channel` [ RunTime:0.0049s ]
+SQL: SELECT `id` FROM `channel`  [ RunTime:0.0000s ]
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022461s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022461s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000976s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000976s ]
+
+[ 2016-04-20T12:41:59+08:00 ] 127.0.0.1 /index.php/Home/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: useId E:\work_code\mycode\Application\Home\Controller\PublicController.class.php 第 48 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: letter_num E:\work_code\mycode\Application\Runtime\Cache\Home\ccea6a400660ce54d68cab67b9f68781.php 第 38 行.
+NOTIC: [8] Use of undefined constant chatroom - assumed 'chatroom' E:\work_code\mycode\Application\Runtime\Cache\Home\ccea6a400660ce54d68cab67b9f68781.php 第 98 行.
+NOTIC: [8] Use of undefined constant space - assumed 'space' E:\work_code\mycode\Application\Runtime\Cache\Home\ccea6a400660ce54d68cab67b9f68781.php 第 102 行.
+NOTIC: [8] Use of undefined constant interaction1 - assumed 'interaction1' E:\work_code\mycode\Application\Runtime\Cache\Home\ccea6a400660ce54d68cab67b9f68781.php 第 107 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' E:\work_code\mycode\Application\Runtime\Cache\Home\ccea6a400660ce54d68cab67b9f68781.php 第 111 行.
+NOTIC: [8] Use of undefined constant everyday - assumed 'everyday' E:\work_code\mycode\Application\Runtime\Cache\Home\ccea6a400660ce54d68cab67b9f68781.php 第 116 行.
+NOTIC: [8] Use of undefined constant lovestory - assumed 'lovestory' E:\work_code\mycode\Application\Runtime\Cache\Home\ccea6a400660ce54d68cab67b9f68781.php 第 120 行.
+NOTIC: [8] Use of undefined constant recharge - assumed 'recharge' E:\work_code\mycode\Application\Runtime\Cache\Home\ccea6a400660ce54d68cab67b9f68781.php 第 124 行.
+NOTIC: [8] Undefined variable: user_info E:\work_code\mycode\Application\Runtime\Cache\Home\ccea6a400660ce54d68cab67b9f68781.php 第 131 行.
+NOTIC: [8] Undefined index: useId E:\work_code\mycode\Application\Home\Controller\PublicController.class.php 第 48 行.
+SQL: SHOW COLUMNS FROM `channel` [ RunTime:0.0039s ]
+SQL: SELECT `id` FROM `channel`  [ RunTime:0.0000s ]
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:1.100586s ]
+INFO: [ view_parse ] --END-- [ RunTime:1.100586s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000977s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000977s ]
+
+[ 2016-04-20T12:42:08+08:00 ] 127.0.0.1 /index.php/Home/Index/loginJson.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000976s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: useId E:\work_code\mycode\Application\Home\Controller\PublicController.class.php 第 48 行.
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0000s ]
+SQL: SELECT `user_id`,`password`,`phone`,`nick_name`,`sex`,`is_jinyong` FROM `user` WHERE ( phone = "15111455509" or email ="15111455509" ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `session` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `session` WHERE `session_data` LIKE '%useId|s:4:\"7666\"%' LIMIT 1   [ RunTime:0.0000s ]
+SQL: select vip_end from user where user_id = '7666' [ RunTime:0.0000s ]
+SQL: update user set vip = 2 WHERE user_id = '7666' [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `channel` [ RunTime:0.0156s ]
+SQL: SELECT `id` FROM `channel`  [ RunTime:0.0000s ]
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 290 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 290 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 290 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 290 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 290 行.
+SQL: UPDATE `user` SET `login_time`='1461127328' WHERE `user_id` = 7666 [ RunTime:0.0000s ]
+
+[ 2016-04-20T12:42:11+08:00 ] 127.0.0.1 /index.php/Home/Index/space.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000977s ]
+SQL: SHOW COLUMNS FROM `user_info` [ RunTime:0.0049s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `user_info` WHERE ( uid =7666 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0039s ]
+SQL: SELECT `head_img`,`vip` FROM `user` WHERE ( user.user_id =7666 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: select * from user WHERE user_id =7666 [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `letter_info` [ RunTime:0.0049s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `letter_info` WHERE `jieshou_id` = 7666 AND `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `user` WHERE `user_id` = 7666 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `guanggao` [ RunTime:0.0039s ]
+SQL: SELECT * FROM `guanggao` left join img on img.guanggao_id=guanggao.id  WHERE `title` = '我的空间' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `nick_name` FROM `user` WHERE ( user_id = 7666 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `user` WHERE `user_id` = 7666 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `user` left join user_info on user.user_id=user_info.uid  WHERE `sex` = 2 AND `user_id` <> '7666' ORDER BY login_time desc LIMIT 8   [ RunTime:0.0010s ]
+NOTIC: [8] Use of undefined constant head_img - assumed 'head_img' E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 659 行.
+NOTIC: [8] Use of undefined constant head_img - assumed 'head_img' E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 659 行.
+NOTIC: [8] Use of undefined constant head_img - assumed 'head_img' E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 659 行.
+NOTIC: [8] Use of undefined constant head_img - assumed 'head_img' E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 659 行.
+NOTIC: [8] Use of undefined constant head_img - assumed 'head_img' E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 659 行.
+NOTIC: [8] Use of undefined constant head_img - assumed 'head_img' E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 659 行.
+NOTIC: [8] Use of undefined constant head_img - assumed 'head_img' E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 659 行.
+NOTIC: [8] Use of undefined constant head_img - assumed 'head_img' E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 659 行.
+SQL: SHOW COLUMNS FROM `visit_info` [ RunTime:0.0059s ]
+SQL: SELECT * FROM `visit_info` left join user on user.user_id=visit_info.visit_id  WHERE `bvisit_id` = '7666' AND `visit_id` <> '7666' ORDER BY user.login_time desc LIMIT 4   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `visit_info` left join user on user.user_id=visit_info.bvisit_id  WHERE `visit_id` = '7666' AND `bvisit_id` <> '7666' ORDER BY user.login_time desc LIMIT 4   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `money` [ RunTime:0.0049s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `money` WHERE ( FROM_UNIXTIME(jiangli_time,"%Y-%m-%d") = "2016-04-20" and jiangli_money = 1 and uid = 7666 ) LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: suiji_id E:\work_code\mycode\Application\Home\Controller\IndexController.class.php 第 717 行.
+SQL: SELECT letter_info.content,user.nick_name,user.head_img,letter_info.send_id,user.age FROM `letter_info` left join user on user.user_id = letter_info.send_id  WHERE `jieshou_id` = '7666' AND `status` = 0 ORDER BY send_time desc LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant chatroom - assumed 'chatroom' E:\work_code\mycode\Application\Runtime\Cache\Home\25438d147085d8e43321fefb487439c7.php 第 98 行.
+NOTIC: [8] Use of undefined constant space - assumed 'space' E:\work_code\mycode\Application\Runtime\Cache\Home\25438d147085d8e43321fefb487439c7.php 第 102 行.
+NOTIC: [8] Use of undefined constant interaction1 - assumed 'interaction1' E:\work_code\mycode\Application\Runtime\Cache\Home\25438d147085d8e43321fefb487439c7.php 第 107 行.
+NOTIC: [8] Use of undefined constant search - assumed 'search' E:\work_code\mycode\Application\Runtime\Cache\Home\25438d147085d8e43321fefb487439c7.php 第 111 行.
+NOTIC: [8] Use of undefined constant everyday - assumed 'everyday' E:\work_code\mycode\Application\Runtime\Cache\Home\25438d147085d8e43321fefb487439c7.php 第 116 行.
+NOTIC: [8] Use of undefined constant lovestory - assumed 'lovestory' E:\work_code\mycode\Application\Runtime\Cache\Home\25438d147085d8e43321fefb487439c7.php 第 120 行.
+NOTIC: [8] Use of undefined constant recharge - assumed 'recharge' E:\work_code\mycode\Application\Runtime\Cache\Home\25438d147085d8e43321fefb487439c7.php 第 124 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `user_info` WHERE ( uid =7666 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `head_img`,`vip` FROM `user` WHERE ( user.user_id =7666 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: select * from user WHERE user_id =7666 [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `letter_info` WHERE `jieshou_id` = 7666 AND `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `user` WHERE `user_id` = 7666 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `guanggao` left join img on img.guanggao_id=guanggao.id  WHERE `title` = '我的空间' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `nick_name` FROM `user` WHERE ( user_id = 7666 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `channel` [ RunTime:0.0049s ]
+SQL: SELECT `id` FROM `channel`  [ RunTime:0.0000s ]
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, boolean given E:\work_code\mycode\Application\Home\Controller\OnlineController.class.php 第 590 行.
+NOTIC: [8] Undefined variable: is_inc E:\work_code\mycode\Application\Runtime\Cache\Home\25438d147085d8e43321fefb487439c7.php 第 354 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031250s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031250s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000976s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000977s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000977s ]
+

@@ -1,0 +1,168 @@
+<include file='public/header' />
+<style>
+    .slideTxtBox .hd ul li{color: black;}
+</style>
+<!-- ft_info_box -->
+<div class="content">
+    <!--左边-->
+    <include file='public/spaceleft' />
+   <!--右边-->
+    <div class="contentright">
+
+        <div class="slideTxtBox">
+            <div class="hd">
+                <ul>
+                    <li>我的访客</li>
+                    <li>谁关注我</li>
+                    <li class="guanzhu <?php echo $_GET['id']==3? 'on':''; ?>" >我关注谁</li>
+                </ul>
+            </div>
+            <div class="bd">
+            	<ul>
+            		<div class="box_center">
+            			<div class="x-visitor">
+                            <h2><a id="who-follow" style="color:#f76984;text-align: center;margin: auto;display: block;">谁访问我({$visit_my_num}个)</a></h2>
+                            <div class="visita">
+                                <volist name="visit_my" id="v">
+                                <div class="x-visitor_detail">
+                                    <img src="__PUBLIC__/{$v.head_img}" width="100%">
+                                    <a href="{:U('Detail/detail',array('id'=>$v['visit_id']))}"> <i style="color: white" class="icon-heart"></i> 查看详情</a>
+                                </div>
+                                </volist>
+                            </div>
+                        <div style="clear: both"></div>
+            			</div>
+                        <div class="x-visitor_fotter visitb1" style="margin-bottom:0px;" >
+                            {$page1}
+                        </div>
+            		</div>
+            	</ul>
+                <!--第二页-->
+            	<ul>
+            		<div class="box_center">
+            			<div class="x-my_follow" style="margin-bottom:0px">
+            				<h2><a id="" style="color:#f76984">谁关注我({$follow_my_num}个)</a></h2>
+                            <div style="clear: both;"></div>
+                            <div class="visitb">
+                                <volist name="follow_my" id="v">
+                                <div class="x-who_follow">
+                                        <div class="x-visitor_detail">
+                                            <img src="__PUBLIC__/{$v.head_img}" width="100%">
+                                            <a href="{:U('Detail/detail',array('id'=>$v['follow_id']))}"> <i style="color: white" class="icon-heart"></i> 查看详情</a>
+                                        </div>
+                                </div>
+                                </volist>
+                            </div>
+                            <div style="clear: both"></div>
+                            <div class="x-visitor_fotter visitb2" style="margin-bottom:0px;" >
+                                {$page2}
+                            </div>
+
+            			</div>
+
+            		</div>
+            	</ul>
+                <!--第三页-->
+                <ul>
+                    <div class="box_center">
+                   <h2> <a id="my_follow" style="color:#f76984;">我关注谁({$follow_you_num}个)</a></h2>
+                        <div style="clear: both;"></div>
+                        <div class="visitc">
+                            <volist name="follow_you" id="v">
+                                <div class="x-who_follow">
+                                    <div class="x-visitor_detail">
+                                        <img style="cursor: pointer;" data_id="{$v['bfollow_id']}" class="dazhaohu" src="__PUBLIC__/{$v.head_img}" width="100%">
+                                        <if condition="$v['is_dazhaohu'] == 0">
+                                                 <a class="call" onclick="return false;" href=""><i style="color: white" class="icon-heart"></i> 打招呼</a>
+                                            <else/>
+                                                <a onclick="return false;" style="background-color:#cccccc;" href=""><i style="color: white" class="icon-heart"></i> 已打招呼</a>
+                                        </if>
+                                    </div>
+                                </div>
+                            </volist>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                    <div class="x-visitor_fotter visitb3" style="margin-bottom:0px;" >
+                        {$page3}
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<?php $aaa=$_GET['num'];?>
+<include file='public/foot' />
+<script src="__PUBLIC__/assets/js/plupload.js"></script>
+<script type="text/javascript">
+	$("#who-follow").click(function(){
+		$(".x-who_follow").show();
+		$(".x-me_follow").hide();
+		$("#who-follow").css("color","#f76984");
+		$("#my_follow").css("color","#959595");
+	})
+	$("#my_follow").click(function(){
+		$(".x-me_follow").show();
+		$(".x-who_follow").hide();
+		$("#my_follow").css("color","#f76984");
+		$("#who-follow").css("color","#959595");
+	})
+</script>
+<script>
+    $(".am-pagination-prev,.am-pagination-next,.prev,.next").click(function(){
+        unbind();
+    })
+    //谁访问了我分页
+    $(".visitb1").delegate('a','click',function(){
+        var $href=$(this).attr('href');
+        $.post($href,{visita:1},function(res){
+            $(".visitb1").html(res.page1);
+            $(".visita").html(res.str);
+        },'json');
+        return false;
+    })
+    //谁关注了我
+    $(".visitb2").delegate('a','click',function(){
+        var $href=$(this).attr('href');
+        $.post($href,{visita:2},function(res){
+            $(".visitb2").html(res.page2);
+            $(".visitb").html(res.str);
+        },'json');
+        return false;
+    })
+
+    //我关注了谁
+    $(".visitb3").delegate('a','click',function(){
+        var $href=$(this).attr('href');
+        $.post($href,{visita:3},function(res){
+            $(".visitb3").html(res.page3);
+            $(".visitc").html(res.str);
+        },'json');
+        return false;
+    })
+    //{图片点击}
+    $(".dazhaohu").click(function(){
+        $id=$(this).attr('data_id');
+        location.href="{:U('Detail/detail')}"+"?id="+$id;
+    })
+    //定位我关注谁
+    function haha(){
+        var haha='{$aaa}';
+        if(haha == 88){
+            $('.guanzhu').attr('class','on');
+        }
+    }
+    haha();
+    //打招呼
+    $(".call").click(function(){
+        var  id=$(this).prev().attr('data_id');
+        $.post("{:U('Detail/send_message')}",{'jieshou_id':id,'not_vip':'not_vip'},function(data){
+            layer.alert("打招呼成功",function(){
+                location.href="{:U('MyFollow/my_follow')}"+"?id="+3;
+            });
+        })
+
+    })
+</script>

@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+    <title>Basic Example with JSX</title>
+    <link rel="stylesheet" href="../shared/css/base.css" />
+    <script src="__PUBLIC__/assets/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/assets/js/jsxransformer.js"></script>
+    <script src="__PUBLIC__/assets/js/react.js"></script>
+</head>
+
+
+
+
+
+<body>
+<h1>Basic Example with JSX</h1>
+<div id="container">
+
+</div> <div id="conts">
+</div> <div id="anew">
+</div> <div id="made">
+
+</div>
+
+<script type="text/jsx">
+
+function is_load_js_css(url){
+    var css_path="table.css";
+    var head = document.getElementsByTagName('head')[0];
+    var link = document.createElement('link');
+    link.href = url;
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    var js= /js$/i.test(css_path);
+    var flag;
+    var es=document.getElementsByTagName(js?'script':'link');
+    for(var i=0;i<es.length;i++){
+        if(es[i][js?'src':'href'].indexOf(css_path)==1){
+            flag=1;
+        }
+    }
+    //Î´¼ÓÔØÔò¼ÓÔØ
+    if(flag!=1){
+        head.appendChild(link);
+    }
+}
+
+
+
+    var App = React.createClass({
+        getInitialState: function() {
+            return {userInput: ''};
+        },
+        handleChange: function(e) {
+            this.setState({userInput: e.target.value});
+        },
+        clearAndFocusInput: function() {
+            this.setState({userInput: ''}); // Clear the input
+            // We wish to focus the <input /> now!
+        },
+        render: function() {
+            return (
+                    <div>
+                        <div onClick={this.clearAndFocusInput}>
+                            Click to Focus and Reset
+                        </div>
+                        <input
+                                value={this.state.userInput}
+                                onChange={this.handleChange}
+                                />
+                    </div>
+            );
+        }
+    });
+
+    React.render(
+            <App/>,
+            document.getElementById('conts')
+    );
+
+
+
+
+
+    var ExampleApplication = React.createClass({
+        getInitialState: function() {
+            this.a=false;
+            return {userInput: 45646454};
+        },
+        accc:function(){
+
+            this.a=!this.a;
+            var _this=this
+            if(this.a==true){
+                this.setin=setInterval(function(){
+                    var seconds = new Date().getTime();
+                    _this.setState({userInput: seconds});
+                },100)
+            }else{
+                clearInterval(this.setin);
+            }
+        },
+
+        render: function() {
+            var message =
+                    'React has been successfully running for ' + this.state.userInput + ' seconds.';
+
+            return <p onClick={this.accc}>{message}</p>;
+        }
+
+    });
+    React.render(
+            <ExampleApplication elapsed="55555555" />,
+            document.getElementById('container'))
+
+    var Max_made_body=React.createClass({
+        evtndisplay:function(){
+            $(".modal_body").css("display","block")
+            $(".modal_hide_body").css("display","block")
+        },
+        render:function(){
+            var a={"width":"100px","height":"35px","background":"red"}
+            return  <div><Made_body/><div style={a} onClick={this.evtndisplay}></div></div>
+        }
+    })
+    var Max_made_made=React.createClass({
+        render:function(){
+            return  <div  className="modal_body" ></div>
+        }
+    })
+    var Made_body=React.createClass({
+        render:function(){
+            return <div className="modal_hide_body"><Made_body_left/><Made_right/><div className="imgcontain"></div><div class="tanchu_close"></div></div>
+        }
+    })
+    var Made_body_left=React.createClass({
+        ventleft:function(){
+            alert("left")
+        },
+        render:function(){
+            return <div onClick={this.ventleft} className="modal_hide_body_left" ></div>
+        }
+    })
+    var Made_right=React.createClass({
+        ventright:function(){
+            alert("right")
+        },
+        render:function(){
+            return <div onClick={this.ventright} className="modal_hide_body_right"></div>
+        }
+    })
+    React.render(
+            <Max_made_body/>,
+            document.getElementById('anew')
+    )
+    React.render(
+            <Max_made_made/>,
+            document.getElementById('made')
+    )
+
+
+</script>
+<style>
+    /*??????*/
+    .x-browse a{cursor: pointer;}
+    .modal_body {
+        z-index: 997;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        display: none
+    }
+    .modal_hide_body {
+        position: relative;;
+        z-index: 999;
+        position: fixed;
+        top: 10%;
+        left: 25%;
+        width: 50%;
+        height: 500px;
+        border-radius: 5px;
+        border: solid 2px #666;
+        background-color: #fff;
+        display: none;
+        box-shadow: 0 0 10px #666;
+    }
+    .modal_hide_body .tanchu_close{position: absolute;top: -4px;right: 0px;z-index:1000;}
+    .modal_hide_body .tanchu_close .icon-remove-sign{color: #f76984;cursor: pointer;}
+    .modal_hide_body img{width: 100%;height: 100%;}
+    .modal_hide_body_left{background: #ccc;position: absolute;left: 0px;top: 0px;width: 50px;height: 100%}
+    .modal_hide_body_right{background: #ccc;position: absolute;right: 0px;top: 0px;width: 50px;height: 100%}
+    /*.modal_hide_body ul{margin: 5%;}*/
+    /*.modal_hide_body .modal_c{margin: auto;text-align: center;}*/
+    /*.modal_hide_body .modal_c input{width:80px;background:#D6405D;height: 22px;border: none;*/
+    /*border-radius: 5px; color: white;text-align: center; cursor: pointer;margin-bottom: 10px;}*/
+</style>
+</body>
+
+
+
+
+
+
+

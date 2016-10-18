@@ -1,0 +1,132 @@
+<include file='public/header' />
+<script src="__PUBLIC__/assets/js/jquery1.42.min.js"></script>
+<script src="__PUBLIC__/assets/js/jquery.SuperSlide.2.1.2.js"></script>
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.css">
+
+<style type="text/css">
+    /* css 重置 */
+    *{margin:0; padding:0; list-style:none; }
+    body{ background:#fff; font:normal 14px/1.8 宋体;  }
+    img{ border:0;  }
+    a{ text-decoration:none; color:#333;  }
+    a:hover{ color:#1974A1;  }
+    #footer{ text-align:center;  }
+    .main{ padding:1%  }
+    .main em{color:#f00; font-style:normal}
+    .main  h2{ margin-bottom:15px  }
+    .downLoad{ font-size:20px; text-decoration:underline }
+</style>
+
+
+<!-- 示例开始 ======================= -->
+<style type="text/css">
+    *{zoom:1}
+    .fullSlide{ position:relative; background:#000; margin:0 auto; }
+    .fullSlide .bd{ position:relative; z-index:0; }
+    .fullSlide .bd li img{width:100%; vertical-align:top;  }
+    .fullSlide .hd{position:relative; z-index:1; margin-top:-30px; height:30px; line-height:30px;  text-align:center;
+        background:#000; filter:alpha(opacity=60);opacity:0.6
+    }
+    .fullSlide .hd ul{ text-align:center;  padding-top:5px;  }
+    .fullSlide .hd ul li{ cursor:pointer; display:inline-block; *display:inline; zoom:1; width:8px; height:8px; margin:5px; background:url("__PUBLIC__/assets/images/tg_flash_p.png") -18px 0; overflow:hidden;
+        font-size:0;
+    }
+    .fullSlide .hd ul .on{ background-position:0 0; }
+    .fullSlide .prev,.fullSlide .next{ z-index:1; display:block; width:55px; height:55px; position:relative; margin:-27% 0 0 3%; float:left;  background:url("__PUBLIC__/assets/images/arrow.png") 0 0 no-repeat; filter:alpha(opacity=40);opacity:0.4  }
+    .fullSlide .next{  background-position:right 0; float:right; margin-right:3%  }
+    .fullSlide .prev:hover,.fullSlide .next:hover{ filter:alpha(opacity=80);opacity:0.8 }
+    .yanse:hover{color:#D6405D;}
+</style>
+
+<div class="story1">
+    <div class="fullSlide">
+        <div class="bd">
+            <ul>
+                <volist name="love_images" id="v">
+                <li><a target="_blank" ><img src="__PUBLIC__{$v.img}"/></a></li>
+                </volist>
+              <!--  <li><a target="_blank" href="http://www.superslide2.com"><img src="__PUBLIC__/assets/images/2.jpg"/></a></li>
+                <li><a target="_blank" href="http://www.superslide2.com"><img src="__PUBLIC__/assets/images/3.jpg"/></a></li>
+                <li><a target="_blank" href="http://www.superslide2.com"><img src="__PUBLIC__/assets/images/4.jpg"/></a></li>
+                <li><a target="_blank" href="http://www.superslide2.com"><img src="__PUBLIC__/assets/images/5.jpg"/></a></li>-->
+            </ul>
+        </div>
+
+        <div class="hd"><ul></ul></div>
+
+        <a class="prev" href="javascript:void(0)"></a>
+        <a class="next" href="javascript:void(0)"></a>
+    </div>
+
+    <div class="conter2">
+        <div class="text1">最新成功故事</div>
+        <div class="text2"><a href="{:U('Baodian/lovestory3')}" style="padding: 3px;">上传成功故事</a></div>
+    </div>
+    <div class="conterlist1">
+        <volist name="love_list" id="v">
+            <div class="conterlist">
+                <div class="left30"><a href="{:U('Baodian/lovestory2',array('id'=>$v['id']))}"><img src="__PUBLIC__{$v['head_img']}"></a></div>
+                <div class="right70">
+                    <div class="l"><a style="color:#D6405D" href="{:U('Baodian/lovestory2',array('id'=>$v['id']))}">{$v.title}</a></div>
+                    <div class="r">发布日期：<span>{$v['pub_time']|date="Y-m-d H:i:s",###}</span></div>
+                    <div style="clear: both"></div>
+                    <div class="cont">{$v.content|_substr=###,"150"}
+                        <?php $_leng=mb_strlen($v['content'],'utf-8');?>
+                        <if condition="$_leng gt 150">
+                            <a class="yanse" style="float: right; font-size:13px;" href="{:U('Baodian/lovestory2',array('id'=>$v['id']))}"> >>更多 </a>
+                        </if>
+                    </div>
+                </div>
+            </div>
+                <div style="clear: both;"></div>
+        </volist>
+    </div>
+    <div class="x-visitor_fotter" id="lovestory1" style="margin-bottom:0px;" >
+        {$page}
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(".fullSlide").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"leftLoop", vis:"auto", autoPlay:true, autoPage:true, trigger:"click" });
+</script>
+<include file='public/foot' />
+<!--<include file='public/details' />-->
+<style>
+    .buttom_mode{color: black; width: 300px;height: 250px;background: #fff;position: fixed;right: 2px;bottom: 2px;border-radius: 5px;overflow:hidden;z-index: 2000}
+    .head_mode{width: 100%;height: 30px;background: #c9a6ff;text-align: center;color:white;line-height: 30px;font-weight: bold;font-size: 1.2rem;}
+    .buttom_mode  .cont{width:86%;margin:7% auto;}
+    .buttom_mode  .cont div{border-radius: 5px;overflow: hidden;}
+    .buttom_mode  .cont .right{margin-left: 10px;}
+    .buttom_mode  .close{z-index: 2001;position: absolute;right: 2px;top: -6px;cursor: pointer;}
+    .buttom_mode .look{height: 25px;text-align: center;width: 120px;margin:20px 90px; border-radius: 5px;background-color: #f76984;line-height: 25px;color: white;font-weight: bold;cursor: pointer; }
+    .buttom_mode.right div{margin-bottom: 15px;}
+    .buttom_mode .look a{color: white}
+</style>
+<!--//右下角弹出-->
+<if condition="$suiji_user">
+    <div class="buttom_mode">
+        <div class="head_mode" style="position: relative">
+            消息提醒
+            <div class="close" ><i style="color: black; line-height: 30px;" class="fa fa-times"></i></div>
+        </div>
+        <div class="cont">
+            <div style="width: 100px;height:100px;background: #c14359;float: left"><img src="__PUBLIC__{$suiji_user.head_img}" width="100%"height="100%"></div>
+            <div class="right" style="width: 145px;height: 100px; background: #fff;float: left">
+                <div style="color: black;">{$suiji_user.nick_name}</div>
+                <div style="color: black;">{$suiji_user.age}岁</div>
+                <div style="color: black;color: #EC8484;margin-top:10px;">你收到一封信件.</div>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="look">
+            <a href="{:U('Letter/letterDetail',array('send_id'=>$suiji_user['send_id']))}">快去看信</a>
+        </div>
+    </div>
+</if>
+<script>
+    $('.close').click(function(){
+        $('.buttom_mode').fadeOut('slow');
+    })
+
+</script>
+
+

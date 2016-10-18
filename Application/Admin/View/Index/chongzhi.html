@@ -1,0 +1,103 @@
+<include file='public/header' />
+<style>
+	.x-index_search{
+	width:100%;height:500px;padding-left:22%;overflow:visible;
+	}
+</style>
+<div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">会员管理</strong> / <small>充值记录</small></div>
+    </div>
+
+
+<form action="{:U('Index/chongzhi',array('num'=>1))}" method="get">
+    <div class="x-add_admin">
+        <div style="float:left;margin-right:20px;width:20%" class="am-input-group">
+            <input name="nick_name" value="{$_GET['nick_name']}"  type="text" class="am-form-field" placeholder="请输入昵称" >
+        </div>
+        <div style="float:left;margin-right:20px;width:20%" class="am-input-group">
+            <input name="chongzhi_time" value="{$_GET['chongzhi_time']}"  type="text" class="am-form-field" placeholder="请输入充值时间" >
+        </div>
+        <div style="float:left;width:25%" class="am-input-group">
+            <!--<input name="daoqi_time" value="{$_GET['daoqi_time']}"  type="text" class="am-form-field" placeholder="请输入到期时间" >-->
+	      <span class="am-input-group-btn">
+	        <button class="am-btn am-btn-default" type="submit">搜索</button>
+	      </span>
+        </div>
+        <div style="clear:both">
+        </div>
+    </div>
+</form>
+<form>
+   <!-- <a style="float:left; margin:15px auto; margin-left:85px;padding:5px;display: block;" class="am-btn am-btn-primary del_all_love"><i class="am-icon-plus"></i>批量删除</a>-->
+    <table style="width:90%;margin-left:5%;margin-top:20px" class="am-table am-table-bordered am-table-radius am-table-striped">
+    	<thead>
+	    	<tr>
+               <!-- <td width="70px"><input type="checkbox" name="allcheck" value="0"> 全选 </td>-->
+                <td>流水号</td>
+		    	<td width="11%">昵称</td>
+                <td width="10%">帐号</td>
+		    	<td width="11%">充值金额</td>
+		    	<td width="11%">充值时间</td>
+		    	<!--<td>到期时间</td>-->
+		    	<td>充值类型</td>
+		    	<td>订单号</td>
+		    	<td width="10%">操作</td>
+	    	</tr>
+    	</thead>
+
+    	<tbody>
+    	<volist name="chongzhi_info" id="v">
+    		<tr class="checka">
+               <!-- <td><input type="checkbox" name="id[]" value="{$v['id']}" ></td>-->
+                <td>{$v.id}</td>
+                <td>{$v['uid']|get_uid_name}</td>
+                <?php if($v['phone'] != ''):?>
+                <td>{$v['phone']}</td>
+                <?php else: ?>
+                <td>{$v['email']}</td>
+                <?php endif ?>
+	    		<td>￥{$v.chongzhi_money}</td>
+	    		<td>{$v['chongzhi_time']|date="Y-m-d",###}</td>
+	    		<!--<td>{$v['daoqi_time']|date="Y-m-d",###}</td>-->
+	    		<td>{$v['name']}</td>
+	    		<td>{$v['trade_no']}</td>
+	    		<td>
+                    <a href="javascript:if(confirm('确认要删除吗？'))location='{:U('Index/del_chongzhi',array('id'=>$v['id']))}' " class="am-btn am-btn-default am-btn-xs x-delete">
+                    <i class="am-icon-trash"></i> 删除 </a>
+
+                </td>
+	    	</tr>
+	    </volist>
+    	</tbody>
+
+	</table>
+</form>
+	<div class="pagelist">{$page}</div>
+<include file='public/footer' />
+<script type="text/javascript">
+
+    //全选
+    $("input[name='allcheck']").click(function(){
+        if($("input[name='allcheck']").prop('checked') == true){
+            $(".checka input").prop('checked',true);
+        }else{
+            $(".checka input").prop('checked',false);
+        }
+    })
+    //批量删除
+    $(".del_all_love").click(function(){
+        if(confirm('确认要删除吗？')){
+            var ids = $(this).closest('form').serialize();
+            $.get("{:U('Shenhe/del_all_love')}",ids,function(res){
+                if(res.status == 'y'){
+                    alert(res.info);
+                    history.go(0);
+                }else{
+                    alert(res.info);
+                }
+            })
+        }
+        return false;
+    })
+
+</script>

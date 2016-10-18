@@ -1,0 +1,16 @@
+<include file='public/header' />
+
+
+<H1 style='text-align: center;margin:auto;margin-top: 100px; color: black;font-weight: bold;font-size: 1.3rem'>微信扫码支付</H1>
+<div style='text-align: center;margin: 20px auto; height:200px;width: 200px;'><img style="width:100%;height: auto;" src='{$url}'></div>
+<script>
+    setInterval(function(){
+        $.post("{:U('Alipay/getstatus')}",function(data){
+           if(data[0].state==1){
+               //Money/recharge?ordtype=payed
+               location.href= "{:U('Money/recharge')}?ordtype=payed"
+           }
+        })
+    },3000)
+
+</script>

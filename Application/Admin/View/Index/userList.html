@@ -1,0 +1,172 @@
+<include file='public/header' />
+<style>
+	.green{color:#00e500}
+	.close{color:#ff461f}
+</style>
+<div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> / <small>用户管理</small></div>
+    </div>
+<if condition="!$user_info">
+    <form action="{:U('Index/userList',array('num'=>88))}" method="get">
+    <div class="x-add_admin">
+    <div style="float:left;margin-right:20px">
+	<select name="vip"  data-am-selected>
+        <option value="" >选择会员类型</option>
+        <option value="1" <if condition=" $_GET['vip'] eq 1">selected</if> >普通会员</option>
+        <option value="2" <if condition=" $_GET['vip'] eq 2">selected</if> >vip会员</option>
+    </select>
+	  	</div>
+	    <div style="float:left;margin-right:20px;width:20%" class="am-input-group">
+	      <input name="nick_name" value="{$_GET['nick_name']}"  type="text" class="am-form-field" placeholder="请输入要搜索的昵称" >
+	    </div>
+	    <div style="float:left;width:25%" class="am-input-group">
+	      <input name="login_time" value="{$_GET['login_time']}"  type="text" class="am-form-field" placeholder="请输入要搜索的登录时间" >
+	      <span class="am-input-group-btn">
+	        <button class="am-btn am-btn-default" type="submit">搜索</button>
+	      </span>
+	    </div>
+	    <div style="clear:both">
+	    </div>
+    </div>
+    </form>
+</if>
+
+<if condition="!$user_info">
+    <!--多个会员-->
+    <form>
+    <!--<a style="float:left;margin-right:5%" class="am-btn am-btn-primary del_all"><i class="am-icon-plus"></i>批量删除</a>-->
+    <table style="width:90%;margin-left:5%;margin-top:20px" class="am-table am-table-bordered am-table-radius am-table-striped">
+        <thead>
+        <tr>
+            <!--<td width="70px"><input type="checkbox" name="allcheck" value="0"> 全选 </td>-->
+            <td>昵称</td>
+            <td>帐号</td>
+            <td>用户等级</td>
+            <td>网站币</td>
+            <td width="">性别</td>
+            <td>实名认证</td>
+            <td>是否禁用</td>
+            <td>图片</td>
+            <td>最后登录时间</td>
+            <td>注册时间</td>
+            <td width="15%">操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <volist name="user_list" id="v">
+            <tr class="checka">
+                <!--<td><input type="checkbox" name="id[]" value="{$v['id']}" ></td>-->
+                <td>{$v.nick_name}</td>
+                <if condition="$v['email']">
+                    <td>{$v.email}</td>
+                <else/>
+                    <td>{$v.phone}</td>
+                </if>
+                <if condition="$v['vip'] eq 2">
+                    <td class="green">vip会员</td>
+                    <else/>
+                    <td>普通会员</td>
+                </if>
+                <td>{$v.money}</td>
+                <td><if condition="$v['sex'] eq 1">男<else/>女</if></td>
+                <if condition="$v['is_renzheng'] eq 1">
+                    <td class="green"><span class="am-icon-check">
+                    已认证</span>
+                    </td>
+                    <else/>
+                    <td>未认证</td>
+                </if>
+                <if condition="$v['is_jinyong'] eq 1">
+                    <td class="green"><span class="am-icon-check">
+                    已禁用</span>
+                    </td>
+                    <else/>
+                    <td>未禁用</td>
+                </if>
+                <td><image style="height: 100px;width:110px;" src="__PUBLIC__{$v['head_img']}"/></td>
+                <td>{$v.login_time|date="Y-m-d",###}</td>
+                <td>{$v.register_time|date="Y-m-d",###}</td>
+                <td><a href="{:U('Index/user_info',array('id'=>$v['user_id']))}" class="am-btn am-btn-default am-btn-xs"><i class="am-icon-eye"></i> 编辑 </a>
+                    <a href="javascript:if(confirm('确认要操作吗？'))location='{:U('Index/del_home',array('id'=>$v['user_id']))}' " class="am-btn am-btn-default am-btn-xs" ><i class="am-icon-trash"></i>
+                    <?php if($v['is_jinyong'] == 0):?>
+                        禁用
+                    <?php else: ?>
+                        启用
+                    <?php endif ?>
+                    </a></td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+    </form>
+    <else/>
+    <!--单个会员-->
+    <table style="width:90%;margin-left:5%;margin-top:20px" class="am-table am-table-bordered am-table-radius am-table-striped">
+        <thead>
+        <tr>
+            <td>生日</td>
+            <td>昵称</td>
+            <td width="">星座</td>
+            <td>年龄</td>
+            <td>学历</td>
+            <td>微信</td>
+            <td>是否结婚</td>
+            <td>职业</td>
+            <td>月收入</td>
+            <td>省</td>
+            <td>市</td>
+            <td width="15%">操作</td>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{$user_info.birthday}</td>
+                <td>{$user_info.nick_name}</td>
+                <td>{$user_info.constellation}</td>
+                <td>{$user_info.age}</td>
+                <td>{$user_info.education}</td>
+                <td>{$user_info.wixin}</td>
+                <if condition="$v['marriage'] eq 2">
+                    <td class="green">已婚</td>
+                    <else/>
+                    <td>未婚</td>
+                </if>
+                <td>{$user_info.job}</td>
+                <td>{$user_info.mon_money}</td>
+                <td>{$user_info.province}</td>
+                <td>{$user_info.city}</td>
+                <td>
+                    <a href="javascript:if(confirm('确认要删除该会员吗？'))location='{:U('Index/del_home',array('id'=>$user_info['user_id']))}' " class="am-btn am-btn-default am-btn-xs" ><i class="am-icon-trash"></i> 删除 </a></td>
+            </tr>
+        </tbody>
+    </table>
+</if>
+<div style="float: right;" class="pagelist">
+    {$page}
+</div>
+<include file='public/footer' />
+<script>
+    //全选
+    $("input[name='allcheck']").change(function(){
+        if($("input[name='allcheck']").prop('checked') == true){
+            $(".checka input").prop('checked',true);
+        }else{
+            $(".checka input").prop('checked',false);
+        }
+    })
+    //批量删除
+    $(".del_all").click(function(){
+        if(confirm('确认要删除吗？')){
+            var ids = $(this).closest('form').serialize();
+            $.get("{:U('Index/del_all_user')}",ids,function(res){
+                if(res.status == 'y'){
+                    alert(res.info);
+                    history.go(0);
+                }else{
+                    alert(res.info);
+                }
+            })
+        }
+        return false;
+    })
+</script>

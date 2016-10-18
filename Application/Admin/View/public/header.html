@@ -1,0 +1,155 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>幸福在线管理系统</title>
+  <meta name="description" content="快乐在线">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <link rel="stylesheet" href="__PUBLIC__/admin/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="__PUBLIC__/admin/css/admin.css">
+  <!-- <script charset="utf-8" src="__PUBLIC__/kindeditor-4.1.10/kindeditor.js"></script> -->
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器, 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<header class="am-topbar admin-header">
+  <div class="am-topbar-brand">
+    <strong>幸福在线管理系统</strong> <small></small>
+  </div>
+
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+    <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+      <li><a href="{:U('Home/Index/index')}" target="_blank"><span class="am-icon-home"></span> 查看首页</a></li>
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <span class="am-icon-users"></span>　{$_SESSION['user']['username']}　<span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a href="{:U('Index/loginout')}"><span class="am-icon-power-off"></span> 退出登录</a></li>
+        </ul>
+      </li>
+      <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <div class="admin-sidebar am-offcanvas" id="admin-offcanvas" style='width:220px;'>
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+
+        <ul class="am-list admin-sidebar-list" id="collapase-nav-1">
+            <li  class="am-panel sss">
+                <a data-am-collapse="{parent: '#collapase-nav-1'}" href="{:U('Index/index')}"><i class="am-icon-home am-margin-left-sm"></i> 首页</a>
+            </li>
+
+            <li class="am-panel cols">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#user-nav'}">
+                    <i class="am-icon-users am-margin-left-sm"></i> 会员管理 <i class="am-icon-angle-right am-fr am-margin-right"></i>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="user-nav">
+                    <li><a href="{:U('Index/adminList')}"><i class="am-icon-user am-margin-left-sm"></i> 后台管理员管理 </a></li>
+                    <li><a href="{:U('Index/userList')}"><i class="am-icon-user am-margin-left-sm"></i> 用户管理 </a></li>
+                    <li><a href="{:U('Index/chongzhi')}"><i class="am-icon-user am-margin-left-sm"></i> 充值记录 </a></li>
+                    <li><a href="{:U('Index/xiaofei')}"><i class="am-icon-user am-margin-left-sm"></i> 消费记录 </a></li>
+                </ul>
+            </li>
+
+            <li class="am-panel">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#aa-nav'}">
+                    <i class="am-icon-table am-margin-left-sm"></i> 审核管理 <i class="am-icon-angle-right am-fr am-margin-right"></i>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="aa-nav">
+                    <li><a href="{:U('Shenhe/shenhe_images')}"><span class="am-icon-table am-margin-left-sm"></span> 相册审核管理</a></li>
+                    <li><a href="{:U('Shenhe/message')}"><span class="am-icon-table am-margin-left-sm"></span> 说说审核管理</a></li>
+                    <li><a href="{:U('Shenhe/love')}"><span class="am-icon-table am-margin-left-sm"></span> 成功故事审核管理</a></li>
+                </ul>
+            </li>
+
+            <li class="am-panel">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#channel-nav'}">
+                    <i class="am-icon-table am-margin-left-sm"></i> 聊天室管理 <i class="am-icon-angle-right am-fr am-margin-right"></i>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="channel-nav">
+                    <li><a href="{:U('Channel/index_channel')}"><i class="am-icon-user am-margin-left-sm"></i> 聊天室列表 </a></li>
+                    <li><a href="{:U('Channel/addChannel')}"><i class="am-icon-user am-margin-left-sm"></i> 添加聊天室 </a></li>
+                </ul>
+            </li>
+
+            <li class="am-panel ">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#company-nav'}">
+                    <i class="am-icon-table am-margin-left-sm"></i> 帮助 <i class="am-icon-angle-right am-fr am-margin-right"></i>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="company-nav">
+                    <li ><a href="{:U('Help/addHelp')}"><span class="am-icon-table am-margin-left-sm"></span> 添加帮助 </a></li>
+                    <volist name="help_info" id="v">
+                         <li><a href="{:U('Help/addHelp',array('id'=>$v['id']))}"><span class="am-icon-table am-margin-left-sm"></span> {$v.title} </a></li>
+                    </volist>
+                </ul>
+            </li>
+
+
+            <li class="am-panel">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#role-nav'}">
+                    <i class="am-icon-table am-margin-left-sm"></i> 广告 <i class="am-icon-angle-right am-fr am-margin-right"></i>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="role-nav">
+                    <li><a href="{:U('Guanggao/addGuanggao')}"><span class="am-icon-table am-margin-left-sm"></span> 添加广告 </a></li>
+                    <volist name="guanggao" id="v">
+                        <li><a href="{:U('Guanggao/addGuanggao',array('id'=>$v['id']))}"><span class="am-icon-table am-margin-left-sm"></span> {$v.title} </a></li>
+                    </volist>
+                </ul>
+            </li>
+
+            <li class="am-panel">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#tuijian-nav'}">
+                    <i class="am-icon-table am-margin-left-sm"></i> 首页优秀会员推荐 <i class="am-icon-angle-right am-fr am-margin-right"></i>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="tuijian-nav">
+                    <li><a href="{:U('IndexUser/index_user_add')}"><span class="am-icon-table am-margin-left-sm"></span> 添加优秀会员 </a></li>
+                    <li><a href="{:U('IndexUser/index_user')}"><span class="am-icon-table am-margin-left-sm"></span> 查看优秀会员 </a></li>
+                    <li><a href="{:U('IndexUser/yulantu')}"><span class="am-icon-table am-margin-left-sm"></span> 预览图 </a></li>
+                </ul>
+            </li>
+
+            <li class="am-panel">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#baseset-nav'}">
+                    <i class="am-icon-table am-margin-left-sm"></i> 系统设置 <i class="am-icon-angle-right am-fr am-margin-right"></i>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="baseset-nav">
+                    <li><a href="{:U('Baseset/base_index')}"><span class="am-icon-table am-margin-left-sm"></span> 基本设置 </a></li>
+                    <li><a href="{:U('Baseset/set_pay')}"><span class="am-icon-table am-margin-left-sm"></span> 支付设置 </a></li>
+                </ul>
+            </li>
+        </ul>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-bookmark"></span> 公告</p>
+          <p>时光静好，与君语；细水流年，与君同。</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- sidebar end -->
+  <!-- content start -->
+  <div class="admin-content">
+    <script src="__PUBLIC__/admin/js/jquery.min.js"></script>
+<script>
+    $('.sss').click(function(){
+        location.href="{:U('Index/index')}";
+    })
+</script>

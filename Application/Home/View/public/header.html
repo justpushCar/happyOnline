@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!-- saved from url=(0023)http://www.youyuan.com/ -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta name="author" content="{:C('title')}">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="robots" content="all">
+    <meta name='description' content="{:C('description')}">
+    <meta http-equiv="Copyright" content="{:C('title')}">
+    <scrpt src="__PUBLIC__/assets/js/PCASClass.js"></scrpt>
+    <!--[if lt IE 10]><scrpt src="__PUBLIC__/assets/js/PIE.js"></scrpt><![endif]-->
+    <link rel="stylesheet" href="__PUBLIC__/assets/font/css/font-awesome.min.css">
+    <title>{:C('title')}</title>
+    <script src="__PUBLIC__/assets/js/jquery.min.js"></script>
+    <link  href="__PUBLIC__/assets/css/home.css" rel="stylesheet" type="text/css">
+    <link  href="__PUBLIC__/assets/css/newadd.css" rel="stylesheet" type="text/css">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?c667aeff5f29e177a8a7995a52dc4fce";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</head>
+<body class="mhdhome index_new_">
+<div class="top_header" style="height: 30px;line-height: 30px">
+    <span style="font-weight:normal;line-height: 30px"><a href="{:U('Index/help')}">帮助</a></span>
+    <span style="font-weight:normal;line-height: 30px"><a href="#"></a></span>
+    <span style="font-weight:normal;line-height: 30px">|</span>
+    <!--<span class="set" style="font-weight:normal;line-height: 30px"><img style="float: left;margin-top: 6px" src="__PUBLIC__/assets/images/set.png">设置<img style="float: right;margin-top: 12px;margin-left: 5px" src="__PUBLIC__/assets/images/menu.png"></span>-->
+	<span style="font-weight:normal;line-height: 30px"><a href="{:U('Letter/my_letter')}">
+        <if condition="$letter_num">
+            <img id="red_info" style="float: left;margin-top: 5px;height: 25px;" src="__PUBLIC__/assets/images/redinfo.png">
+            <else/>
+            <img style="float: left;margin-top: 5px;height: 25px;" src="__PUBLIC__/assets/images/info.png">
+        </if>
+    </a>
+    </span>
+    <span style="font-weight:normal;line-height: 30px">|</span>
+    <?php if(!empty($name)):?>
+    <span style="font-weight:normal;line-height: 30px"><a href="{:U('Index/out')}">退出</a></span>
+    <span style="font-weight:normal;line-height: 30px;color:#f76984"><a style="font-weight:normal;line-height: 30px;color:#D6405D"href="{:U('Index/spacemess')}">欢迎：{$name['nick_name']}</a></span>
+
+    <?php else :?>
+    <span style="font-weight:normal;line-height: 30px"><a href="{:U('Index/register')}">注册</a></span>
+    <span style="font-weight:normal;line-height: 30px"><a href="{:U('Index/login')}">登录</a></span>
+    <?php endif ?>
+    <script>
+        var tag =true
+        var a =document.getElementById('red_info');
+        setInterval(function(){
+
+            if(a){
+                if(tag==true){
+                    a.setAttribute('src','__PUBLIC__/assets/images/redinfo.png');
+                    tag=false
+                }else{
+                    a.setAttribute('src','__PUBLIC__/assets/images/info.png');
+                    tag=true
+                }
+            }
+
+
+
+        },500)
+        $(function(){
+            $(".yy_nav ul li").hover(function(){
+                $(this).find("hr").show();
+            },function(){
+                $(this).find("hr").hide();
+            })
+        })
+
+    </script>
+
+
+</div>
+<div style="clear: both"></div>
+<?php $action_name=ACTION_NAME;?>
+<div class="yy_header" style="position: relative" >
+    <div  style="position: absolute;left:1%;top: 3px;cursor: pointer;"><a href="{:U('Index/index')}"><img
+            style="width: 250px ;height: 42px;"
+            src="__PUBLIC__/assets/images/logo.png"></a></div>
+    <div class="yy_nav">
+        <ul>
+            <!--<li><img src="kuaile/kuailezaixian.png"></li>-->
+            <?php if(empty($name)):?>
+            <li><a class="a_01 a_out" href="{:U('Index/index')}">首页</a></li>
+            <?php else :?>
+            <?php endif ?>
+            <li>
+                <a class="a_02" href="{:U('Online/chatroom')}">幸福在线</a>
+                <img src="__PUBLIC__/assets/images/hot.png">
+                <hr <?php if($action_name == chatroom) :?>style="display:block" <?php endif ?>>
+            </li>
+            <li>
+                <a class="a_02" href="{:U('Index/space')}">我的空间</a>
+                <hr <?php if($action_name == space) :?> style="display:block"  <?php endif ?>>
+            </li>
+            <li>
+                <a class="a_02" href="{:U('Hudong/interaction')}">互动专区</a>
+                <img src="__PUBLIC__/assets/images/hot.png">
+                <hr <?php if($action_name == interaction1) :?> style="display:block" <?php endif ?>>
+            </li>
+            <li>
+                <a id="search" class="a_04" href="{:U('Index/search')}">搜索查找</a>
+                <hr <?php if($action_name == search) :?> style="display:block" <?php endif ?>>
+            </li>
+            <li>
+                <a class="a_04" href="{:U('Youyue/everyday')}">每日有约</a>
+
+                <hr <?php if($action_name == everyday) :?>style="display:block" <?php endif ?>>
+            </li>
+            <li>
+                <a class="a_04" href="{:U('Baodian/lovestory')}">成功故事</a>
+                <hr <?php if($action_name == lovestory) :?> style="display:block" <?php endif ?>>
+            </li>
+            <li>
+                <a class="a_06" href="{:U('Money/recharge')}">充值服务</a>
+                <hr <?php if($action_name == recharge) :?> style="display:block"  <?php endif ?>>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+ /*$('#search').bind('click',function(){
+     var is_vip='{$user_info['vip']}';
+     if(is_vip == 1){
+         layer.alert('您还不是vip会员',function(){
+             location.href="{:U('Money/recharge')}";
+         });
+     }else{
+         location.href="{:U('Index/search')}";
+     }
+     return false;
+ })*/
+
+</script>
+{:R('Online/remind')}

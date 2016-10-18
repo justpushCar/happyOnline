@@ -1,0 +1,41 @@
+<include file='public/header' />
+<div class="x-admin_add" style="height:100%">
+	<div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">系统设置</strong> / <small>基本设置</small></div>
+    </div>
+    <form class="am-form" method="post" action="{:U('Baseset/base_index')}" enctype="multipart/form-data">
+	<div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+	  <span class="am-input-group-label">网站标题</span>
+	  <input name="title" type="text" value="{:C('title')}" class="am-form-field" >
+	</div>
+
+        <div style="margin-left:5%;width:50%;margin-top:20px;" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">网站描述 就是 所谓的seo关键字 </span>
+        </div>
+	<div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+        <span class="am-input-group-label">网站描述</span>
+        <input name="description" type="text" value="{:C('description')}" class="am-form-field" >
+	</div>
+       <!-- <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">支付宝PID</span>
+            <input name="alipay_pid" type="text" value="{:C('alipay_pid')}" class="am-form-field" >
+        </div>
+        <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">支付宝加密KEY</span>
+            <input name="alipay_key" type="text" value="{:C('alipay_key')}" class="am-form-field" >
+        </div>
+        <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">微信PID</span>
+            <input name="weixin_pid" type="text" value="{:C('weixin_pid')}" class="am-form-field" >
+        </div>
+        <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">微信加密KEY</span>
+            <input name="weixin_key" type="text" value="{:C('weixin_key')}" class="am-form-field" >
+        </div>-->
+	<div style="clear:both;margin-left:5%;margin-top:80px">
+		<button type="submit" class="am-btn am-btn-success">　提交　</button>
+	</div>
+	</form>
+</div>
+<include file='public/footer' />
+

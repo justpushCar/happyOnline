@@ -1,0 +1,221 @@
+<include file='public/header' />
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.css">
+    <div class="content">
+        <include file='public/spaceleft'/>
+        <div class="contentright">
+            <div class="interaction">
+                <div>
+                    <textarea name="content" style="width: 83%;height: 150px;
+                    webkit-box-shadow: inset 0 3px 3px #ebebeb;
+    box-shadow: inset 0 3px 3px #ebebeb;
+    " placeholder="说点什么。。。。"></textarea>
+                  <div id="browse" style="float:right;"> <img style="float: right;" src="__PUBLIC__/assets/images/diannaoshangchuan.png"/></div>
+                </div>
+                <div class="wraper">
+                    <div class="btn-wraper" >
+                        <div style="padding-top: 10px;">
+                    <span>消费网站币<input id="love_money" value="1" type="text">
+                        (<b style="color: #D6405D">* </b>排名根据竞价显示，最少网站币1枚）<span style="color:#D6405D;" id="infos"></span> </span>
+                        </div>
+                        <input type="submit" value="发布" id="upload-btn" />
+                    </div>
+                    <ul id="file-list">
+                    </ul>
+                </div>
+
+                <div style="clear: both"></div>
+                <!--<div class="_submit"><input type="submit" value="发表"></input></div>-->
+            </div>
+
+           <!-- 开始-->
+            <volist name="message_list" id="v">
+            <div class="pinglun">
+                <div class="left30"><img src="__PUBLIC__/{$v.head_img}"></div>
+
+                <div class="right70">
+                    <div class="_title">{$v.nick_name}<em><span>&nbsp;&nbsp;&nbsp;&nbsp;{$v.dubai|_substr=###,"30"}</span></em></div>
+                    <div class="text_conter" style="word-break: break-all; word-wrap:break-word;">
+                        {$v.content}
+                    </div>
+                    <div class="_img  data-size">
+                        <volist name="v['imgs']" id="v1">
+                        <div><img src="__PUBLIC__{$v1['img']}"></div>
+                        </volist>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <div class="xb">消耗网站币：{$v.love_money}<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布时间：{$v.pub_time|date="Y-m-d",###}</span></div>
+
+
+                    <p>评论(<span>{$v.comment_num}</span>)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--<a href="#">举报</a>--> </p>
+                    <!--pinlunkaishi -->
+                    <div class="pl" style="max-height: 200px;overflow: auto;">
+                    <volist name="v['comment']" id="v2">
+                    <div class="plun">
+                        <img src="__PUBLIC__/{$v2['user_info']['head_img']}">
+                        <span class="_name" style="color: #000000">{$v2['user_info']['nick_name']}：&nbsp;</span>
+                        <span style="word-break: break-all; word-wrap:break-word;" class="_take">{$v2.p_content}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;评论时间：{$v2.p_time|date="Y-m-d",###}</span>
+                    </div>
+                    </volist>
+                    </div>
+
+                    <div class="input_take">
+                        <textarea name="comment" class="comment" placeholder="我也说一句"></textarea>
+                    </div>
+                    <!--‘data-’自定义属性 作用：存字符串或者数组-->
+                    <div><input class="tijiao" data-id="{$v['id']}" type="submit"></div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+            </volist>
+           <!-- 结束-->
+
+        </div>
+    </div>
+<include file='public/foot' />
+<style>
+    .buttom_mode{color: black; width: 300px;height: 250px;background: #fff;position: fixed;right: 2px;bottom: 2px;border-radius: 5px;overflow:hidden;z-index: 2000}
+    .head_mode{width: 100%;height: 30px;background: #c9a6ff;text-align: center;color:white;line-height: 30px;font-weight: bold;font-size: 1.2rem;}
+    .buttom_mode  .cont{width:86%;margin:7% auto;}
+    .buttom_mode  .cont div{border-radius: 5px;overflow: hidden;}
+    .buttom_mode  .cont .right{margin-left: 10px;}
+    .buttom_mode  .close{z-index: 2001;position: absolute;right: 2px;top: -6px;cursor: pointer;}
+    .buttom_mode .look{height: 25px;text-align: center;width: 120px;margin:20px 90px; border-radius: 5px;background-color: #f76984;line-height: 25px;color: white;font-weight: bold;cursor: pointer; }
+    .buttom_mode.right div{margin-bottom: 15px;}
+    .buttom_mode .look a{color: white}
+</style>
+<!--//右下角弹出-->
+<if condition="$suiji_user">
+    <div class="buttom_mode">
+        <div class="head_mode" style="position: relative">
+            消息提醒
+            <div class="close" ><i style="color: black; line-height: 30px;" class="fa fa-times"></i></div>
+        </div>
+        <div class="cont">
+            <div style="width: 100px;height:100px;background: #c14359;float: left"><img src="__PUBLIC__{$suiji_user.head_img}" width="100%"height="100%"></div>
+            <div class="right" style="width: 145px;height: 100px; background: #fff;float: left">
+                <div style="color: black;">{$suiji_user.nick_name}</div>
+                <div style="color: black;">{$suiji_user.age}岁</div>
+                <div style="color: black;color: #EC8484;margin-top:10px;">你收到一封信件.</div>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="look">
+            <a href="{:U('Letter/letterDetail',array('send_id'=>$suiji_user['send_id']))}">快去看信</a>
+        </div>
+    </div>
+</if>
+<script>
+    $('.close').click(function(){
+        $('.buttom_mode').fadeOut('slow');
+    })
+
+</script>
+
+<script>
+    //评论
+    /*attr("","") 设置或者提取属性的值*/
+$('.tijiao').click(function(){
+    var id=$(this).attr('data-id');
+    /*找到当前对象的（评论按钮）的父亲（DIV）的兄弟（DIV）下的textarea，获取他的值*/
+    var comment=$(this).parent().siblings().find('textarea').val();
+    if(comment == '') {
+        layer.alert('亲，评论不能为空');
+        return false;
+    }
+    $.post("{:U('Hudong/interaction2')}",{message_id:id,comment:comment},function(res){
+        if(res.status == 'n'){
+            layer.alert(res.info);
+            $('textarea').val('');
+        }else{
+            layer.alert(res.info);
+            $('textarea').val('');
+        }
+    },"json");
+    /*获取DOME上面的值,无刷新评论*/
+   /* var img=$('.contenteleft .left1 img').attr('src');
+    var nav=$('.nkn').html();
+    var tr='<div class="plun"><img src="'+img+'">' +
+            '<span class="_name">'+nav+'：</span><span class="_take">'+comment+' &nbsp; &nbsp;评论成功正在审核中。。。</span>' +
+            '</div>'
+    $(this).parent().prev().prepend(tr);*/
+})
+</script>
+<script>
+  $(window).load(function(){
+      var interactionH= $('.interaction img').height();
+      $('.interaction textarea').css('height',interactionH);
+//      $('.right70 img ').mouseover(function(){
+//        $('div').addClass('popblack').appendTo($('html'))
+//      })
+  })
+</script>
+
+<script src="__PUBLIC__/assets/js/plupload.js"></script>
+<script>
+    //文件上传
+    var uploader = new plupload.Uploader({ //实例化一个plupload上传对象
+        browse_button : 'browse',
+        url : "{:U('Hudong/message_image')}",
+        flash_swf_url : 'js/Moxie.swf',
+        silverlight_xap_url : 'js/Moxie.xap',
+        drop_element : 'drag-area'
+    });
+    uploader.init(); //初始化
+    //绑定文件添加进队列事件
+    uploader.bind('FilesAdded',function(uploader,files){
+        for(var i = 0, len = files.length; i<len; i++){
+            var file_name = files[i].name; //文件名
+            //构造html来更新UI
+            var html = '<li id="file-' + files[i].id +'"><p class="file-name">' + file_name + '</p><p class="progress"></p></li>';
+            $(html).appendTo('#file-list');
+        }
+    });
+
+    //绑定文件上传进度事件
+    uploader.bind('UploadProgress',function(uploader,file){
+        $('#file-'+file.id+' .progress').css('width',file.percent + '%');//控制进度条
+    });
+
+
+    //上传按钮  发布说说
+    $('#upload-btn').click(function(){
+        var content=$("textarea[name='content']").val();
+        var love_money=$("#love_money").val();
+        $.post("{:U('Hudong/interaction')}",{content:content,love_money:love_money},function(res){
+            if(res.status=='n'){
+                layer.alert(res.info);
+            }else if(res.status=='y'){
+                if(uploader.files.length > 0){
+                    uploader.start();
+                    uploader.bind('UploadComplete',function(uploader,file){
+                        layer.alert(res.info,function(){
+                            $("textarea").val('');
+                            history.go(0);
+                        })
+                    });
+                }else{
+                    layer.alert(res.info,function(){
+                        $("textarea").val('');
+                        history.go(0);
+                    })
+                }
+            }
+        },"json");
+        return false;
+    });
+
+    //显示该会员输入多少恋爱币对应的排名
+    //监听input框的值是否发生改变
+    $("#love_money").bind('input propertychan',function(){
+        setTimeout(function(){
+            var love_money=$("#love_money").val();
+            $.post("{:U('Hudong/love_sort')}",{love_money:love_money},function(res){
+                $("#infos").html(res.info)
+            })
+        },500)
+    })
+    $('.input_take textarea').focus(function(){
+        $(this).animate({height:"70px"})
+        $(this).parent().parent().find('input').slideDown(600);
+    })
+</script>

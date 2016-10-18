@@ -1,0 +1,186 @@
+<include file='public/header' />
+<!-- ft_info_box -->
+<div class="content">
+    <!--左边-->
+    <include file='public/spaceleft' />
+   <!--右边-->
+    <div class="contentright"style="background: white;">
+
+        <div class="slideTxtBox">
+            <div class="hd">
+                <ul>
+                    <li>我的信件</li>
+                    <li>通知</li>
+                </ul>
+            </div>
+            <?php $is_send? $is_send : 1; ?>
+            <div class="bd">
+            	<ul>
+            		<div class="box_center">
+            			<div class="x-letter_detail" style="margin-bottom:0px">
+                            <if condition="$_GET['num']">
+                            <a class="send_hide" href="{:U('Letter/letterDetail',array('send_id'=>$_GET['send_id'],'next'=>'next'))}">
+                                下一封
+                            </a>
+                            </if>
+                            <if condition="$is_send">
+                            <a href="{:U('Letter/letterDetail',array('send_id'=>$send_id,'next'=>'next'))}">
+                                下一封
+                            </a>
+                            </if>
+            				<a href="{:U('Letter/my_letter')}">返回列表</a>
+            			</div>
+            			</div>
+            			<div class="x-letter_main" style="margin-bottom:0px">
+            				<div class="x-letterbox_photo" style="margin-bottom:0px">
+            					<img src="__PUBLIC__{$letter_row.head_img}" width="100%" height="100%">
+            				</div>
+            				<h1>{$letter_row.nick_name}</h1>
+            				<p><if condition="$letter_row['sex'] eq 1">男<else/>女</if>
+                                {$letter_row.age}岁　在{$letter_row.province}-{$letter_row.city}　
+                                <if condition="$letter_row['marriage'] eq 1">未婚<else/>已婚</if>
+                                {$letter_row.education}
+                            </p>
+                           <if condition="$follow_status eq 1">
+                                <a style="cursor: pointer;background: #ccc;" data_status="1" class="guanzhu">取消关注</a>
+                            <else/>
+                                <a style="cursor: pointer;" data_status="0" class="guanzhu">+ 关 注
+                                    <?php if($letter_row['sex']==1):?>
+                                    他
+                                    <?php else :?>
+                                    她
+                                    <?php endif ?>
+                                </a>
+                            </if>
+                        </div>
+
+            			<div id="dsd" class="x-letter_bottom" style="margin-bottom:0px;overflow: auto;">
+                            <volist name="letter_me" id="v">
+            				 <h2><span>{$v['send_name']}&nbsp;&nbsp;</span>{$v['send_time']|date="Y-m-d H:i:s",###}</h2>
+            				 <p>{$v.content}</p>
+                            </volist>
+            				 <!--<div class="x-letter_bmain">
+
+            				 	<h2><span>健忘的大象</span>{$v['send_time']|date="Y-m-d",###}</h2>
+            				 	<p>{$v.content}</p>
+
+            				 </div>-->
+
+            			</div>
+
+            			<div class="x-letter_textarea">
+            				<textarea name="content"></textarea>
+            				<button id="fasong">发 送</button>
+            			</div>
+            	</ul>
+            	<ul>
+                    <form>
+            		<div class="box_center">
+            			<div class="x-info_list" style="margin-bottom:0px">
+            				 <p><input type="checkbox" name="all">　全选</p>
+            				<a style="cursor: pointer;" class="shenhe_del">删除消息</a>
+            			</div>
+                        <volist name="shenhe_list" id="v">
+            			<div class="x-list_detail" style="margin-bottom:0px">
+            				<div style="margin-bottom:0px" class="x-list_detail_checkbox">
+                                <input type="checkbox" name="shenhe_id[]" value="{$v.id}">
+                            </div>
+            				
+            				<div class="x-list_notice"><p>{$v.content}</p></div>
+            				
+            				<div style="margin-bottom:0px" class="x-list_detail_time">{$v['shenhe_time']|date="Y-m-d H:i:s",###}</div>
+            			</div>
+                        </volist>
+            		</div>
+                    </form>
+            	</ul>
+            </div>
+        </div> 
+		
+    </div>
+</div>
+<include file='public/foot' />
+<script src="__PUBLIC__/assets/js/plupload.js"></script>
+<script>
+    //滚动距低
+    window.onload=function(){
+        document.getElementById("dsd").scrollTop=1000000;
+    }
+
+
+    //发送信件
+    $("#fasong").click(function(){
+        var jieshou_id={$letter_row['user_id']};
+        var content=$("textarea[name='content']").val();
+        $.post("{:U('Letter/add_letter')}",{jieshou_id:jieshou_id,content:content},function(res){
+            if(res.status=='y'){
+                layer.alert(res.info,function(){
+                    $('textarea').val('');
+                    history.go(0);
+                });
+            }else{
+                layer.alert(res.info);
+                $('textarea').val('');
+            }
+            return fasle;
+        },'json')
+    })
+
+    //删除审核信息
+    $('.shenhe_del').click(function(){
+        if(confirm('亲，确认要删除选中的审核信息吗？'));
+        var datas = $(this).closest('form').serialize();
+        $.get("{:U('Letter/del_shenhe')}",datas,function(data){
+            if(data.status == 'y'){
+                history.go(0);
+            }else{
+                layer.alert(data.info);
+            }
+        })
+        return false;
+    })
+    //关注他,取消关注
+    $(".guanzhu").click(function(){
+        var bfollow_id={$letter_row['user_id']};
+        var status=$(this).attr('data_status');
+        $.post("{:U('Letter/follow_ta')}",{bfollow_id:bfollow_id,status:status},function(res){
+            if(res.status == 1){
+                $(".guanzhu").html('取消关注');
+                $(".guanzhu").attr('data_status',1);//说明数据库里面的status变成了1，就赋值给它1
+                $(".guanzhu").css('background','#ccc');
+                return false;
+            }else if(res.status == 0){
+                $(".guanzhu").html('+ 关 注 她(他)');
+                $(".guanzhu").attr('data_status',0);
+                $(".guanzhu").css('background','#f76984');
+                return false;
+            }else{
+                layer.alert(res.info);
+                return false;
+            }
+        })
+    })
+
+    $('input[name="all"]').change(function(){
+        if($(this).prop('checked')== true){
+            $('.x-list_detail input').attr("checked",true);
+        }else{
+            $('.x-list_detail input').attr("checked",false);
+        }
+    })
+
+    $('input').change(function(){
+        $('input').each(function(k,v){
+            if( $(v).prop('checked') == true){
+                $('.shenhe_del').css('color','red');
+                return false;
+            }else(
+                    $('.shenhe_del').css('color','#ccc')
+            )
+
+        })
+    })
+
+
+
+</script>

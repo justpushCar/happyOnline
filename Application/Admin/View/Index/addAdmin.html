@@ -1,0 +1,39 @@
+<include file='public/header' />
+<div class="x-admin_add">
+	<div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> / <small><if condition="$user_info">编辑<else/>添加</if>后台管理员</small></div>
+    </div>
+    <form class="am-form" method="post" action="{:U('Index/addAdmin')}">
+	<div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+	  <span class="am-input-group-label">用户名　</span>
+	  <input name="username" type="text" value="{$user_info.username}" class="am-form-field" placeholder="请输入要添加的用户名">
+
+	</div>
+    <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+  		<span class="am-input-group-label">密码　　</span>
+	  	<input name="password" type="password" value="{$user_info.password}"  class="am-form-field" placeholder="请输入密码">
+	</div>
+	<div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+  		<span class="am-input-group-label">重复密码</span>
+	  	<input name="pwd" type="password" value="{$user_info.password}" class="am-form-field" placeholder="请输入重复密码">
+	</div>
+        <!--<?php if($user_info['rank'] != 1):?>
+        <div style="margin-left:5%;width:5%;margin-top:20px;float:left" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">用户权限</span>
+        </div>
+        <div style="float:left;margin-top:20px;">
+            <select style="height:38px;font-size:16px;padding-right:20px;padding-top:5px;border:1px solid #3BB4F2" name="rank">
+                <option>请选择管理员权限</option>
+                <option value="2"  <eq name="user_info['rank']" value="2">selected = "selected"</eq>>普通管理员</option>
+            </select>
+        </div>
+        <?php endif ?>-->
+
+		<div style="clear:both;margin-left:5%;margin-top:80px">
+            <input type="hidden" name="id" value="{$user_info.id}">
+			<button type="submit" class="am-btn am-btn-success">　提交　</button>
+		</div>
+		</form>
+</div>
+<include file='public/footer' />
+

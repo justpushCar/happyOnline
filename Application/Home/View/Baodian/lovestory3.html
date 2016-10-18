@@ -1,0 +1,176 @@
+<include file='public/header' />
+<div class="content">
+    <!--左边-->
+    <include file='public/spaceleft' />
+    <!--右边-->
+        <div class="contentright story3">
+
+            <div class="slideTxtBox" style="background: white;">
+                <div class="hd">
+                    <ul>
+                        <li style="width: 40%;color: black">上传成功的故事<span style="color: #ccc">(审核通过,发表成功奖10金币)</span></li>
+                        <li style="width: 40%;color: black" class="{:!empty($_GET['id'])? 'on':''}" style="width:33%;">审核中的成功故事</li>
+                    </ul>
+                </div>
+                <div class="bd">
+                    <ul>
+                        <if condition="empty($love_row)">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <div>
+                                <div class="left25"><div><span style="color: red;">* </span>标 题:</div></div>
+                                <div class="right75">
+                                    <input id="title" name="title" type="text">
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <div class="left25"><div><span style="color: red;">* </span>内 容:</div></div>
+                                <div class="right75">
+                                    <div style="clear: both">
+                                        <textarea  id="HomeEditor" name="content" value=""></textarea>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div style="clear: both;"></div>
+
+                            </div>
+
+                                <div class="wraper">
+                                    <div class="btn-wraper">
+                                        <span>(最多上传三张图片)</span>
+                                        <input type="button" value="选择图片(可选)" id="browse" />
+                                        <input type="submit" value="保存" id="upload-btn" />
+                                    </div>
+                                    <ul id="file-list">
+                                    </ul>
+                                </div>
+                        </form>
+                        </if>
+
+                    </ul>
+                    <ul>
+                        <if condition="$love_list">
+                            <table>
+                                <tr>
+                                    <th>标题</th>
+                                    <th>内容</th>
+                                    <th>时间</th>
+                                </tr>
+
+                                <volist name="love_list" id="v">
+                                <tr>
+                                    <td>{$v.title}</td>
+                                    <td>{$v.content|_substr=###,"100"}</td>
+                                    <td>{$v['pub_time']|date='Y-m-d',###}</td>
+                                </tr>
+                                </volist>
+                            </table>
+                        </if>
+                    </ul>
+                </div>
+            </div>
+        </div>
+<!--//   插件地址及 api http://www.jq22.com/jquery-info657-->
+
+    </div>
+<include file='public/foot' />
+<script src="__PUBLIC__/assets/js/plupload.js"></script>
+<script>
+    //文件上传
+    var uploader = new plupload.Uploader({ //实例化一个plupload上传对象
+        browse_button : 'browse',
+        url : "{:U('Baodian/love_image')}",
+        flash_swf_url : 'js/Moxie.swf',
+        silverlight_xap_url : 'js/Moxie.xap',
+        drop_element : 'drag-area'
+    });
+    uploader.init(); //初始化
+    //绑定文件添加进队列事件
+    uploader.bind('FilesAdded',function(uploader,files){
+        for(var i = 0, len = files.length; i<len; i++){
+            var file_name = files[i].name; //文件名
+            //构造html来更新UI
+            var html = '<li id="file-' + files[i].id +'"><p class="file-name">' + file_name + '</p><p class="progress"></p></li>';
+            $(html).appendTo('#file-list');
+        }
+    });
+
+    //绑定文件上传进度事件
+    uploader.bind('UploadProgress',function(uploader,file){
+        $('#file-'+file.id+' .progress').css('width',file.percent + '%');//控制进度条
+    });
+
+    //上传按钮
+    $('#upload-btn').click(function(){
+        var title=$("input[name='title']").val();
+        var content=$("textarea[name='content']").val();
+        if(uploader.files.length > 3){
+            layer.alert('亲，最多只能上传三张图片',function(){
+                location.href="{:U('Baodian/lovestory3')}";
+            });
+            return false;
+        }
+        $.post("{:U('Baodian/lovestory3')}",{title:title,content:content},function(res){
+            if(res.status=='n'){
+                layer.alert(res.info);
+            }else if(res.status=='y'){
+                if(uploader.files.length > 0){
+                    uploader.start();
+                    uploader.bind('UploadComplete',function(uploader,file){
+                        layer.alert(res.info,function(){
+                            $("textarea").val('');
+                            window.location.href="{:U('Baodian/lovestory3')}"+"? id="+res.love_id;
+                        })
+                    });
+                }else{
+                    layer.alert(res.info,function(){
+                        $("textarea").val('');
+                        window.location.href="{:U('Baodian/lovestory3')}"+"? id="+res.love_id;
+                    })
+                }
+            }
+        },"json");
+        return false;
+    });
+
+</script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<style>
+    .edui-editor-toolbarboxinner{margin-bottom: 0px;}
+    .contentright div{margin-bottom: 0px;}
+</style>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+<script>
+    window.onload = function(){
+        window.UEDITOR_HOME_URL = "__PUBLIC__/ueditor/";
+
+        UE.getEditor('HomeEditor', {
+            toolbars: [
+                ['fullscreen', 'undo', 'redo','bold','indent','snapscreen','underline','strikethrough','subscript','fontborder','superscript','blockquote','pasteplain','selectall','horizontal','preview'],
+                ['justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', 'removeformat', 'autotypeset', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'cleardoc']
+            ],
+            theme:"default", //皮肤
+            lang:"zh-cn", //语言
+            initialFrameWidth:580,
+            initialFrameHeight:200,
+            initialToolbarsHeight:10,
+            allHtmlEnabled:false //提交到后台的数据是否包含整个html字符串
+            //maximumWords:2000 // 最大字符数
+        })
+    }
+    $("#shanchu").click(function(){
+        if(confirm('确认要删除吗？')){
+            var id="{$help_row.id}";
+            $.post("{:U('Help/del_help')}",{id:id},function(res){
+                if(res.status == 'y'){
+                    alert(res.info);
+                    history.go(0);
+                }else{
+                    alert(res.info);
+                    return false;
+                }
+            })
+        }
+    })
+
+</script>

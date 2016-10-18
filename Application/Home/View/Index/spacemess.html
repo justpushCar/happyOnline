@@ -1,0 +1,535 @@
+<include file='public/header' />
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.css">
+<link  href="__PUBLIC__/assets/css/modal.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__PUBLIC__/assets/js/PCASClass.js"></script>
+<script src="__PUBLIC__/assets/js/plupload.js"></script>
+<!-- ft_info_box -->
+<style>
+    .slideTxtBox .hd ul li{color: black;}
+</style>
+<div class="content">
+    <!--左边-->
+    <include file='public/spaceleft' />
+   <!--右边-->
+    <div class="contentright">
+        <div class="slideTxtBox" style="background: white;">
+            <div class="hd">
+                <ul>
+                    <?php $array=array('基本资料','详细信息','内心独白','上传照片','我的认证','修改密码');?>
+                      <?php foreach($array as $k => $v){
+                               if(!empty($_GET['info'])){
+                                 if($_GET['info']==$k){
+                                   echo '<li style="color: #0b0b0b;" class="on">'.$v.'</li>';
+                                       }else{
+                                         echo '<li>'.$v.'</li>';
+                                       }
+                                    }else{
+                              echo '<li  style="color: #0b0b0b;" >'.$v.'</li>';}
+                              }
+                    ?>
+                </ul>
+            </div>
+            <div class="bd">
+                <ul>
+                    <!--基本信息-->
+                    <div class="box_center">
+                        <form id="form_user_info" action="" method="post" >
+                            <div class="left25"><span>昵称:</span></div><div class="right75"><span><input name="nick_name" type="text" value="{:!empty($useAll['nick_name'])? $useAll['nick_name']:'';}"></span></div>
+                            <div class="left25"><span>性别:</span></div><div class="right75"><span><select><option  <if condition="$useAll['sex']==2">selected</if> >女</option><option <if condition="$useAll['sex']==1">selected</if> >男</option></select></span></div>
+                            <div class="left25"><span>年龄:</span></div><div class="right75"><span><input disabled="disabled" type="text" value="{:!empty($useAll['age'])? $useAll['age']:'';}"></span></div>
+                            <div class="left25"><span>星座:</span></div><div class="right75"><span>
+                           <select name="constellation">
+                               {:!empty($useAll['constellation'])?   '<option value="'.$useAll['constellation'].'">'.$useAll['constellation'].'</option>':'';}
+                            <option value="处女座">处女座</option>
+                            <option value="狮子座">狮子座</option>
+                            <option  value="双鱼座">双鱼座</option>
+                            <option  value="天蝎座">天蝎座</option>
+                            <option  value="魔羯座">魔羯座</option>
+                            <option  value="巨蟹座">巨蟹座</option>
+                            <option  value="天秤座">天秤座</option>
+                            <option  value="水瓶座">水瓶座</option>
+                            <option  value="白羊座">白羊座</option>
+                            <option  value="处女座">处女座</option>
+                            <option  value="射手座">射手座</option>
+                            <option  value="金牛座">金牛座</option>
+                        </select>
+                              </span></div>
+                            <div class="left25"><span>学历:</span></div>
+                            <div class="right75"><span>
+                                <select name="education">
+                                    {:!empty($useAll['education'])?  '<option value="'.$useAll['education'].'">'.$useAll['education'].'</option>' : ''}
+                                    <option value="高中">高中</option>
+                                    <option value="大专">大专</option>
+                                    <option value="本科">本科</option>
+                                    <option value="硕士">硕士</option>
+                                    <option value="博士">博士</option>
+                                </select>
+                                <!--<input name="education" type="text"-->
+                                                              <!--value="{:!empty($useAll['education'])? $useAll['education']:'';}">-->
+                            </span></div>
+                            <!--<div class="left25"><span>籍贯:</span></div><div class="right75"><span><select><option value="heh">你懂得</option></select></span></div>-->
+                            <div class="left25"><span>生日:</span></div><div class="right75"><span><input type="date" value="{:!empty($useAll['birthday'])? $useAll['birthday']:'';}"
+                                                                                                        name="birthday" ></span></div>
+
+                            <div class="left25"><span><b style="color: black">联系方式:</b></span></div><div class="right75"><span></span></div>
+                            <div style="clear: both;margin: 0;"></div>
+                            <div class="left25"><span>手机号码:</span></div><div class="right75"><span><input type="text" disabled="disabled"
+                                                                                                          value="{:!empty($useAll['phone'])? $useAll['phone']:$useAll['phone'];}"></span>
+                            </div>
+                            <div class="left25"><span>邮箱:</span></div><div class="right75"><span><input type="text" disabled="disabled"
+                                                                                                          value="{:!empty($useAll['email'])? $useAll['email']:$useAll['email'];}"></span>
+                            </div>
+                            <div class="left25"><span>电话号码:</span></div><div class="right75"><span><input name="telphone" type="text"
+                                                                                                          value="{:!empty($useAll['telphone'])? $useAll['telphone']:'';}"></span>
+                            </div>
+                            <div class="left25"><span>微信号:</span></div><div class="right75"><span><input name="wixin" type="text"
+                                                                                                         value="{:!empty($useAll['wixin'])? $useAll['wixin']:'';}"></span>
+                            </div>
+                            <div class="left25"><span>QQ:</span></div><div class="right75"><span><input name="qq" type="text"
+                                                                                                         value="{:!empty($useAll['qq'])? $useAll['qq']:'';}"></span>
+                            </div>
+                            <div class="left25"><span>婚姻状况:</span></div><div class="right75">
+                                <span>
+                                    <select name="marriage">
+                                         <option value="未婚" <if condition="$useAll['marriage']==未婚">selected</if>>未婚</option>
+                                         <option value="已婚" <if condition="$useAll['marriage']==已婚">selected</if>>已婚</option>
+                                         <option value="离异" <if condition="$useAll['marriage']==离异">selected</if>>离异</option>
+                                     </select>
+                                </span>
+                            </div>
+
+                            <div class="left25"><span>职业:</span></div><div class="right75"><span><input type="text" name="job"
+                                                                                                        value="{:!empty($useAll['job'])? $useAll['job']:'';}"></span></div>
+                            <div class="left25"><span>月收入:</span></div><div class="right75"><span><input type="text" name="mon_money"
+                                                                                                         value="{:!empty($useAll['mon_money'])? $useAll['mon_money']:'';}"></span></div>
+                            <div class="left25"><span>身高:</span></div><div class="right75"><span><input type="text" name="height"
+                                                                                                        value="{:!empty($useAll['height'])? $useAll['height']:'';}"></span></div>
+                            <div class="left25"><span>体重:</span></div><div class="right75"><span><input type="text" name="weigth"
+                                                                                                        value="{:!empty($useAll['weigth'])? $useAll['weigth']:'';}"></span></div>
+                            <div class="left25"><span>现居地址:</span></div><div class="right75"><span>
+                                <select id="province" name="province">
+
+                                </select>
+                                <select id="city" name="city">
+
+                                </select>
+                                </span>
+                            </div>
+
+                                              <div class="error_info" style="color:red; margin:5px auto;text-align: center;clear: both;display: none;"></div>
+                            <input class="userinfo" type="submit" style="width:20%;height:25px;background:#f76984;color:white;border: none;border-radius: 5px;;" value="保存"/>
+                        </form>
+                    </div>
+
+                </ul>
+                <ul>
+                    <!--详细信息-->
+                    <div class="box_center">
+                        <form  action="" >
+                            <div class="left25"><span>是否要小孩:</span></div><div class="right75"><span>
+                            <select name="is_boy">
+                                <option value="" >未完善</option>
+                                <option value="要" {$juti_xinxi['is_boy']=='要'? 'selected="true"' :''} >要</option>
+                                <option value="不要" {$juti_xinxi['is_boy']=='不要'? 'selected="true"' :''}>不要</option>
+                            </select>
+                        </span></div>
+                            <div class="left25"><span>是否接受异地:</span></div><div class="right75"><span>
+                            <select name="is_address">
+                                <option value="">未完善</option>
+                                <option value="接受" {$juti_xinxi['is_address']=='接受'? 'selected="true"' :''}>接受</option>
+                                <option value="不接受" {$juti_xinxi['is_address']=='不接受'? 'selected="true"' :''}>不接受</option>
+                            </select>
+                        </span></div>
+                            <div class="left25"><span>能否接受婚前性行为:</span></div><div class="right75"><span>
+                            <select name="is_sex">
+                                <option value="" >未完善</option>
+                                <option value="能"  {$juti_xinxi['is_sex']=='能'? 'selected="true"' :''}>能</option>
+                                <option value="不能" {$juti_xinxi['is_sex']=='不能'? 'selected="true"' :''}>不能</option>
+                            </select>
+                        </span></div>
+                            <div class="left25"><span>是否愿意和父母同住:</span></div><div class="right75"><span>
+                            <select name="is_withparent">
+                                <option value="" >未完善</option>
+                                <option value="愿意" {$juti_xinxi['is_withparent']=='愿意'? 'selected="true"' :''}>愿意</option>
+                                <option value="不愿意" {$juti_xinxi['is_withparent']=='不愿意'? 'selected="true"' :''}>不愿意</option>
+                            </select>
+                        </span></div>
+                            <div class="left25"><span>你最有魅力的部位:</span></div><div class="right75"><span>
+                            <select name="meili">
+                                <option value="">未完善</option>
+                                <?php  $part= array('胸部','双腿','脑袋','眼睛','臀部','脑袋','大腿','脸部',);?>
+                        <volist name="part" id="v">
+                                <if condition="in_array($juti_xinxi['meili'],$part)">
+                                    <option value="{$v}" selected="true">{$v}</option>
+                                <else/>
+                                    <option value="{$v}">{$v}</option>
+                                </if>
+                            </volist>
+
+
+                            </select>
+                        </span></div>
+                            <div class="left25"><span>你的兴趣爱好</span></div><div class="right75">
+                            <span>
+
+                            <?php foreach($all_b as $v){
+                                if(in_array($v,$juti_b)){
+                                echo '<li><input  type="checkbox" checked="checked" name="aihao[]" value='.$v.'>'.$v.'</li>';
+                                     }else{
+                                       echo '<li><input  type="checkbox"  name="aihao[]" value='.$v.'>'.$v.'</li>';
+                                     }
+                                  }
+                            ?>
+
+
+                              </span>
+                            </div>
+                            <div class="left25"><span>你的个性特征</span></div>
+                            <div class="right75">
+                                <span>
+                                    <?php foreach($all_p as $v) :?>
+                                    <?php  if(in_array($v,$juti_p)):?>
+                                    <li><input  type="checkbox" checked="checked" name="hop[]"value="{$v}">{$v}</li>
+                                    <?php else: ?>
+                                    <li><input  type="checkbox"  name="hop[]"value="{$v}">{$v}</li>
+                                    <?php endif ?>
+                                    <?php endforeach?>
+                                </span>
+                            </div>
+                            <div class="error_info" style="color:red; margin:5px auto;text-align: center;clear: both;display: none;"></div>
+                            <input class="userinfo2" type="submit" style="width:20%;height:25px;background:#f76984;color:white;border: none;border-radius: 5px;;" value="保存"/>
+                        </form>
+                    </div>
+
+                </ul>
+                <ul>
+                    <!--内心独白-->
+                    <form>
+                        <textarea style="width: 80%;height: 200px;border: groove;" name="dubai" placeholder="等待">{:!empty($juti_xinxi['dubai'])?$juti_xinxi['dubai']:''}</textarea>
+                        <div class="error_info" style="color:red; margin:5px auto;text-align: center;clear: both;display: none;"></div>
+                        <div style="clear: both;"></div>
+                        <input class="userinfo3" type="submit" style="width:20%;height:25px;margin-top:20px;background:#f76984;color:white;border: none;border-radius: 5px;;" value="保存"/>
+                    </form>
+                </ul>
+                <ul>
+                    <!--我的头像-->
+                    <div class="box_center">
+
+                            <div class="left25" ><span>
+                                <div class="touxiang">
+                                    <div ><b style="color: black;">我的相册</b></div>
+                                    <img src="<?php echo !empty($useAll['head_img']) ? '__PUBLIC__'.$useAll['head_img'] : '__PUBLIC__/assets/images/nohead.jpg '?>">
+                                </div>
+                                </span>
+                            </div>
+                            <div class="right75 right_text">
+                                <ul>
+                                    <li><span>*1 清晰 正面 担任大头照</span></li>
+                                    <br/>
+                                    <li><span>*2 照片不含色情 暴力图片</span></li>
+                                    <br/>
+                                    <li><span>*3请勿上传卡通，明星头像</span></li>
+                                    <br/>
+                                    <li><span>*4 照片不含色情 暴力图片</span></li>
+                                    <br>
+                                    <li><span>*5图片小于5M 最好使用200*200的照片</span></li>
+                                </ul>
+                            </div>
+                            <div class="left25">
+                            </div>
+                            <div class="right75">
+                                <div class="wraper">
+                                    <div class="btn-wraper">
+                                        <input type="button" value="选择文件..." id="browse" />
+                                        <input type="button" value="开始上传" id="upload-btn" />
+                                    </div>
+                                    <ul id="file-list">
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="clear: both"></div>
+                            <div class="_buttom">
+                                <h2 style="color: black;">正在审核的图片</h2>
+                                <ul class="re__img">
+                                    <?php foreach($imglist as $v):?>
+                                    <li><img  src="__PUBLIC__{$v['img']}" ><div class="del_img" data-id="{$v['id']}"><img src="__PUBLIC__/assets/images/wrong2.jpg"> </div></li>
+                                    <?php endforeach ;?>
+                                    <div style="clear: both"></div>
+                                </ul>
+                                <h2 style="color: black;">已审核的图片</h2>
+                                <div style="color:#ccc;font:small;">(点击可直接设置为头像)</div>
+                                <ul class="__img">
+                                    <?php foreach($reimglist as $v):?>
+                                    <?php if(count($reimglist)==0) :?>
+                                         你还没有审核过的图片
+                                    <?php else :?>
+                                    <li><img data-id="{$v['id']}" src="__PUBLIC__{$v['img']}" ></li>
+                                    <?php endif ?>
+                                    <?php endforeach ;?>
+                                    <div style="clear: both"></div>
+                                </ul>
+                            </div>
+
+                    </div>
+
+                </ul>
+
+                <ul>
+                 <div>
+                     <div class="renzhen modal">
+                       <ul>
+                       <li class="left70"><img src="__PUBLIC__/assets/images/shimingrenzheng.png"></li>
+                           <?php if(!empty($juti_xinxi['is_renzheng'])):?>
+                           <li class="right30 gary"><a href="#"><img  src="__PUBLIC__/assets/images/renzh.png"></a> </li>
+                           <?php else :?>
+                       <li class="right30"><a href="#"><img  src="__PUBLIC__/assets/images/renzh.png"></a> </li>
+                           <?php endif ?>
+                       </ul>
+                     </div>
+                 </div>
+
+                </ul>
+                <ul>
+                    <!--修改密码-->
+                    <div class="box_center">
+                        <form action="" >
+                            <div class="left25" style="width: 40%"><span>当前密码:</span></div><div class="right75" style="width: 50%"><span> <input name="old" type="password">请输入旧密码</span></div>
+                            <div class="left25" style="width: 40%"><span>新密码:</span></div><div class="right75" style="width: 50%"><span><input name="new" type="password">请输入6-16位英文和数字</span></div>
+                            <div class="left25" style="width: 40%"><span>确认密码:</span></div><div class="right75" style="width: 50%"><span><input name="renew" type="password">请再次输入新密码</span></div>
+                            <div class="error_info" style="color:red; margin:5px auto;text-align: center;clear: both;display: none;"></div>
+                            <input class="userinfo5" type="submit" style="width:20%;height:26px;background:#f76984;border: none;color: white; border-radius: 5px;margin-top: 3em;" value="保存"/>
+                        </form>
+                    </div>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal_hide_body" style="width: 500px;height: 250px;">
+    <form>
+    <div style="color: #D6405D;float: left;font-size: larger;font-weight: bold;margin: 8px;">实名认证</div>
+    <div style="clear: both;"></div>
+    <div style="border-bottom: 1px solid  #D6405D; width: 100%"></div>
+    <div style="margin: auto;text-align: center;" >
+        <ul>
+            <li style="display: inline-block;margin-top: 13px;"><span style="color: red">*</span>真实姓名　：</li>
+            <li style="display: inline-block;"><input style="width: 180px;height: 20px;" name="ture_name" type="text"></li>
+        </ul>
+        <ul>
+            <li style="display: inline-block; margin-top: 8px;"><span style="color: red">*</span>身份证号码：</li>
+            <li style="display: inline-block;margin-top: 8px;"><input style="width: 180px;height: 20px;" name="id_card" type="text"></li>
+        </ul>
+    </div>
+
+    <div class="modal_c" style="margin-top: 40px;">
+        <div class="error_info" style="color:red; margin:5px auto;text-align: center;clear: both;display: none;"></div>
+        <input style="font-size: 15px;margin-right:40px;" class="userinfo4" type="submit" value="提交认证">
+        <input style="font-size: 15px;" class="modal_close" type="submit" value="关闭">
+    </div>
+    </form>
+</div>
+<div class="modal_body"></div>
+
+<!--//消息提示框-->
+<style>
+    .buttom_mode{color: black; width: 300px;height: 250px;background: #fff;position: fixed;right: 2px;bottom: 2px;border-radius: 5px;overflow:hidden;z-index: 2000}
+    .head_mode{width: 100%;height: 30px;background: #c9a6ff;text-align: center;color:white;line-height: 30px;font-weight: bold;font-size: 1.2rem;}
+    .buttom_mode  .cont{width:86%;margin:7% auto;}
+    .buttom_mode  .cont div{border-radius: 5px;overflow: hidden;}
+    .buttom_mode  .cont .right{margin-left: 10px;}
+    .buttom_mode  .close{z-index: 2001;position: absolute;right: 2px;top: -6px;cursor: pointer;}
+    .look{height: 25px;text-align: center;width: 120px;margin:20px 90px; border-radius: 5px;background-color: #f76984;line-height: 25px;color: white;font-weight: bold;cursor: pointer; }
+    .right div{margin-bottom: 15px;}
+    .look a{color: white}
+</style>
+<if condition="$suiji_user">
+    <div class="buttom_mode">
+        <div class="head_mode" style="position: relative">
+            消息提醒
+            <div class="close"><i style="color: black; line-height: 30px;" class="fa fa-times"></i></div>
+        </div>
+        <div class="cont">
+            <div style="width: 100px;height:100px;background: #c14359;float: left"><img src="__PUBLIC__{$suiji_user.head_img}" width="100%"height="100%"></div>
+            <div class="right" style="width: 145px;height: 100px; background: #fff;float: left">
+                <div style="color: black;">{$suiji_user.nick_name}</div>
+                <div style="color: black;">{$suiji_user.age}岁</div>
+                <div style="color: black;color: #EC8484;margin-top:10px;">HI，这是我写给你的情书</div>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="look">
+            <a href="{:U('Letter/letterDetail',array('send_id'=>$suiji_user['send_id']))}">快去看信</a>
+        </div>
+    </div>
+</if>
+
+<include file='public/foot' />
+
+<script>
+//文件上传
+var uploader = new plupload.Uploader({ //实例化一个plupload上传对象
+    browse_button : 'browse',
+    url : "{:U('Index/imgUpload')}",
+    flash_swf_url : 'js/Moxie.swf',
+    silverlight_xap_url : 'js/Moxie.xap',
+    drop_element : 'drag-area'
+});
+uploader.init(); //初始化
+//绑定文件添加进队列事件
+uploader.bind('FilesAdded',function(uploader,files){
+    for(var i = 0, len = files.length; i<len; i++){
+        var file_name = files[i].name; //文件名
+        //构造html来更新UI
+        var html = '<li id="file-' + files[i].id +'"><p class="file-name">' + file_name + '</p><p class="progress"></p></li>';
+        $(html).appendTo('#file-list');
+    }
+});
+
+//绑定文件上传进度事件
+uploader.bind('UploadProgress',function(uploader,file){
+    $('#file-'+file.id+' .progress').css('width',file.percent + '%');//控制进度条
+});
+uploader.bind('UploadComplete',function(uploader,file){
+   window.location.href="{:U('Index/spacemess')}?info=3"
+});
+
+//上传按钮
+$('#upload-btn').click(function(){
+ uploader.start(); //开始上传
+});
+//图片点击切换
+$('.__img li img').on('click',function(){
+  var id = $(this).attr('data-id');
+  var src = $(this).attr('src');
+    $.post("{:U('Index/img_upload_ajax')}",{id:id},function(data){
+         $('.contenteleft .left1 > img').attr('src',src);
+         $('.touxiang  img').attr('src',src);
+        if(data){
+            layer.alert('头像更换成功');
+        }
+    })
+})
+//头像删除
+$('.del_img').on('click',function(){
+    var id = $(this).attr('data-id');
+    $(this).parent().fadeOut(1500);
+    $.post("{:U('Index/img_del_ajax')}",{id:id},function(data){
+
+
+    })
+})
+$('.re__img li > img').on('click',function(){
+    var src = $(this).attr('src');
+    layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        shadeClose: true,
+        content: '<img style="with:200px;height:400px;" src='+src+ '>'
+    });
+        $('.touxiang  img').attr('src',src);
+})
+
+
+//user信息提交  aa("{:U('Index/space_userinfo')}")
+$('.userinfo').on('click',function aa(){
+    var data = $(this).closest('form').serialize();
+    $.get("{:U('Index/space_userinfo')}",data,function(data){
+        $('.error_info').fadeIn().html(data);
+        setTimeout(function(){
+            $('.error_info').fadeOut();
+        },2500)
+    })
+    return false;
+})
+
+$('.userinfo2').on('click',function aa(){
+    var data = $(this).closest('form').serialize();
+    $.get("{:U('Index/space_userinfo2')}",data,function(data){
+        $('.error_info').fadeIn().html(data);
+        setTimeout(function(){
+            $('.error_info').fadeOut();
+        },2500)
+    })
+    return false;
+})
+
+$('.userinfo3').on('click',function aa(){
+    var data = $(this).closest('form').serialize();
+    $.get("{:U('Index/space_userinfo3')}",data,function(data){
+        $('.error_info').fadeIn().html(data);
+        setTimeout(function(){
+            $('.error_info').fadeOut();
+        },1500)
+    })
+    return false;
+})
+//身份证认证
+$('.userinfo4').on('click',function aa(){
+    var data = $(this).closest('form').serialize();
+    $.get("{:U('Index/space_userinfo4')}",data,function(data){
+        $('.error_info').fadeIn().html(data);
+        setTimeout(function(){
+            $('.error_info').fadeOut();
+            if(data == "认证成功"){
+                history.go(0);
+            }
+        },2500)
+    })
+    return false;
+})
+//修改密码
+$('.userinfo5').on('click',function aa(){
+    var data = $(this).closest('form').serialize();
+    $.get("{:U('Index/space_userinfo5')}",data,function(data){
+        $('.error_info').fadeIn().html(data);
+        setTimeout(function(){
+            $('.error_info').fadeOut();
+        },2500)
+    })
+    return false;
+})
+//$('.userinfo2').click(function(){
+//    ajax_get('.userinfo2',"{:U('Index/space_userinfo2')}", '.error_info')()
+//})
+//弹出框加遮罩
+$('.modal').click(function(){ //jquery的点击事件
+    var inf_id="{$juti_xinxi['is_renzheng']}"
+    if(inf_id == 1){
+        layer.alert('你已通过实名认证');
+    }else{
+        $('.modal_body').fadeIn(100);//全局变得黑的效果，具体的div就是theme-popover-mask这个
+        $('.modal_hide_body').slideDown(200);//将隐藏的窗口div显示出来
+    }
+
+})
+$('.modal_close').click(function(){
+    $('.modal_body').fadeOut(100);//
+    $('.modal_hide_body').slideUp(200);//将显示的窗口隐藏起来
+})
+  //相册
+$('.close').click(function(){
+    $('.buttom_mode').fadeOut('slow');
+})
+
+var tag="{$is_inc}";
+if(tag =="y"){
+    layer.alert('恭喜获得1金币')
+    var a =parseInt($('.jibi_m').html());
+    setTimeout(function(){
+        $('.jibi_m').html(a+1);
+    },3000)
+
+}
+</script>
+
+
+<script>
+    $(document).ready(function(){
+        new PCAS("province","city","{:!empty($useAll['province'])? $useAll['province']:''}","{:!empty($useAll['city'])? $useAll['city']:''}");
+    })
+</script>

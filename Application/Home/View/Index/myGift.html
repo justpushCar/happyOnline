@@ -1,0 +1,129 @@
+<include file='public/header' />
+
+<!-- ft_info_box -->
+<div class="content">
+
+    <!--左边-->
+    <include file='public/spaceleft' />
+   <!--右边-->
+    <div class="contentright">
+
+        <div class="slideTxtBox">
+            <div class="hd">
+                <ul>
+                    <li>我收到的礼物</li>
+                </ul>
+            </div>
+            <div class="bd">
+            	<ul>
+            		<div class="box_center">
+                        <?php foreach($my_liwu as $v): ?>
+                       <?php  $cha=time()-$v['time'];
+                           $shi=get_time($cha);
+                           ?>
+            			<div class="x-gift_list" style="margin-bottom:0px">
+            				<img src="{$v['liwu_url']}" width="70px" height="70px">
+            				<p><b class="luwiname" style="cursor: pointer" data-href="{:U('Detail/detail')}?id={$v['send_id']}">{$v['nick_name']}</b> {$shi}前 <span>送你<span style="color: red">{$v['liwu_count']}
+
+                               </span>个</span><b>{$v['liwu_name']}</b></p>
+                            <?php if($v['is_huizen']==1) : ?>
+                            <a style="background: #cccccc;">已回赠</a>
+                            <?php else : ?>
+            				<a class="gift_detail" data-id="{$v['send_id']}" data-imgid="{$v['id']}" style="cursor: pointer;">回赠</a>
+                            <?php endif ?>
+            			</div>
+                        <?php endforeach ?>
+            			<div class="x-visitor_fotter" style="margin-bottom:0px;border:1px solid #d2d2d2">
+                            {$page}
+            			</div>
+            			
+            		</div>
+            	</ul>
+            	
+            </div>
+        </div> 
+		
+    </div>
+
+
+
+</div>
+<div class="x-gift_box">
+      	
+</div>
+<div class="x-gift_choice" style="width: 550px;height: 400px;">
+      	<div class="x-gift_choice_top"><p>赠送礼物</p><a id="gift_close" href="javascript:"><img src="__PUBLIC__/assets/images/close.png"></a></div>
+		<div class="x-gift_choice_allgift">
+			<div class="x-gift_gift"><a><img class="x-gift_border_gray" src="__PUBLIC__/assets/images/gift1.png" width="100%"><p>10克拉钻戒</p></a></div>
+			<div class="x-gift_gift"><a><img class="x-gift_border_gray" src="__PUBLIC__/assets/images/gift2.png" width="100%"><p>爱心天鹅</p></a></div>
+			<div class="x-gift_gift"><a><img class="x-gift_border_gray" src="__PUBLIC__/assets/images/gift3.png" width="100%"><p>爱心早餐</p></a></div>
+			<div class="x-gift_gift"><a><img class="x-gift_border_gray" src="__PUBLIC__/assets/images/gift4.png" width="100%"><p>爱心枕</p></a></div>
+			<div class="x-gift_gift"><a><img class="x-gift_border_gray" src="__PUBLIC__/assets/images/gift5.png" width="100%"><p>彩虹伞</p></a></div>
+			<div class="x-gift_gift"><a><img class="x-gift_border_gray" src="__PUBLIC__/assets/images/gift6.png" width="100%"><p>敞篷跑车</p></a></div>
+			<div class="x-gift_gift"><a><img class="x-gift_border_gray" src="__PUBLIC__/assets/images/gift7.png" width="100%"><p>创意花束</p></a></div>
+			<div class="x-gift_gift"><a><img class="x-gift_border_gray" src="__PUBLIC__/assets/images/gift_8.png" width="100%"><p>粉抱枕</p></a></div>
+			<div class="x-gift_gift"><a><img class="x-gift_border_gray" src="__PUBLIC__/assets/images/gift9.png" width="100%"><p>海洋之心</p></a></div>
+			<div class="x-gift_gift"><a><img class="x-gift_border_gray" src="__PUBLIC__/assets/images/gift10.png" width="100%"><p>金苹果</p></a></div>
+			<ul class="x-gift_choice_allgift_page">
+				<li><input name="liwu" value="1" >1金币一个礼物</li>
+
+			</ul>
+		</div>
+		<button type="submit" style="cursor: pointer" class="song_li_wu">确定赠送</button>
+</div>	
+<include file='public/foot' />
+
+<style>
+    .liwu_on{border:1px solid #ff7694;}
+</style>
+<script src="__PUBLIC__/assets/js/plupload.js"></script>
+<script type="text/javascript">
+    var jieshou_id='';
+    var img_id='';
+	$(".gift_detail").click(function(){
+		$(".x-gift_box").show();
+		$(".x-gift_choice").show();
+        jieshou_id = $(this).attr('data-id');
+       img_id = $(this).attr('data-imgid');
+	})
+	$("#gift_close").click(function(){
+		$(".x-gift_box").hide();
+		$(".x-gift_choice").hide();
+	})
+    $('.luwiname').click(function(){
+        var href=$(this).attr('data-href');
+        location.href=href;
+
+    })
+//选择礼物
+
+    $(".x-gift_gift").click(function(){
+        $(this).find('img').addClass('liwu_on');
+        $(this).siblings().find('img').removeClass('liwu_on');
+
+    })
+    $('.song_li_wu').click(function(){
+        var turl
+        var name
+        var url= $('.x-gift_choice .x-gift_gift img').hasClass('liwu_on')
+        if(url){
+            $('.x-gift_choice .x-gift_gift img ').each(function(k , v){
+                var q=$(v).hasClass('liwu_on')
+                if(q){
+                    t_url=$(v).attr('src')
+                    name=$(v).next().html();
+                }
+            })
+            var count= $('input[name="liwu"]').val();
+
+            $.post("{:U('Detail/send_liwu')}",{'url':t_url,'jieshou_id':jieshou_id,'count':count,'liwu_name':name,'img_id':img_id},function(data){
+                layer.alert(data);
+            })
+        }else{
+            layer.alert('你还没选择礼物');
+        }
+
+    })
+        
+     
+</script>

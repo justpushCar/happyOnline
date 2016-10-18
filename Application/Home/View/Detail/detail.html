@@ -1,0 +1,367 @@
+<include file='public/header' />
+
+<style>
+    .slideTxtBox .hd ul li{color: black;}
+</style>
+<!-- ft_info_box -->
+<div class="content">
+   	<div class="x-browse">
+   		<div class="x-browse_main">
+   			<div class="x-browse_main_photo">
+   				<img src="__PUBLIC__{$all_info['head_img']}" width="70%" height="100%">
+
+                <div class="x-browse_chart">
+                    <ul>
+                        <li class="up"><i class=" icon-angle-up icon-large"></i></li>
+                        <li class="down"><i class=" icon-angle-down icon-large"></i></li>
+                        <div class="lunbo">
+                            <?php foreach($all_img as $v):?>
+                        <li><img src="__PUBLIC__{$v['img']}" class="mypic_show"> </li>
+                            <?php endforeach ?>
+                        </div>
+                    </ul>
+                </div>
+   			</div>
+   			<div class="x-browse_main_detail">
+   				<div class="x-browse_main_detail_name"><h1>{$all_info['nick_name']}</h1>
+                    <img title="手机认证" src="__PUBLIC__/assets/images/_phone.png">
+
+                    <?php if($xiao_img['head_img']=='y'):?>
+                    <img title="上传头像" src="__PUBLIC__/assets/images/_ishead.png">
+                    <?php else :?>
+                    <img title="上传头像" src="__PUBLIC__/assets/images/ishead.png">
+                    <?php endif ?>
+
+                    <?php if($xiao_img['vip']=='y'):?>
+                    <img title="高级会员" src="__PUBLIC__/assets/images/_vip.png">
+                    <?php else :?>
+                    <img title="高级会员" src="__PUBLIC__/assets/images/vip.png">
+                    <?php endif ?>
+
+                    <?php if($xiao_img['is_renzheng']=='y'):?>
+                    <img title="实名认证" src="__PUBLIC__/assets/images/_renzheng.png">
+                    <?php else :?>
+                    <img title="实名认证" src="__PUBLIC__/assets/images/renzheng.png">
+                    <?php endif ?>
+
+                    <?php if($xiao_img['is_edit']=='y'):?>
+                    <img title="填写资料" src="__PUBLIC__/assets/images/_det.png">
+                    <?php else :?>
+                    <img title="填写资料" src="__PUBLIC__/assets/images/det.png">
+                    <?php endif ?>
+
+                </div>
+                <div style="clear: both"></div>
+   				<h3>{$all_info['age']}岁/{$all_info['height']}/{$all_info['education']}/{$all_info['province']} {$all_info['city']}</h3>
+   				<ul>
+                    <?php foreach($hobby as $v) :?>
+                    <?php if($v==""||$v==null):?>
+                    <?php else :?>
+                    <li style="margin-bottom: 2px;">{$v}</li>
+                    <?php endif ?>
+                    <?php endforeach ?>
+                    <?php foreach($personality as $v) :?>
+                    <?php if($v==""||$v==null):?>
+                    <?php else :?>
+                    <li style="margin-bottom: 2px;">{$v}</li>
+                    <?php endif ?>
+                    <?php endforeach ?>
+
+   				</ul>
+                <div style="clear: both"></div>
+   				<p>
+                    <?php if($is_vip=="yes") :?>
+                    <a class="call_message">打招呼</a>
+                    <?php else : ?>
+                    <a class="call_not_vip" >打招呼</a>
+                    <?php endif ?>
+
+                    <a href="{:U('Detail/detail')}?id={$_GET['id']}&info=2">送礼物</a>
+                    
+                    <if condition="$follow_status eq 1">
+                        <a style="cursor: pointer;background: #ccc;" data_status="1" class="guanzhu">取消关注</a>
+                        <else/>
+                        <a style="cursor: pointer;" data_status="0" class="guanzhu">+ 关 注
+                            <?php if($all_info['sex']==1):?>
+                            他
+                            <?php else :?>
+                            她
+                            <?php endif ?>
+                        </a>
+                    </if>
+
+                </p>
+                <div class="call_all" style="display: none; min-width: 200px;">
+                    <textarea style="height: 50px; width: 100%;margin: auto;border-radius: 8px;margin-top: 5px;color: black;" placeholder="你好我是。。。"></textarea>
+                    <div style="margin: auto;text-align: center;"><input class="message" type="submit" style="width:20%;height:30px;line-height:30px;background:#f76984;color:white;border: none;border-radius: 5px;margin:5px;;" value="发送"/></div>
+                </div>
+                <div class="x-browse_main_detail_p"><span>内心独白：</span>{$all_info['dubai']}</div>
+            </div>
+   		</div>	
+   		<div class="x-browse_detail">
+   			<div class="slideTxtBox">
+	            <div class="hd">
+	                <ul>
+	                    <li>
+                            <?php if($all_info['sex']==1):?>
+                            他<?php else :?>
+                            她<?php endif ?>的资料</li>
+                        <?php if(isset($_GET['info'])) :?>
+	                    <li class="on">
+                            <?php if($all_info['sex']==1):?>
+                            他<?php else :?>
+                            她<?php endif ?>的礼物</li>
+                        <?php else :?>
+                        <li>
+                            <?php if($all_info['sex']==1):?>
+                            他<?php else :?>
+                            她<?php endif ?>的礼物</li>
+                        <?php endif ?>
+	                </ul>
+	            </div>
+	            <div class="bd">
+		            <ul>
+		            	<div class="box_center">
+		            		<div class="x-browse_detailtable">
+		            			<table>
+		            				<tr>
+		            					<td>体重：<span>保密</span></td><td>身高：<span>{$all_info['height']}</span></td>
+		            				</tr>
+		            				<tr>
+		            					<td>学历：<span>{$all_info['education']}</span></td><td>职业：<span>{$all_info['job']}</span></td>
+		            				</tr>
+		            				<tr>
+		            					<td>月薪：<span>{$all_info['mon_money']}</span></td><td>能否接受异地恋：<span>{$all_info['education']}</span></td>
+		            				</tr>
+		            				<tr>
+		            					<td>是否想要小孩：<span>{$all_info['is_boy']}</span></td><td>能否接受婚前性行为：<span>{$all_info['is_sex']}</span></td>
+		            				</tr>
+		            				<tr>
+		            					<td>是否愿意与父母同住：<span>{$all_info['is_withparent']}</span></td><td>最有魅力丽的部位：<span>{$all_info['meili']}</span></td>
+		            				</tr>
+		            			</table>
+		            			<p><span style="font-size:16px">联系信息</span>　以下资料在公开时会提醒您是否公开联系方式</p>
+		            			<table>
+		            				<tr>
+		            					<td width="50%">手机号码：<span>保密</span></td><td width="50%">电话号码：<span>保密</span></td>
+		            				</tr>
+		            				<tr>
+		            					<td>微信号：<span>保密</span></td><td>QQ：<span>保密</span></td>
+		            				</tr>
+		            				<tr>
+		            					<td>其他联系方式：<span>保密</span></td>
+		            				</tr>
+		            			</table>
+		            		</div>
+		            	</div>
+		            </ul>
+		            <ul>
+		            	<div class="box_center">
+			            	<div class="x-ta_gift_list">
+			            		<a class="x-gift_left"><img src="__PUBLIC__/assets/images/x_tb_left.png"></a>
+			            		<div class="x-gift_gift_carousel">
+				            		<ul class="x-gift_list_carousel">
+				            			<li class="x-gift_photo"><img src="__PUBLIC__/assets/images/gift1.png"><p>10克拉钻戒</p></li>
+				            			<li class="x-gift_photo"><img src="__PUBLIC__/assets/images/gift2.png"><p>爱心天鹅</p></li>
+				            			<li class="x-gift_photo"><img src="__PUBLIC__/assets/images/gift3.png"><p>爱心早餐</p></li>
+				            			<li class="x-gift_photo"><img src="__PUBLIC__/assets/images/gift4.png"><p>爱心枕</p></li>
+				            			<li class="x-gift_photo"><img src="__PUBLIC__/assets/images/gift5.png"><p>彩虹伞</p></li>
+				            			<li class="x-gift_photo"><img src="__PUBLIC__/assets/images/gift6.png"><p>敞篷跑车</p></li>
+				            			<li class="x-gift_photo"><img src="__PUBLIC__/assets/images/gift7.png"><p>创意花束</p></li>
+				            			<li class="x-gift_photo"><img src="__PUBLIC__/assets/images/gift_8.png"><p>粉抱枕</p></li>
+				            			<li class="x-gift_photo"><img src="__PUBLIC__/assets/images/gift9.png"><p>海洋之心</p></li>
+				            			<li class="x-gift_photo"><img src="__PUBLIC__/assets/images/gift10.png"><p>金苹果</p></li>
+				            		</ul>
+			            		</div>
+			            		<a class="x-gift_right"><img src="__PUBLIC__/assets/images/x_tb_right.png"></a>
+			            	</div>
+			            	<div class="x-gift_give">
+			            		<p><img src="__PUBLIC__/assets/images/x_tb_gift.png">请选择礼物！数量<input  type="text" name="liwu" value=1>个(<span>*</span>1金币一个礼物)</p>
+
+                                <a class="song_li_wu">赠送</a>
+
+                                <a href="{:U('Money/recharge')}">充值</a>
+			            	</div>
+		            	</div>
+		            </ul>
+	            </div>
+            </div>
+   		</div>
+   	</div> 
+
+<!--图片弹出框-->
+    <div class="modal_hide_body">
+        <div class="tanchu_close"><i class=" icon-remove-sign icon-large"></i></div>
+        <div class="hu_img">
+
+        </div>
+    </div>
+    <div class="modal_body"></div>
+<!--弹出框样式-->
+<style>
+    /*弹出框*/
+    .x-browse a{cursor: pointer;}
+     .modal_body {
+        z-index: 997;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        display: none
+    }
+
+    .modal_hide_body {
+
+        position: relative;;
+        z-index: 999;
+        position: fixed;
+        top: 10%;
+        left: 30%;
+        width: 40%;
+        border-radius: 5px;
+        border: solid 2px #666;
+        background-color: #fff;
+        display: none;
+        box-shadow: 0 0 10px #666;
+    }
+    .modal_hide_body .tanchu_close{position: absolute;top: -4px;right: 0px;z-index:1000;}
+    .modal_hide_body .tanchu_close .icon-remove-sign{color: #f76984;cursor: pointer;}
+    .modal_hide_body img{width: 100%;height: 100%;}
+    /*.modal_hide_body ul{margin: 5%;}*/
+    /*.modal_hide_body .modal_c{margin: auto;text-align: center;}*/
+    /*.modal_hide_body .modal_c input{width:80px;background:#D6405D;height: 22px;border: none;*/
+        /*border-radius: 5px; color: white;text-align: center; cursor: pointer;margin-bottom: 10px;}*/
+</style>
+
+
+
+
+</div>
+<include file='public/foot' />
+<script src="__PUBLIC__/assets/js/plupload.js"></script>
+<style>
+    .liwu_on{border:1px solid #ff7694;}
+</style>
+<script type="text/javascript">
+//    礼物
+    var lf='';
+	$(".x-gift_right").click(function(){
+		var left = $(".x-gift_list_carousel").position().left;
+		lf = left - 85;
+		//console.log(leftVal);
+		$(".x-gift_list_carousel").animate({left: lf + 'px'});
+	})
+	$(".x-gift_left").click(function(){
+
+		var right = $(".x-gift_list_carousel").position().right;
+		lf =  lf + 85;
+		//console.log(leftVal);
+		$(".x-gift_list_carousel").animate({left: lf + 'px'});
+	})
+	$(".x-gift_photo").click(function(){
+		$(this).find('img').addClass('liwu_on');
+		$(this).siblings().find('img').removeClass('liwu_on');
+	})
+    $('.call_message').click(function(){
+        $(".call_all").slideToggle("slow");
+        $('.x-browse_main_detail_p').slideToggle("slow");
+    })
+    //发送信息
+//打招呼
+$(".call_not_vip").click(function(){
+    var id={$_GET['id']};
+    $.post("{:U('Detail/send_message')}",{'jieshou_id':id,'not_vip':'not_vip'},function(data){
+        layer.alert("打招呼成功");
+    })
+})
+
+    $('.message').on('click',function(){
+     var mess=$(this).parent().parent().find('textarea').val();
+         if(mess==""){
+             mess='嗨 你好';
+         }
+          var id={$_GET['id']};
+        $.post("{:U('Detail/send_message')}",{'message':mess,'jieshou_id':id},function(data){
+            $('.x-browse_main_detail_p').show()
+            $('.call_all').slideUp("slow")
+            layer.alert(data);
+        })
+    })
+
+    $('.x-browse_chart .up').click(function(){
+       var lunbo= $(this).parent().find('.lunbo li');
+       // lunbo.eq(0).fadeOut("slow");
+        lunbo.eq(0).appendTo( lunbo.parent());
+    })
+    $('.x-browse_chart .down').click(function(){
+        var lunbo= $(this).parent().find('.lunbo li');
+        // lunbo.eq(0).fadeOut("slow");
+        var i= lunbo.size()
+        $('.lunbo').prepend(lunbo.eq(i-1).get(0));
+    })
+//弹出框js代码
+//var a;
+$('.mypic_show').click(function(){ //jquery的点击事件
+    var src = $(this).attr("src");
+    //console.log(a);
+    $('.hu_img').html("<img src='"+src+"'>");
+    $('.modal_body').fadeIn(100);//全局变得黑的效果，具体的div就是theme-popover-mask这个
+    $('.modal_hide_body').slideDown(200);//将隐藏的窗口div显示出来
+})
+$('.icon-remove-sign').click(function(){
+    $('.modal_body').fadeOut(100);//
+    $('.modal_hide_body').slideUp(200);//将显示的窗口隐藏起来
+})
+    $('.song_li_wu').click(function(){
+        var turl
+        var name
+        var url= $('.x-gift_list_carousel li img').hasClass('liwu_on')
+        if(url){
+            $('.x-gift_list_carousel li img ').each(function(k , v){
+                   var q=$(v).hasClass('liwu_on')
+                  if(q){
+                       t_url=$(v).attr('src')
+                        name=$(v).next().html();
+                  }
+            })
+            var count= $('input[name="liwu"]').val();
+            var id={$_GET['id']};
+            $.post("{:U('Detail/send_liwu')}",{'url':t_url,'jieshou_id':id,'count':count,'liwu_name':name},function(data){
+                layer.alert(data);
+            })
+        }else{
+            layer.alert('你还没选择礼物');
+        }
+
+    })
+
+//关注他,取消关注
+$(".guanzhu").click(function(){
+    var bfollow_id={$_GET['id']};
+    var status=$(this).attr('data_status');
+    $.post("{:U('Letter/follow_ta')}",{bfollow_id:bfollow_id,status:status},function(res){
+        if(res.status == 1){
+            $(".guanzhu").html('取消关注');
+            $(".guanzhu").attr('data_status',1);//说明数据库里面的status变成了1，就赋值给它1
+            $(".guanzhu").css('background','#ccc');
+            return false;
+        }else if(res.status == 0){
+            if(res.sex == 1){
+                $(".guanzhu").html('+ 关 注 他');
+            }else{
+                $(".guanzhu").html('+ 关 注 她');
+            }
+            $(".guanzhu").attr('data_status',0);
+            $(".guanzhu").css('background','#f76984');
+            return false;
+        }else{
+            layer.alert(res.info);
+            return false;
+        }
+    })
+})
+</script>

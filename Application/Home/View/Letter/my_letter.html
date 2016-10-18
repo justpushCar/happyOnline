@@ -1,0 +1,183 @@
+<include file='public/header' />
+<!-- ft_info_box -->
+<div class="content">
+    <!--左边-->
+    <include file='public/spaceleft' />
+   <!--右边-->
+    <div class="contentright">
+
+        <div class="slideTxtBox">
+            <div class="hd" style="background: #d6405d;height: 40px;">
+                <ul class="btn" style="margin-top: 10px;margin-left: 10px">
+                    <li id="xingjian">我的信件</li>
+                    <li id="tongzhi">通知</li>
+                </ul>
+            </div>
+            <div class="bd">
+            	<ul>
+                    <form>
+            		<div class="box_center">
+            			<div class="x-info_list" style="margin-bottom:0px">
+            				 <p><input type="checkbox" name="all">　全选</p>
+            				<a class="del" href="" >删除消息</a>
+            			</div>
+                        <volist name="letter_info" id="v">
+                            <div class="x-list_detail" style="margin-bottom:0px">
+                                <div style="margin-bottom:0px" class="x-list_detail_checkbox">
+                                    <input type="checkbox" name="letter_id[]" value="{$v.send_id}" class="check_letter">
+                                </div>
+                                <div style="margin-bottom:0px;padding-right: 0px;" class="x-list_detail_letter">
+                                    <if condition="$v['user_sum'] neq $v['total_num']">
+                                        <img src="__PUBLIC__/assets/images/letter.jpg">
+                                    <else/>
+                                        <img class="gary" src="__PUBLIC__/assets/images/letter.jpg">
+                                    </if>
+                                </div>
+                                <div style="margin-bottom:0px;p-right: 20px;" class="x-list_detail_photo">
+                                    <img src="__PUBLIC__{$v.head_img}" width="50px" height="50px" />
+                                    共有({$v.user_sum})条
+                                    <p><a style="color:#000000;">{$v.nick_name}</a></p>
+                                    <!--<p>{$v.age}岁，{$v.province}{$v.city}，{$v.height}cm</p>-->
+                                    <p><?php if($v['age'] != ''):?>{$v.age}岁<?php else: ?>保密<?php endif ?>,
+                                        <?php if($v['province'] != ''):?>{$v.province}<?php else: ?>保密<?php endif ?>
+                                        <?php if($v['city'] != ''):?>{$v.city}<?php else: ?>保密<?php endif ?>,
+                                        <?php if($v['height'] != ''):?>{$v.height}cm<?php else: ?>保密<?php endif ?>
+                                    </p>
+                                </div>
+
+                                <div style="margin-bottom:0px;margin-left: 40px;" class="x-list_detail_button">
+                                    <if condition="$v['user_sum'] neq $v['total_num']">
+                                        <a style="margin-left: 70px;" href="{:U('Letter/letterDetail',array('send_id'=>$v['send_id'],'num'=>88))}">查看私信</a>
+                                    <else/>
+                                        <a style="background-color:#cccccc;margin-left: 70px;" href="{:U('Letter/letterDetail',array('send_id'=>$v['send_id'],'num'=>88))}">查看私信</a>
+                                    </if>
+                                </div>
+                                <div style="margin-bottom:0px;" class="x-list_detail_time">{$v.time}前</div>
+                            </div>
+                        </volist>
+            			<div class="x-visitor_fotter" style="margin-bottom:0px">
+            				 {$page}
+            			</div>
+            		</div>
+                    </form>
+            	</ul>
+            	<ul>
+                    <form>
+            		<div class="box_center">
+            			<div class="x-info_list" style="margin-bottom:0px">
+            				 <p><input type="checkbox" name="alls">　全选</p>
+            				<div>
+                                <a class="shenhe_del" href="" >删除消息</a>
+                            </div>
+            			</div>
+                        <volist name="shenhe_list" id="v">
+            			<div class="x-list_detail shenhes" style="margin-bottom:0px;clear: both;overflow: hidden;">
+            				<div style="margin-bottom:0px;" class="x-list_detail_checkbox">
+                                <input type="checkbox" name="shenhe_id[]" value="{$v.id}">
+                            </div>
+
+            				<div class="x-list_notice" style="width: 65%; "><p style="width: 520px;">{$v.content|_substr=###,"150"}</p></div>
+
+            				<div style="margin-bottom:0px;padding-left:70px;" class="x-list_detail_time">{$v['shenhe_time']|date="Y-m-d",###}</div>
+            			</div>
+                        </volist>
+            			<div class="x-visitor_fotter" style="margin-bottom:0px">
+            				 {$shenhe_page}
+            			</div>
+            		</div>
+                    </form>
+            	</ul>
+            </div>
+        </div>
+    </div>
+</div>
+<?php $aaa=CONTROLLER_NAME;?>
+<include file='public/foot' />
+<script src="__PUBLIC__/assets/js/plupload.js"></script>
+<script>
+    //删除信件
+    $('.del').click(function(){
+        var data = $(this).closest('form').serialize();
+        layer.confirm('亲，确认要删除私信吗？',function(){
+            if(data == ""){
+                layer.alert('亲，请选择私信');
+            }
+            $.get("{:U('Letter/del_letter')}",data,function(data){
+                if(data.status == 'y'){
+                    history.go(0);
+                }else{
+                    layer.alert(data.info);
+                    return false;
+                }
+            })
+        })
+        return false;
+    })
+
+    //删除审核信息
+    $('.shenhe_del').click(function(){
+        var data = $(this).closest('form').serialize();
+        layer.confirm('亲，确认要删除信息吗？',function(){
+            if(data == ""){
+                layer.alert('亲，请选择消息');
+            }
+            $.get("{:U('Letter/del_shenhe')}",data,function(data){
+                if(data.status == 'y'){
+                    location.href="{:U('Letter/my_letter',array('num'=>3))}";
+                }else{
+                    layer.alert(data.info);
+                    return false;
+                }
+            })
+        })
+        return false;
+    })
+    function sss(){
+        var letter = "{$_GET['num']}";
+        if(letter == 3){
+            $('#tongzhi').attr('class','on');
+        }
+    }
+    sss();
+//全选
+    $('input[name="all"]').change(function(){
+        if($(this).prop('checked')== true){
+            $('.x-list_detail input').attr("checked",true);
+        }else{
+            $('.x-list_detail input').attr("checked",false);
+        }
+    })
+
+    $('input').change(function(){
+        $('input').each(function(k,v){
+            if( $(v).prop('checked') == true){
+               $('.del').css('color','red');
+               return false;
+            }else(
+                    $('.del').css('color','#ccc')
+            )
+
+        })
+    })
+
+    $('input[name="alls"]').change(function(){
+        if($(this).prop('checked')== true){
+            $('.x-list_detail input').attr("checked",true);
+        }else{
+            $('.x-list_detail input').attr("checked",false);
+        }
+    })
+
+    $('input').change(function(){
+        $('input').each(function(k,v){
+            if( $(v).prop('checked') == true){
+                $('.shenhe_del').css('color','red');
+                return false;
+            }else(
+                $('.shenhe_del').css('color','#ccc')
+            )
+
+        })
+    })
+
+</script>

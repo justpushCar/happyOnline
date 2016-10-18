@@ -1,0 +1,60 @@
+<include file='public/header' />
+
+<div class="login_bg">
+    <img src="__PUBLIC__/assets/images/login_bg.jpg" width="100%" height="650px">
+    <div class="login_box">
+        <ul class="login">
+            <li><h1>用户登录</h1></li>
+            <li class="login_input1"><input placeholder="手机号码或邮箱" type="text" name="phone" value="{:cookie('name')}" /></li>
+            <li class="login_input2"><input placeholder="密码" type="password" name="pw" value="{:cookie('pwd')}" /></li>
+            <li class="login_input3"><input type="checkbox" name="remb" <?php echo cookie('pwd')? 'checked="ture"':"" ;?>  value="y" />保存密码
+                <a href="{:U('Index/zhaohui_password')}">忘记密码?</a>
+            </li>
+            <li class="login_input4"><button class="btn">快 速 登 录</button></li>
+            <li class="login_input4 notice"style="color: red"></li>
+            <li class="login_input5">没有账号?&nbsp;&nbsp;&nbsp;<a href="{:U('Index/register')}" >立即注册>></a></li>
+        </ul>
+    </div>
+</div>
+<div class="clear"></div>
+<include file='public/foot' />
+<script>
+    $('.btn').click(function(){
+        var remb
+        var phone=$('input[name="phone"]').val();
+        var password=$('input[name="pw"]').val();
+        if($('input[name="remb"]').prop('checked')){
+            remb="y"
+        }
+        $.post("{:U('Index/loginJson')}",{"phone":phone,"password":password,"remb":remb},function(data){
+            if(data.info == 'n1'){
+                $('.notice').fadeIn().html('帐号不存在');
+                setTimeout(function(){
+                    $('.notice').fadeOut();
+                },1800)
+            }
+            if(data.info == 'n2'){
+                $('.notice').fadeIn().html('密码错误');
+                setTimeout(function(){
+                    $('.notice').fadeOut();
+                },1800)
+            }
+            if(data.info == 'n3'){
+                $('.notice').fadeIn().html('该用户已被禁用');
+                setTimeout(function(){
+                    $('.notice').fadeOut();
+                },1800)
+            }
+            if(data.info == 'n4'){
+                $('.notice').fadeIn().html('该用户已经在其他地方登录，不能重复登录');
+                setTimeout(function(){
+                    $('.notice').fadeOut();
+                },1800)
+            }
+            if(data[3]=='success'){
+                window.location.href="{:U('Index/space')}"
+            }
+            return false;
+        })
+    })
+</script>

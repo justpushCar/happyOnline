@@ -1,0 +1,96 @@
+<include file='public/header' />
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.css">
+<!-- ft_info_box -->
+<div class="content search">
+    <div class="slideTxtBox" style="background: white;">
+           <div class="hd" style="background: #d6405d;height: 40px;">
+               <ul style="margin-top: 10px;margin-left: 50px">
+                <li style="color:black;width: 110px;">每日有约</li>
+            </ul>
+        </div>
+        <div class="bd">
+            <ul>
+                <div class="box_center" style="margin-left: 36px">
+                    <div style="float: left;margin:20px 0px;">每日有约：此栏目展示每日进入幸福在线的VIP会员</div>
+                    <div style="clear:both"></div>
+                    <volist name="list" id="v">
+                    <div class="every" >
+                        <div style="width: 120px;float: left ">
+                            <div><img style="width: 120px;height:150px;" src="__PUBLIC__{$v.head_img}" width="100%"></div>
+                        </div>
+                        <div class="leftt">
+                              <ul>
+                                <li style="font-size: large;color: #000000;">{$v.nick_name}</li>
+                                  <br>
+                                <li >上线时间 : <span>{$v.time|date='Y-m-d H:i:s',###}</span></li>
+                                  <br>
+                                <li><a href="{:U('Detail/detail',array('id'=>$v['user_id']))}" > <i style="color: white" class="icon-heart"></i> 查看详情</a></li>
+                              </ul>
+                        </div>
+                    </div>
+                    </volist>
+                </div>
+            </ul>
+        </div>
+        <div class="x-visitor_fotter" id="lovestory1" style="margin-bottom:0px;" >
+            {$page}
+        </div>
+    </div>
+</div>
+<style>
+    .every{width:50%;float:left;}
+    .leftt  {float: left;}
+    .leftt li {margin-left:10px;margin-bottom: 20px;float: left;color: black}
+    .leftt li a{display: block;height: 28px;background: #f76984;width: 100px;line-height: 28px;border-radius: 5px;margin-top: 20px;color: white;}
+</style>
+<include file='public/foot' />
+<!--<include file='public/details' />-->
+<style>
+    .buttom_mode{color: black; width: 300px;height: 250px;background: #fff;position: fixed;right: 2px;bottom: 2px;border-radius: 5px;overflow:hidden;z-index: 2000}
+    .head_mode{width: 100%;height: 30px;background: #c9a6ff;text-align: center;color:white;line-height: 30px;font-weight: bold;font-size: 1.2rem;}
+    .buttom_mode  .cont{width:86%;margin:7% auto;}
+    .buttom_mode  .cont div{border-radius: 5px;overflow: hidden;}
+    .buttom_mode  .cont .right{margin-left: 10px;}
+    .buttom_mode  .close{z-index: 2001;position: absolute;right: 2px;top: -6px;cursor: pointer;}
+    .buttom_mode .look{height: 25px;text-align: center;width: 120px;margin:20px 90px; border-radius: 5px;background-color: #f76984;line-height: 25px;color: white;font-weight: bold;cursor: pointer; }
+    .buttom_mode.right div{margin-bottom: 15px;}
+    .buttom_mode .look a{color: white}
+</style>
+<!--//右下角弹出-->
+<if condition="$suiji_user">
+    <div class="buttom_mode">
+        <div class="head_mode" style="position: relative">
+            消息提醒
+            <div class="close" ><i style="color: black; line-height: 30px;" class="fa fa-times"></i></div>
+        </div>
+        <div class="cont">
+            <div style="width: 100px;height:100px;background: #c14359;float: left"><img src="__PUBLIC__{$suiji_user.head_img}" width="100%"height="100%"></div>
+            <div class="right" style="width: 145px;height: 100px; background: #fff;float: left">
+                <div style="color: black;">{$suiji_user.nick_name}</div>
+                <div style="color: black;">{$suiji_user.age}岁</div>
+                <div style="color: black;color: #EC8484;margin-top:10px;">你收到一封信件.</div>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="look">
+            <a href="{:U('Letter/letterDetail',array('send_id'=>$suiji_user['send_id']))}">快去看信</a>
+        </div>
+    </div>
+</if>
+<script>
+    $('.close').click(function(){
+        $('.buttom_mode').fadeOut('slow');
+    })
+
+</script>
+<script>
+    //$(selector).delegate(childSelector,event,data,function)
+    $("#everyday").delegate('a','click',function(){
+        var $href=$(this).attr('href');
+        $.post($href,{ajax:'ajax'},function(res){
+            $(".x-visitor_fotter").html(res.page);
+            $(".x-visitor").html(res.datas);
+        });
+        return false;
+    })
+</script>

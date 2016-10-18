@@ -1,0 +1,65 @@
+<include file='public/header' />
+<style>
+    table {width: 100%}
+    table th{width: 25%}
+</style>
+<div class="content">
+    <!--左边-->
+    <include file='public/spaceleft' />
+    <!--右边-->
+            <div class="contentright recommend">
+
+                <div class="slideTxtBox" style="background: white;">
+                    <div class="hd">
+                        <ul>
+                            <li style="width:25%">推荐记录</li>
+                        </ul>
+                    </div>
+                    <div class="bd">
+                        <ul>
+                            <table>
+                                <tr>
+                                    <th>用户名</th>
+                                    <th>我的推荐码</th>
+                                    <th>充值内容</th>
+                                    <th>充值时间</th>
+                                </tr>
+                               <?php
+
+                               foreach($all as $v) :?>
+                                <tr>
+                                    <td>{$v.nick_name}</td>
+                                    <td>{$v.tuijian_code}</td>
+                                    <td>{$v.goods_name}</td>
+                                    <td>{$v.create_time}</td>
+                                </tr>
+                                <?php endforeach;  ?>
+                            </table>
+                        </ul>
+                    </div>
+                 </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <include file='public/foot' />
+<script>
+
+        $('._box').click(function(){
+            $(this).css('background','#f76984');
+            $(this).siblings().css('background','#fff')
+        })
+
+
+
+</script>

@@ -1,0 +1,110 @@
+<include file='public/header' />
+<div class="x-admin_add">
+    <div class="am-cf am-padding">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">优秀会员推荐</strong> / <small><if condition="$index_user_row">编辑<else/>添加</if></small></div>
+    </div>
+    <div class="am-cf am-padding">
+        <span style="font-size: 8px;">图片上传大小：<span style="color:red;">500×500px;  这个首页优秀会员图必须为正方形</span></span>
+    </div>
+    <form class="am-form" method="post" action="{:U('IndexUser/index_user_add')}" enctype="multipart/form-data">
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">会员信息　</span>
+            <input name="xingxi" type="text" value="{$index_user_row.xingxi}" class="am-form-field" style="width: 200px;">
+        </div>
+        <div style="margin-left:5%;width:50%" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">推荐位　</span>
+            <input name="position" type="text" value="{$index_user_row.position}" class="am-form-field" style="width: 210px;">
+        </div>
+
+        <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">会员图片　</span>
+            <input type="file" name="huiyuan" onchange="showImg(this)" />
+
+            <?php if($index_user_row) :?>
+                <img style="height: 200px;width:210px;" src="__PUBLIC__{$index_user_row.img}"/>
+            <?php else: ?>
+                <img style="height: 200px;width:210px;" src="__ROOT__/zhenxiang.jpg"/>
+            <?php endif;?>
+        </div>
+        <div style="margin-left:5%;width:5%;margin-top:20px;float:left" class="am-input-group am-input-group-secondary">
+            <input type="hidden" name="id" value="{$index_user_row.id}">
+            <button type="submit" class="am-btn am-btn-success">　提交　</button>
+        </div>
+    </form>
+
+</div>
+<include file='public/footer' />
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+<script>
+    window.onload = function(){
+        window.UEDITOR_HOME_URL = "__PUBLIC__/ueditor/";
+        UE.getEditor('guanggaoEditor', {
+            theme:"default", //皮肤
+            lang:"zh-cn", //语言
+            initialFrameWidth:900,
+            initialFrameHeight:300,
+            allHtmlEnabled:false,
+        })
+    }
+    $("#shanchu").click(function(){
+        if(confirm('确认要删除吗？')){
+            var id="{$index_user_row.id}";
+            $.post("{:U('Guanggao/index')}",{id:id},function(res){
+                if(res.status == 'y'){
+                    alert(res.info);
+                    history.go(0);
+                }else{
+                    alert(res.info);
+                    return false;
+                }
+            })
+        }
+    })
+    //删除图片
+    $(".img_id").click(function(){
+        if(confirm('确认要删除吗')){
+            var img_id=$(this).attr('data_id');
+            $.post("{:U('Guanggao/del_img')}",{img_id:img_id},function(res){
+                if(res.status == 'y'){
+                    alert(res.info);
+                    history.go(0);
+                }else{
+                    alert(res.info);
+                    return false;
+                }
+            })
+        }
+    })
+    //添加广告上传框
+    $('.tianjias').click(function(){
+        $(':file:eq(0)').after($(':file:eq(0)').clone());
+        return false;
+    })
+    //删除广告
+    $("#shanchu").click(function(){
+        if(confirm('确认要删除吗？')){
+            var id="{$index_user_row.id}";
+            $.post("{:U('Guanggao/del_guanggao')}",{id:id},function(res){
+                if(res.status == 'y'){
+                    alert(res.info);
+                    history.go(0);
+                }else{
+                    alert(res.info);
+                    return false;
+                }
+            })
+        }
+    })
+    //显示图像
+    function showImg(obj){
+        var file = obj.files[0];
+        var reader = new FileReader();
+        //将文件以Data URL形式读入页面
+        reader.readAsDataURL(file);
+        reader.onload=function(e){
+            //显示文件
+            $(obj).next('img').attr("src",this.result);
+        }
+    }
+</script>

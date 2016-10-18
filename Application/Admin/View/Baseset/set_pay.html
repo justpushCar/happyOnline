@@ -1,0 +1,51 @@
+<include file='public/header' />
+<div class="x-admin_add" style="height:100%">
+	<div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">系统设置</strong> / <small>支付设置</small></div>
+    </div>
+    <form class="am-form" method="post" action="{:U('Baseset/set_pay')}" enctype="multipart/form-data">
+        <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">支付宝帐号</span>
+            <input name="seller_email" type="text" value="{$pay['seller_email']}" class="am-form-field" >
+        </div>
+        <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">支付宝PID</span>
+            <input name="partner" type="text" value="{$pay['partner']}" class="am-form-field" >
+        </div>
+        <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">支付宝加密KEY</span>
+            <input name="key" type="text" value="{$pay['key']}" class="am-form-field" >
+        </div>
+
+
+
+        <!--微信-->
+        <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">微信商户帐号</span>
+            <input name="weixin_user" type="text" value="{$pay['weixin_user']}" class="am-form-field" >
+        </div>
+        <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">微信PID</span>
+            <input name="weixin_pid" type="text" value="{$pay['weixin_pid']}" class="am-form-field" >
+        </div>
+        <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">微信加密KEY</span>
+            <input name="weixin_key" type="text" value="{$pay['weixin_key']}" class="am-form-field" >
+        </div>
+        <!--//银联-->
+        <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">银联证书密码</span>
+            <input name="signCertPwd" type="text" value="{$pay['signCertPwd']}" class="am-form-field" >
+        </div>
+        <div style="margin-left:5%;width:50%;margin-top:20px" class="am-input-group am-input-group-secondary">
+            <span class="am-input-group-label">银联商户号</span>
+            <input name="merId" type="text" value="{$pay['merId']}" class="am-form-field" >
+        </div>
+
+	<div style="clear:both;margin-left:5%;margin-top:80px">
+		<button type="submit" class="am-btn am-btn-success">　提交　</button>
+	</div>
+	</form>
+</div>
+<include file='public/footer' />
+

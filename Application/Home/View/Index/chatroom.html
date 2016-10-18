@@ -1,0 +1,87 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+    <title>kuaile</title>
+<style>
+    *{margin: 0;padding: 0;}
+.conter{width: 100%}
+    .conter img{width: 100%;}
+</style>
+
+</head>
+<body>
+    <div class="conter" style="position: relative;">
+            <img src="__PUBLIC__/assets/images/chatbg.jpg">
+        <div class="take1" style="position:absolute;z-index: 100;top: 48%;">
+            <img  src="__PUBLIC__/assets/images/chattake.png">
+        </div>
+        <div class="take2" style="position:absolute;z-index: 100;top: 70%;font-size: larger;color: white;">
+                  <div><b>距离12点 &nbsp;倒计时：<span></span>小时<span></span>分钟<span></span>秒</b></div>
+        </div>
+    </div>
+
+</body>
+<script src="__PUBLIC__/assets/js/jquery.min.js"></script>
+<script>
+    $(function(){
+        $(window).on('load',function(){
+            var H=$(window).height();
+            var W=$(window).width();
+            $('.conter >img').css('height',H);
+            var img2=$('.conter img').eq(1)
+            var img_w=img2.width();
+            var  w_left=(W-img_w)/2;
+            $('.take1,.take2').css('left',w_left);
+        })
+        //dotime三个参数  a，b时间区间     回调函数为在时间段内处理函数
+        $.dotime(21 ,22,function(){
+            layer.alert('正在直播中');
+        });
+
+    })
+
+
+
+
+
+//时间开始
+$.dotime = function(a,b,c){
+    var d = new Date();
+    var now_hour=d.getHours();
+        if( (now_hour>=a)&&(now_hour<b)){
+            //表示在时间段的处理函数
+            c();
+        }else{
+            setInterval(function(){
+                var d = new Date();
+                var now_hour=d.getHours();
+                if((now_hour>=a)&&(now_hour<b)){
+                    //表示在时间段的处理函数
+                    c();
+                }else{
+                    cha(a);
+
+                }
+            },1000)
+        }
+}
+function cha(a){
+        var d = new Date();
+        var now_hour=d.getHours();
+        var  now_min=d.getMinutes()
+        var now_s=d.getSeconds()
+        //相差的时间
+        var cha_hour=((a-now_hour)-1);
+        var cha_min =((60-now_min)-1)
+        var cha_s =(60-now_s);
+        $(".take2 span").eq(0).html(cha_hour);
+        $(".take2 span").eq(1).html(cha_min);
+        $(".take2 span").eq(2).html(cha_s);
+}
+
+//此方法接受2个参数表示时间段
+
+
+</script>
+</html>

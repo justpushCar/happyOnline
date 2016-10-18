@@ -1,0 +1,49 @@
+<include file='public/header' />
+<!-- ft_info_box -->
+<div class="content" style="min-height: 570px;height:100%">
+<volist name="list" id="v">
+   <div class="x-happiness" href="{:U('Home/Online/wait',array('channel'=>$v['id']))}">
+      <empty name="v.image">
+         <img src="__PUBLIC__/assets/images/x_online_bg.png" height="100%" width="68%">
+      <else/>
+         <img src="{$v.image}" height="100%" width="68%">
+      </empty>
+      <p style="line-height: 55px"><span class="channel_title">{$v.title}</span>
+         <eq name="v.state" value="1">
+            <a href="{:U('Home/Online/wait',array('channelID'=>$v['id']))}" style="color: black;">参加</a><br>
+            <eq name="v.open" value="1">
+               <a href="{:U('Home/Online/guestLive',array('channelID'=>$v['id']))}" style="color: black;">观看</a><br>
+            <else/>
+               <a href="javascript:void(0)" onclick="alert('管理员已关闭观看功能！');" >观看</a><br>
+            </eq>
+            <a href="{:U('Home/Online/adminLive',array('channelID'=>$v['id']))}" style="color: black;">管理员</a>
+         </eq> 
+      </p>
+      <neq name="v.state" value="1">
+         <h2>即将开放，敬请期待！</h2>
+      </neq>
+      <div class="x-camera">
+         <eq name="v.state" value="1">
+      		<img src="__PUBLIC__/assets/images/x-sxt.png">
+      		<span>{$v.num}</span>
+         </eq>
+      </div>
+   </div>
+</volist>
+	<!-- <a class="x-happiness">
+   <img src="__PUBLIC__/assets/images/x_online_bg.png" height="100%" width="68%">
+   <p>幸福在线二台</p><h2>即将开放，敬请期待！</h2>
+   <div class="x-online-mask">
+   
+   </div>
+   </a> -->
+   <style type="text/css">
+      .x-online_page ul{width:210px;height:30px;margin:0 auto;text-align: center;}
+      .x-online_page ul li{display:block;float:left;}
+      .channel_title{display: block;width:105px;height:53px;line-height: 20px;color:black;}
+   </style>
+	<div class="x-online_page"> {$page} </div>
+
+</div>
+<include file='public/foot' />
+<script src="__PUBLIC__/assets/js/plupload.js"></script>
